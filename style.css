@@ -54,6 +54,8 @@ header {
     width: 100%;
     height: 10vh;
     z-index: 2;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
 .logo1 {
     background: url('assets/logo.jpg');
@@ -91,9 +93,10 @@ ul {
 }
 .burger-items {
     color: black;
-    padding: .75em 2em;
+    padding: .75em 1em;
     display: block;
 
+    /* in mobile version when menu items are hovers they have a light grey background color */
     &:hover{
         background: rgb(207, 206, 206);
     }
@@ -192,7 +195,6 @@ p.subhead {
 /*PAGE 3 - SUBSYSTEMS*/
 section.subsystems {
     display: flex;
-    border-radius: 25px;
     flex-direction: column;
     height: fit-content;
     overflow-x: auto;
@@ -219,6 +221,7 @@ section.subsystems {
 
 .title.subsystem {
     display: none;
+    font-size: 3.8rem;
 }
 .title {
     color: white;
@@ -248,39 +251,27 @@ section.subsystems {
 }
 
 /*Sponsors Section*/
-.sponsors {
+.sec {
     margin: 1em;
     margin-top: 4em;
     height: 30vh;
     background: #FFAE03;
-    border-radius: 25px;
+    border-radius: 25px;   
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
-.title.sponsor {
+.secTitle {
     font-size: 2rem;
+    color: white;
+    font-family: Formula1-Bold;
 }
 
 
-/*Meet the team Section*/
-.sponsors {
-    margin: 1em;
-    margin-top: 4em;
-    height: 30vh;
-    background: #FFAE03;
-    border-radius: 25px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-.title.sponsor {
-    font-size: 2rem;
-}
+
 
 
 /*page 3 - contact area*/
@@ -293,73 +284,74 @@ section.contact {
     margin-top: 5rem;
     margin-bottom: 2em;
 }
-.title.contact {
-    font-size: 4rem;
+/* englobes the credentials+socials and the google maps */
+.contactFrame {
+    display: flex;
+    gap: 1em;
 }
-form {
+.socialAndCredentials {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    
-}
-.c {
-    margin-top: 1.3em;
-    width: 33em;
-}
-.email {
-    background-color: rgb(231, 126, 126);
-    height: 2em;
-    outline: none;
-}
-.names {
-    display: flex;
-    justify-content: space-between;
-    width: 28em;
-    height: 2em;
-}
-.user-name {
-    width: 15em;
-}
-.talk {
-    background-color: rgb(231, 126, 126);
-    margin-bottom: 1.5em;
-}
-.submit {
-    width: 33em;
-    height: 2em;
-    background-color: rgb(231, 126, 126);
-}
+    justify-content: space-around;
 
-/*FOOTER PAGE 3*/
-section.footer {
+    margin-left: 1em;
+    margin-right: 1em;
+    background: rgba(230,230,230,0.33);
+    outline: 1.5px solid white;
+    border-radius: 25px;
+    height:  18em;
+}
+/* size for the social media icons */
+svg.social {
+    width: 2.7rem;
+    height: 2.7rem;
+}
+.credentials {
     display: flex;
     flex-direction: column;
+    gap: 1em;
     align-items: center;
+    padding: 1em;
     
-    width: 100%;
-    height: fit-content;
-    justify-content: space-between;
-    border-top: 1.5px solid white;
-    
+}
+.contactText {
+    font-size: 1em;
+    color: white;
+    margin-top: .5em;
+}
+.contactText.mail {
+    &:hover {
+        color: black;
+        text-decoration: underline;
+    }
+}
+#map {
+    flex-shrink: 0;
+    margin-right: 1em;
+    border-left: yellow fill;
+    border-radius: 25px;
+    height: 18em;
+    width: 18em;
+    background: grey;
+}
+.title.contact {
+    border-bottom: 1.5px solid white;
+    margin-bottom: 0.4em;
+    font-size: 4rem;
 }
 .socials {
     margin-top: .8rem;
     display: flex;
-    
-    justify-content: space-between;
+    justify-content: center;
+    gap: 4rem;
     width: 100%;
-}
-.link {
-    color: white;
-    font-size: 1em;
-}
-.credentials {
-    font-size: .8em;
-    opacity: 0.4;
+    margin-bottom: 1em;
 }
 
 
 
+
+/*MAKES IT MORE SUITABLE FOR */
 @media only screen and (max-width: 450px) {
     .intro-imageAndtext {
         display: flex;
@@ -376,8 +368,8 @@ section.footer {
         margin-right: 1.5em;
     }
 
-    .c {
-        width: 25em;
+    .title.contact {
+        font-size: 3rem;
     }
     .names {
         width: 21.3em;
@@ -386,8 +378,28 @@ section.footer {
         width: 11em
     }
 }
+
+/*THIS IS FOR THE FORMAT OF THE MAP AND CONTACT AREA, FOR MOBILE (FROM ROW TO COLUMN)*/
+@media only screen and (max-width: 625px) {
+    .contactFrame {
+        flex-direction: column;
+    }
+    #map {
+        margin-left: 1em;
+        margin-right: 1em;
+        height: 10em;
+        width: 2em;
+        min-width: 94%;
+    }
+    .credentials {
+        margin-left: unset;
+        height: 15em;
+        margin: 1em;
+    }
+}
+
 /*for the burger menu*/
-@media only screen and (max-width: 680px) {
+@media only screen and (max-width: 750px) {
     .logo1 {
         display: none;
     }
@@ -400,11 +412,11 @@ section.footer {
     }
 }
 
-@media only screen and (min-width: 680px) {
+/* this gets rid of the burger menu when screen size is over 750px, and formats the header */
+@media only screen and (min-width: 750px) {
     .menu {
         display: none;
     }
-    
 
     nav {
         transform: translateX(0);
@@ -451,10 +463,14 @@ section.footer {
         background: #FFAE03;
         height: 90vh;
         justify-content: space-around;
+
+        border-radius: 25px;
+        margin-right: 1em;
+        margin-left: 1em;
     }
     .title.subsystem {
         display: unset;
-        font-size: 3.9rem;
+        font-size: 3.7rem;
         align-self: center;
     }
 
@@ -486,3 +502,5 @@ section.footer {
         width: 1200px;
     }
 }
+
+

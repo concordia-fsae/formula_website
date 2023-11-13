@@ -4,11 +4,26 @@ const menu = document.querySelector('.menu');
 const close = document.querySelector('.close');
 const nav = document.querySelector('nav');
 
+;
+
 menu.addEventListener('click', () => {
     nav.classList.add('open-nav');
 })
 close.addEventListener('click', () => {
     nav.classList.remove('open-nav');
+})
+//these final three closes the menu when an item of the menu is clicked
+const aboutUs = document.getElementById('aboutUs');
+const subsystems = document.getElementById('subsystems');
+const contact = document.getElementById('contact')
+subsystems.addEventListener('click', () => {
+  nav.classList.remove('open-nav');
+})
+aboutUs.addEventListener('click', () => {
+  nav.classList.remove('open-nav');
+})
+contact.addEventListener('click', () => {
+  nav.classList.remove('open-nav');
 })
 
 
@@ -31,9 +46,9 @@ window.onscroll = function() {scrollFunction()};
 
 
 function scrollFunction() {
-  if (window.innerWidth > 680){
+  if (window.innerWidth > 750){
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      document.querySelector("header").style.background = "white";
+      document.querySelector("header").style.background = "rgba(255,255,255,0.8)";
     } 
     else {
       document.querySelector("header").style.background = "unset";
@@ -45,3 +60,33 @@ function scrollFunction() {
   
 }
 
+
+
+// this is the full google maps java code
+// Initialize and add the map
+let map;
+
+async function initMap() {
+  // The location of CONCORDIA FORMULA RACING
+  const position = { lat: 45.497296578930325, lng: -73.57879827627701 };
+  // Request needed libraries.
+  //@ts-ignore
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+  // The map, centered at Uluru
+  map = new Map(document.getElementById("map"), {
+    zoom: 11, // ZOOM IS RESPONSIBLE OF HOW ZOOMED IN WE ARE (0 BEING THE VIEW OF THE WHOLE EARTH)
+    center: position,
+    mapId: "DEMO_MAP_ID",
+  });
+
+  // The marker, positioned at Uluru
+  const marker = new AdvancedMarkerElement({
+    map: map,
+    position: position,
+    title: "CONCORDIA FORMULA RACING",
+  });
+}
+
+initMap();
