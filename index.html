@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FORMULA SAE - CONCORDIA</title>
+    <title>CONCORDIA - Formula Racing</title>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="java.js"></script>
 </head>
@@ -37,14 +37,14 @@
 
         <section class="home-page">
             <div class="scrolling-text"><h1><span>CONCORDIA</span> FORMULA RACING - <span>CONCORDIA</span> FORMULA RACING - <span>CONCORDIA</span> FORMULA RACING </h1></div>
-
-            <svg class="arrow one" width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- the id here is a marker for the smooth scrolling when pressing the arrow, which goes to the intro page, when pressing the menu: 'about us'-->
+            <svg class="arrow one" id="scrollToIntro" width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.9393 32.0607C11.5251 32.6464 12.4749 32.6464 13.0607 32.0607L22.6066 22.5147C23.1924 21.9289 23.1924 20.9792 22.6066 20.3934C22.0208 19.8076 21.0711 19.8076 20.4853 20.3934L12 28.8787L3.51472 20.3934C2.92893 19.8076 1.97919 19.8076 1.3934 20.3934C0.807612 20.9792 0.807612 21.9289 1.3934 22.5147L10.9393 32.0607ZM10.5 6.55671e-08L10.5 31L13.5 31L13.5 -6.55671e-08L10.5 6.55671e-08Z" fill="black"/>
             </svg>
         </section>
 
         <!-- intro section -->
-         <section class="intro" id="scrollToIntro"><!-- the id here is a marker for the smooth scrolling when pressing the arrow -->
+         <section class="intro" >
             <div class="introFrame">
                 <div class="intro-imageAndtext">
                     <div class="logo2"></div>
@@ -52,97 +52,112 @@
                 </div>
                 <p class="subhead">Our team combines years of knowledge from formerly building combustion race cars in building electric race cars. Our years of mechanical development let us tackle these new technologies head-on while maintaining a solid racing platform. We strive to push Concordia engineering students to become top-notch, relevant future employees in an ever-changing job market. Here at Concordia Formula Racing, we don't just make race cars go fast, we create the race car of the future.</p>
             </div>
-            <svg class="arrow two" width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+            
+            <!-- the id here is a marker for the smooth scrolling, which goes to subsystems, so when 'subsystems' menu is pressed -->
+            <svg class="arrow two" id="scrollToSubs" width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.9393 32.0607C11.5251 32.6464 12.4749 32.6464 13.0607 32.0607L22.6066 22.5147C23.1924 21.9289 23.1924 20.9792 22.6066 20.3934C22.0208 19.8076 21.0711 19.8076 20.4853 20.3934L12 28.8787L3.51472 20.3934C2.92893 19.8076 1.97919 19.8076 1.3934 20.3934C0.807612 20.9792 0.807612 21.9289 1.3934 22.5147L10.9393 32.0607ZM10.5 6.55671e-08L10.5 31L13.5 31L13.5 -6.55671e-08L10.5 6.55671e-08Z" fill="black"/>
             </svg>
                 
         </section>
 
         <!-- subsystems which is a list of cards with each subsystem inside of it -->
-         <section class="subsystems" id="scrollToSubs"> <!-- the id here is a marker for the smooth scrolling -->
+         <section class="subsystems" id="scrollToSubs">
             <div class="title subsystem">FORMULA SUBSYSTEMS</div>
             <div class="sub_section">
-                <div class="card">
-                    <p class="title">Aerodynamics</p>
-                    <div class="frame">
-                        <img class="card-photo" src="assets/subsystems/aero-photo.jpg" alt="dfasd">                    
-                        <p class="text">Responsible for the creation of components such as wings and diffusers used to create downforce and push the car into the ground.</p>
+                <div class="cardSec one">
+                    <div class="sub-cardSec one">
+                        <div class="card aero">
+                            <p class="title forCards">Aerodynamics</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/aero-photo.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for the creation of components such as wings and diffusers used to create downforce and push the car into the ground.</p>
+                            </div>
+                        </div>
+
+                        <div class="card brakes">
+                            
+                            <p class="title forCards">Brakes</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/brakes.jpg" alt="dfasd">                    
+                                <p class="text toolong">Responsible for slowing the car through the combination of hydraulic and friction systems.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sub-cardSec two">
+                        <div class="card chassis">
+                            <p class="title forCards">Chassis</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/chassis.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for attaching the other subsystems together as well as protecting the driver from the elements.</p>
+                            </div>                
+                        </div>
+
+                        <div class="card data">
+                            <p class="title forCards">Data Acquisition</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/dataAcquisiton.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for the acquiring of sensor data and refining it with the objective of assisting other subsystems with the analysis of said data.</p>
+                            </div>                
+                        </div>
                     </div>
                 </div>
 
-                <div class="card">
-                    
-                    <p class="title">Brakes</p>
-                    <div class="frame">
-                        <img class="card-photo" src="assets/subsystems/brakes.jpg" alt="dfasd">                    
-                        <p class="text toolong">Responsible for slowing the car through the combination of hydraulic and friction systems.</p>
+                <div class="cardSec two">
+                    <div class="sub-cardSec one">
+                        <div class="card steering">
+                            <p class="title forCards">Steering</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/steering.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for the steering geometry, closely related to the suspension subsystem.</p>
+                            </div>                
+                        </div>
+
+                        <div class="card suspension">
+                            <p class="title forCards">Suspension</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/suspension.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for translating forces from the tires into the rest of the car through the establishment of car specific geometry.</p>
+                            </div>                
+                        </div>
+                    </div>
+
+                    <div class="sub-cardSec two">
+                        <div class="card wheels">
+                            <p class="title forCards">Wheels & Tires</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/wheelsTires.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for all cornering and acceleration forces transferring between the road and the car.</p>
+                            </div>                
+                        </div>
+
+                        <div class="card electric">
+                            <p class="title forCards">ELV Electrical</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/electrical.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for the low voltage systems of the car such as safety equipment and sensing equipment.</p>
+                            </div>                
+                        </div>
                     </div>
                 </div>
 
-                <div class="card">
-                    <p class="title">Chassis</p>
-                    <div class="frame">
-                        <img class="card-photo" src="assets/subsystems/chassis.jpg" alt="dfasd">                    
-                        <p class="text">Responsible for attaching the other subsystems together as well as protecting the driver from the elements.</p>
-                    </div>                
-                </div>
+                <div class="cardSec three">
+                    <div class="card powertrain">
+                        <p class="title forCards">Powertrain</p>
+                        <div class="frame">
+                            <img class="card-photo" src="assets/subsystems/powertrain.jpg" alt="dfasd">
+                            <p class="text">Responsible for the motor, motor controller, and gearbox that power the car.</p>
+                        </div>                
+                    </div>
 
-                <div class="card">
-                    <p class="title">Data Acquisition</p>
-                    <div class="frame">
-                        <img class="card-photo" src="assets/subsystems/dataAcquisiton.jpg" alt="dfasd">                    
-                        <p class="text">Responsible for the acquiring of sensor data and refining it with the objective of assisting other subsystems with the analysis of said data.</p>
-                    </div>                
+                    <div class="card accumulator">
+                        <p class="title forCards">Accumulator</p>
+                        <div class="frame">
+                            <img class="card-photo" src="assets/subsystems/accumulator.jpg" alt="dfasd">                    
+                            <p class="text">Responsible for the battery and its management systems which are mostly high voltage.</p>
+                        </div>                
+                    </div>
                 </div>
-
-                <div class="card">
-                    <p class="title">Steering</p>
-                    <div class="frame">
-                        <img class="card-photo" src="assets/subsystems/steering.jpg" alt="dfasd">                    
-                        <p class="text">Responsible for the steering geometry, closely related to the suspension subsystem.</p>
-                    </div>                
-                </div>
-
-                <div class="card">
-                    <p class="title">Suspension</p>
-                    <div class="frame">
-                        <img class="card-photo" src="assets/subsystems/suspension.jpg" alt="dfasd">                    
-                        <p class="text">Responsible for translating forces from the tires into the rest of the car through the establishment of car specific geometry.</p>
-                    </div>                
-                </div>
-
-                <div class="card">
-                    <p class="title">Wheels & Tires</p>
-                    <div class="frame">
-                        <img class="card-photo" src="assets/subsystems/wheelsTires.jpg" alt="dfasd">                    
-                        <p class="text">Responsible for all cornering and acceleration forces transferring between the road and the car.</p>
-                    </div>                
-                </div>
-
-                <div class="card">
-                    <p class="title">GLV Electrical</p>
-                    <div class="frame">
-                        <img class="card-photo" src="assets/subsystems/electrical.jpg" alt="dfasd">                    
-                        <p class="text">Responsible for the low voltage systems of the car such as safety equipment and sensing equipment.</p>
-                    </div>                
-                </div>
-
-                <div class="card">
-                    <p class="title">Powertrain</p>
-                    <div class="frame">
-                        <img class="card-photo" src="assets/subsystems/powertrain.jpg" alt="dfasd">
-                        <p class="text">Responsible for the motor, motor controller, and gearbox that power the car.</p>
-                    </div>                
-                </div>
-
-                <div class="card">
-                    <p class="title">Accumulator</p>
-                    <div class="frame">
-                        <img class="card-photo" src="assets/subsystems/accumulator.jpg" alt="dfasd">                    
-                        <p class="text">Responsible for the battery and its management systems which are mostly high voltage.</p>
-                    </div>                
-                </div>
-
 
             </div>
 
@@ -173,7 +188,7 @@
                     <div class="credentials">
                         <!-- credentials of the team -->
                         
-                        <p class="contactText"> Email us! | <a href="mailto:thomasson5leo@gmail.com" class="contactText mail">info@concordiasae.ca</a></p>
+                        <p class="contactText"> Email us! | <a href="mailto:info@concordiasae.ca" class="contactText mail">info@concordiasae.ca</a></p>
                         <p class="contactText"> 1455 Boul. de Maisonneuve, H-022 | Montreal, Quebec | H3G 1M8</p>
                         <p class="contactText"> Tel | 514-848-2424</p>
                         

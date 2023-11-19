@@ -128,6 +128,7 @@ section.home-page {
     top: 16rem;
     white-space: nowrap;
 
+    user-select: none;
     animation: RightToLeft 8s linear infinite;
 }
 .arrow.one {
@@ -196,7 +197,7 @@ p.subhead {
 section.subsystems {
     display: flex;
     flex-direction: column;
-    height: fit-content;
+    height: fit-content em;
     overflow-x: auto;
 }
 .sub_section {
@@ -218,8 +219,15 @@ section.subsystems {
     height: 27.1875rem;
     flex-shrink: 0;
 }
+.cardSec {
+    display: flex;
+}
+.sub-cardSec {
+    display: flex;
+}
 
 .title.subsystem {
+    margin-top: .5em;
     display: none;
     font-size: 3.8rem;
 }
@@ -347,6 +355,11 @@ svg.social {
     width: 100%;
     margin-bottom: 1em;
 }
+.social {
+    &:hover {
+        fill: black;
+    }
+}
 
 
 
@@ -460,11 +473,8 @@ svg.social {
 
     /*SUBSYSTEMS REDESIGN FOR DESKTOP*/
     section.subsystems {
-        background: #FFAE03;
-        height: 90vh;
-        justify-content: space-around;
-
-        border-radius: 25px;
+        height: fit-content;
+        justify-content: space-even;
         margin-right: 1em;
         margin-left: 1em;
     }
@@ -473,7 +483,50 @@ svg.social {
         font-size: 3.7rem;
         align-self: center;
     }
+    .sub_section {
+        margin-top: 1em;
+        overflow-y: hidden;
+        background: #FFAE03;
+        border-radius: 25px;
 
+        /* this sets the scroll snapping for the cards */
+        scroll-snap-type: x mandatory;
+    }
+    .cardSec {
+        min-width: 100%;
+        justify-content: space-around;
+        margin-top: 1em;
+
+        /* this sets the snapping to the center of each page of 4 cards */
+        scroll-snap-align: center;
+    }
+    .card {
+        flex-direction: unset;
+        width: 25.5rem;
+        margin-left: -1em;
+        padding: 0;
+        height: 24.1875rem;
+        margin-top: 0;
+        background: unset;
+    }
+    img.card-photo {
+        height: 12.5rem;
+        width: 100%;
+    }
+    
+    .sub-cardSec {
+        display: unset;
+        width: 27em;
+    }
+    .title.forCards {
+        writing-mode: vertical-lr;
+        text-orientation: upright;
+        margin-top: .5em;
+        max-width: 20px;
+        font-size: 1.45rem;
+    }
+    
+    /* intro section changes for desktop */
     section.intro.introFrame {
         flex-direction: row;
         align-items: center;
@@ -486,6 +539,11 @@ svg.social {
     }
     p.subhead {
         font-size: 1.25rem;
+    }
+}
+@media only screen and (min-width: 950px) {
+    .card {
+        width: 30em;
     }
 
 

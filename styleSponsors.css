@@ -1,0 +1,7 @@
+body {
+    writing-mode: vertical-lr;
+}
+
+p {
+    text-orientation: upright;
+}
