@@ -9,11 +9,19 @@
 }
 @keyframes RightToLeft { /*animation function for the sliding text*/
     from {
-        transform: translateX(-33.7%);
+        transform: translateX(0);
     }
     to {
-        transform: translateX(-67.435%);/*This weird number is where the cycle restarts
+        transform: translateX(-50.4%);/*This weird number is where the cycle restarts
         and is linked to the length of the text in index.html */
+    }
+}
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
     }
 }
 
@@ -120,16 +128,25 @@ section.home-page {
     color: orange;
     height: 100vh;
 }
+.parentTitleSlide {
+    display: flex;
+    
+    margin-top: 16rem;
+    white-space: nowrap;
+    
+}
 .scrolling-text{
+    position: absolute;
     font-size: 4rem;
     font-family: Formula1-Bold;
     color: white;
-    position: absolute;
-    top: 16rem;
-    white-space: nowrap;
-
     user-select: none;
-    animation: RightToLeft 8s linear infinite;
+    
+    /* this keeps text start at the left of the screen so no teleportation of text */
+    left: 0em;
+
+    /* animation of text using the @keyframes function RightToLeft */
+    animation: 12s RightToLeft infinite linear;
 }
 .arrow.one {
     position: absolute;
@@ -258,11 +275,11 @@ section.subsystems {
     height: fit-content;
 }
 
-/*Sponsors Section*/
+/*basic framing settings for the team and sposnors section*/
 .sec {
     margin: 1em;
     margin-top: 4em;
-    height: 30vh;
+    height: 40vh;
     background: #FFAE03;
     border-radius: 25px;   
 
@@ -272,14 +289,54 @@ section.subsystems {
     align-items: center;
 }
 .secTitle {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: white;
     font-family: Formula1-Bold;
 }
+.viewMore {
+    text-align: center;
+    height: 3vh;
+    width: 100%;
+}
 
+/* team section, with all the profiles */
 
-
-
+.TheTeam  {
+    width: 100%;
+    display: flex;
+    align-self: flex-start;
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+.teamSlide {
+    display: flex;
+    animation: slide 20s linear infinite;
+}
+/* idea: stop the animation when mouse is hovered over the profiles */
+.TheTeam:hover .teamSlide {
+    animation-play-state: paused;
+}
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 8rem;
+    margin-right: 2em;
+}
+.profile img {
+    
+    border-radius: 15px;
+}
+.profile p{
+    color: white;
+    text-wrap: wrap;
+    font-size: 1rem;
+    text-align: center;
+}
+.last {
+    color: white;
+    font-weight: bold;
+}
 
 
 /*page 3 - contact area*/
@@ -366,6 +423,7 @@ svg.social {
 
 /*MAKES IT MORE SUITABLE FOR */
 @media only screen and (max-width: 450px) {
+    /* for intro page items */
     .intro-imageAndtext {
         display: flex;
         flex-direction: column;
@@ -381,6 +439,18 @@ svg.social {
         margin-right: 1.5em;
     }
 
+    /* for the subsystem+team section */
+    .secTitle {
+        font-size: 1.5rem;
+        white-space: nowrap;
+    }
+
+    /* for the socials in the contact section */
+    .socials {
+        gap: 3rem;
+    }
+
+    /* contact section modifications for mobile */
     .title.contact {
         font-size: 3rem;
     }
@@ -400,14 +470,12 @@ svg.social {
     #map {
         margin-left: 1em;
         margin-right: 1em;
-        height: 10em;
-        width: 2em;
-        min-width: 94%;
+        height: 13em;
+        width: unset;
     }
     .credentials {
         margin-left: unset;
         height: 15em;
-        margin: 1em;
     }
 }
 
@@ -559,6 +627,8 @@ svg.social {
     header {
         width: 1200px;
     }
+
+    
 }
 
 
