@@ -1,0 +1,281 @@
+@font-face {
+    font-family: Helvetica-Neue;
+    src: url("assets/HelveticaNeueRegular.otf");
+}
+@font-face {
+    font-family: Formula1-Bold;
+    font-weight: bold;
+    src: url("assets/Formula1-Bold.otf") format("opentype");
+}
+
+
+
+/*this html element makes scrolling smooth for when a button is pressed */
+html {
+    scroll-behavior: smooth;
+}
+
+/*general styles*/
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #CA3F3A;
+  overflow-x: hidden;
+}
+a {
+    text-decoration: none;
+    font-size: 1.3rem;
+}
+.title {
+    color: white;
+    font-family: Formula1-Bold;
+    font-size: 29px;
+    margin-top: 0em;
+}
+
+
+/* --------------------------------------------------------  */
+/* COPY CODE FOR THE MENU/HEADER (SAME AS IN STYLE.CSS) */
+/* -------------------------------------------------------- */
+header { 
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    z-index: 2;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+.logo1 {
+    background: url('assets/logo.jpg');
+    border-radius: 15px;
+    width: 2.7em;
+    height: 2.7em;
+    margin: 0.5em;
+    background-position-x: 30%;
+    background-size: cover;
+}
+svg.menu {
+    width: 2.7em;
+    margin-right: 1.5em;
+    color: white;
+
+    cursor: pointer;
+}
+nav {
+    position: fixed;
+    right: 0;
+    top: 0;
+    background-color: white;
+    width: 50%;
+    height: 100vh;
+    text-transform: uppercase;
+
+    transform: translateX(100%);
+    transition: transform .5s ease-in-out;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 8em;
+    height: fit-content;
+}
+.burger-items {
+    color: black;
+    padding: .75em 1em;
+    display: block;
+
+    /* in mobile version when menu items are hovers they have a light grey background color */
+    &:hover{
+        background: rgb(207, 206, 206);
+    }
+}
+.close{
+    float: right;
+    margin: 2em;
+    width: 2em;
+    cursor: pointer;
+}
+/*.open-nav is created by some javascript when burger and close icon is clicked*/
+.open-nav {
+    transform: translateX(0%);
+}
+
+
+/* menu section adapted to different screen sizes */
+
+/*for the burger menu*/
+@media only screen and (max-width: 750px) {
+    .logo1 {
+        display: none;
+    }
+    header {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    svg.menu {
+        margin: 1em;
+    }
+}
+
+/* this gets rid of the burger menu when screen size is over 750px, and formats the header */
+@media only screen and (min-width: 750px) {
+    .menu {
+        display: none;
+    }
+
+    nav {
+        transform: translateX(0);
+        position: unset;
+        height: auto;
+        width: auto;
+        display: block;
+        background: unset;
+    }
+    .close {
+        display: none;
+    }
+    ul {
+        display: flex;
+        margin: 0;
+    }
+    .burger-items {
+        padding: .5em 1.5em;
+        font-size: .9rem;
+        color: #CA3F3A;
+
+        &:hover {
+            background: unset;
+            text-decoration: underline;
+        }
+    }
+}
+/* -------------------------------------------------------- */
+/* END OF COPIED SECTION                                    */
+/* -------------------------------------------------------- */
+
+
+
+/* --------------------------------------------------------  */
+/* COPY CODE FOR CONTACT SECTION (COPIED FROM STYLE.CSS) */
+/* -------------------------------------------------------- */
+
+section.whiteSpace {
+    height: 80vh;
+    background-color: white;
+}
+
+
+/*page 3 - contact area*/
+section.contact {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    align-items: center;
+
+    margin-top: 5rem;
+    margin-bottom: 2em;
+}
+/* englobes the credentials+socials and the google maps */
+.contactFrame {
+    display: flex;
+    gap: 1em;
+}
+.socialAndCredentials {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    margin-left: 1em;
+    margin-right: 1em;
+    background: rgba(230,230,230,0.33);
+    outline: 1.5px solid white;
+    border-radius: 25px;
+    height:  18em;
+}
+/* size for the social media icons */
+svg.social {
+    width: 2.7rem;
+    height: 2.7rem;
+}
+.credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+    padding: 1em;
+    
+}
+.contactText {
+    font-size: 1em;
+    color: white;
+    margin-top: .5em;
+}
+.contactText.mail {
+    &:hover {
+        color: black;
+        text-decoration: underline;
+    }
+}
+#map {
+    flex-shrink: 0;
+    margin-right: 1em;
+    border-left: yellow fill;
+    border-radius: 25px;
+    height: 18em;
+    width: 18em;
+    background: grey;
+}
+.title.contact {
+    border-bottom: 1.5px solid white;
+    margin-bottom: 0.4em;
+    font-size: 4rem;
+}
+.socials {
+    margin-top: .8rem;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    width: 100%;
+    margin-bottom: 1em;
+}
+.social {
+    &:hover {
+        fill: black;
+    }
+}
+
+
+/* adapted for contact section for different screen sizes */
+@media only screen and (max-width: 450px) {
+    /* for the socials in the contact section */
+    .socials {
+        gap: 3rem;
+    }
+
+    /* contact section modifications for mobile */
+    .title.contact {
+        font-size: 3rem;
+    }
+}
+
+@media only screen and (max-width: 625px) {
+    .contactFrame {
+        flex-direction: column;
+    }
+    #map {
+        margin-left: 1em;
+        margin-right: 1em;
+        height: 13em;
+        width: unset;
+    }
+    .credentials {
+        margin-left: unset;
+        height: 15em;
+    }
+}
+/* --------------------------------------------------------  */
+/* COPY CODE FOR CONTACT SECTION (COPIED FROM STYLE.CSS) */
+/* -------------------------------------------------------- */

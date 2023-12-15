@@ -271,7 +271,7 @@ section.subsystems {
     color: white;
     text-align: left;
     font-size: 1.31rem;
-    margin-top: 60px;
+    margin-top: 35px;
     height: fit-content;
 }
 
@@ -279,14 +279,17 @@ section.subsystems {
 .sec {
     margin: 1em;
     margin-top: 4em;
-    height: 40vh;
+    height: 20em;
     background: #FFAE03;
-    border-radius: 25px;   
+    border-radius: 25px;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    /* hides any overflow of sponsors outside the sponsor box section */
+    overflow-x: hidden;
 }
 .secTitle {
     font-size: 2.5rem;
@@ -297,6 +300,23 @@ section.subsystems {
     text-align: center;
     height: 3vh;
     width: 100%;
+}
+.sponsorSlide {
+    display: flex;
+   
+}
+
+.theSponsors {
+    display: flex;
+    height: 15em;
+    align-self: flex-start;
+    overflow-y: hidden;
+}
+.sponsoRepeat {
+    display: flex;
+    height: 15em;
+    left: 0;
+    animation: slide 15s linear infinite;
 }
 
 /* team section, with all the profiles */
@@ -323,9 +343,38 @@ section.subsystems {
     width: 8rem;
     margin-right: 2em;
 }
-.profile img {
-    
+.imageWrapper {
+    position: relative;
+} 
+
+.imageWrapper a { 
+    /* only works without the hover function, but then does it at all times */
+    position: absolute;
+    inset: 0;
+    &:hover {
+        cursor: pointer;
+        background: rgba(230,230,230,0.83);
+        
+        
+        border-radius: 15px;
+    }
+}
+.imageWrapper a svg {
+    display: none;
+    width: 3em;
+    height: 3em;
+    margin: 1.5em;
+}
+/* when profile pic is hovered it unhides svg element */
+.imageWrapper a:hover svg{
+    display: unset;
+}
+.imageWrapper img {
     border-radius: 15px;
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
 }
 .profile p{
     color: white;
@@ -609,13 +658,7 @@ svg.social {
         font-size: 1.25rem;
     }
 }
-@media only screen and (min-width: 950px) {
-    .card {
-        width: 30em;
-    }
 
-
-}
 
 /**/
 @media only screen and (min-width: 1200px) {
