@@ -33,9 +33,9 @@ a {
     margin-top: 0em;
 }
 
+/* temporary to keep header on top (for some reason) */
 section.whiteSpace {
-    height: 1
-    0vh;
+    height: 0.001vh;
     background-color: white;
 }
 
