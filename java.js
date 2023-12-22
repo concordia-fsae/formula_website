@@ -76,7 +76,7 @@ async function initMap() {
 
   // The map, centered at Uluru
   map = new Map(document.getElementById("map"), {
-    zoom: 11, // ZOOM IS RESPONSIBLE OF HOW ZOOMED IN WE ARE (0 BEING THE VIEW OF THE WHOLE EARTH)
+    zoom: 13, // ZOOM IS RESPONSIBLE OF HOW ZOOMED IN WE ARE (0 BEING THE VIEW OF THE WHOLE EARTH)
     center: position,
     mapId: "DEMO_MAP_ID",
   });

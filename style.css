@@ -60,7 +60,6 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 10vh;
     z-index: 2;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
@@ -317,6 +316,7 @@ section.subsystems {
     height: 15em;
     left: 0;
     animation: slide 15s linear infinite;
+    gap: 3em;
 }
 
 /* team section, with all the profiles */
@@ -354,8 +354,6 @@ section.subsystems {
     &:hover {
         cursor: pointer;
         background: rgba(230,230,230,0.83);
-        
-        
         border-radius: 15px;
     }
 }
@@ -426,7 +424,7 @@ svg.social {
     gap: 1em;
     align-items: center;
     padding: 1em;
-    
+    text-align: center;
 }
 .contactText {
     font-size: 1em;
@@ -660,7 +658,7 @@ svg.social {
 }
 
 
-/**/
+/* center all items within 1200 px when the window gets bigger*/
 @media only screen and (min-width: 1200px) {
     .wrapper {
         width: 1200px;
@@ -670,8 +668,6 @@ svg.social {
     header {
         width: 1200px;
     }
-
-    
 }
 
 

@@ -17,10 +17,10 @@ html {
 
 /*general styles*/
 body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #CA3F3A;
-  overflow-x: hidden;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FFAE03;
+    overflow-x: hidden;
 }
 a {
     text-decoration: none;
@@ -33,6 +33,12 @@ a {
     margin-top: 0em;
 }
 
+section.whiteSpace {
+    height: 1
+    0vh;
+    background-color: white;
+}
+
 
 /* --------------------------------------------------------  */
 /* COPY CODE FOR THE MENU/HEADER (SAME AS IN STYLE.CSS) */
@@ -43,7 +49,6 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 10vh;
     z-index: 2;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
@@ -162,10 +167,6 @@ ul {
 /* COPY CODE FOR CONTACT SECTION (COPIED FROM STYLE.CSS) */
 /* -------------------------------------------------------- */
 
-section.whiteSpace {
-    height: 80vh;
-    background-color: white;
-}
 
 
 /*page 3 - contact area*/
@@ -206,7 +207,7 @@ svg.social {
     gap: 1em;
     align-items: center;
     padding: 1em;
-    
+    text-align: center;
 }
 .contactText {
     font-size: 1em;
@@ -276,6 +277,19 @@ svg.social {
         height: 15em;
     }
 }
+
+/* center all items within 1200 px when the window gets bigger*/
+@media only screen and (min-width: 1200px) {
+    .wrapper {
+        width: 1200px;
+        margin: 0 auto;
+    }
+
+    header {
+        width: 1200px;
+    }
+}
+
 /* --------------------------------------------------------  */
 /* COPY CODE FOR CONTACT SECTION (COPIED FROM STYLE.CSS) */
 /* -------------------------------------------------------- */

@@ -17,7 +17,7 @@ html {
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #CA3F3A;
+  background-color: #FFAE03;
   overflow-x: hidden;
 }
 a {
@@ -25,11 +25,182 @@ a {
     font-size: 1.3rem;
 }
 .title {
-    color: white;
+    color: lightyellow;
     font-family: Formula1-Bold;
     font-size: 29px;
     margin-top: 0em;
 }
+
+/* First section: photo with text 'be part of our journey' */
+section.sponsorIntro {
+    height: fit-content;
+    width: 100%;
+}
+.sponsorIntro img {
+    object-fit: cover;
+    border-radius: 30px;
+    width: -webkit-fill-available;
+    height: 20em;
+    margin: 5em 1em 0 1em;
+}
+.sponsorIntro h1 {
+    position: absolute;
+    margin: 0 0.5em 0 0.5em;
+    top: 4.3em;
+    color: white;
+    
+    font-family: Formula1-Bold;
+    font-size: 3em;
+    width: -webkit-fill-available;
+    
+    text-align: center;
+}
+
+@media only screen and (max-width: 500px){
+    .sponsorIntro h1 {
+        font-size: 2.5em;
+        top: 5em;
+    }
+}
+@media only screen and (max-width: 378px){
+    .sponsorIntro h1 {
+        top: 4.2em;
+    }
+}
+
+/* section on first page with text and link to the sponsorship package */
+section.introText {
+    display: flex;
+    gap: 1em;
+    height: fit-content;
+    width: 100%;
+}
+section.introText .text {
+    margin: 1em 0em 0 1em;
+    max-width: 60%;
+    border-radius: 20px;
+    outline: 1.5px solid white;
+    background: (230,230,230,0.33);
+}
+.text p {
+    margin: 0.5em 0.5em 0.5em 0.5em;
+    color: white;
+    font-size: 1.2em;
+}
+
+.sponsorshipPackage {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    margin: 1em 1em 1em 0em;
+    justify-content: center;
+}
+.sponsorshipPackage .packageTitleFrame {
+    background-color: #CA3F3A;
+    height: fit-content;
+    border-radius: 20px;
+}
+.packageTitleFrame p {
+    color: white;
+    margin: 0.5em 0.5em 0.5em 0.5em;
+    text-align: center;
+    font-size: 1.5em;
+}
+.sponsorshipPackage a{
+    width: fit-content;
+    align-self: center;
+}
+.sponsorshipPackage a:hover svg{
+    border-radius: 15px;
+    border: 1.5px solid white ;
+    background: rgba(230,230,230,0.33);
+}
+.sponsorshipPackage a svg{
+    width: 3em;
+    height: 3em;
+}
+@media only screen and (max-width: 500px) {
+    section.introText {
+        flex-direction: column;
+    }
+    section.introText .text {
+        margin: 1em 1em 0 1em;
+        max-width: 100%;
+    }
+    .text p {
+        font-size: 1.1em;
+    }
+    .sponsorshipPackage {
+        margin: 1em 1em 1em 1em;
+    }
+}
+
+/* section for OUR SPONSORS */
+section.categories {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: fit-content;
+    width: 100%;
+}
+.categories div.ourTextFrame {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 2em;
+    height: 12vmin;
+    width: 75vmin;
+    background-color: #CA3F3A;
+    border-radius: 15px;
+}
+.categories h1 {
+    font-family: Formula1-Bold;
+    font-size: 7vmin;
+    text-align: center;
+    vertical-align: middle;
+    color: lightyellow;
+    width: 100%;
+    margin: 0;
+}
+
+.categories div.category{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: -webkit-fill-available;
+    margin: 2em 1em 0 1em;
+
+    border: 2px solid #CA3F3A;
+    border-radius: 30px;
+}
+.categories div.category h1 {
+    font-size: 2em;
+}
+.categories div.category .frameSponso {
+    display: flex;
+    align-self: flex-start;
+    height: 10em;
+    width: -webkit-fill-available;
+    margin: 0em 1em 1em 1em;
+    
+    background: rgba(230,230,230,0.33);
+    border-radius: 15px;
+}
+.categories div.category .frameSponso img {
+    width: 50%;
+}
+.categories .twoCategories {
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (min-width: 1000px) {
+    .categories .twoCategories {
+        flex-direction: row;
+    }
+}
+
 
 
 /* --------------------------------------------------------  */
@@ -41,7 +212,6 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 10vh;
     z-index: 2;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
@@ -160,10 +330,6 @@ ul {
 /* COPY CODE FOR CONTACT SECTION (COPIED FROM STYLE.CSS) */
 /* -------------------------------------------------------- */
 
-section.whiteSpace {
-    height: 80vh;
-    background-color: white;
-}
 
 
 /*page 3 - contact area*/
@@ -204,7 +370,7 @@ svg.social {
     gap: 1em;
     align-items: center;
     padding: 1em;
-    
+    text-align: center;
 }
 .contactText {
     font-size: 1em;
@@ -274,6 +440,23 @@ svg.social {
         height: 15em;
     }
 }
+
+/* center all items within 1200 px when the window gets bigger*/
+@media only screen and (min-width: 1200px) {
+    .wrapper {
+        width: 1200px;
+        margin: 0 auto;
+    }
+
+    header {
+        width: 1200px;
+    }
+
+    .sponsorIntro h1 {
+        width: 1200px;
+    }
+}
 /* --------------------------------------------------------  */
 /* COPY CODE FOR CONTACT SECTION (COPIED FROM STYLE.CSS) */
 /* -------------------------------------------------------- */
+
