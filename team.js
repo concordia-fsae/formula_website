@@ -1,3 +1,33 @@
+//work in progress
+
+const menu = document.querySelector('.menu');
+const close = document.querySelector('.close');
+const nav = document.querySelector('nav');
+
+
+
+menu.addEventListener('click', () => {
+    nav.classList.add('open-nav');
+})
+close.addEventListener('click', () => {
+    nav.classList.remove('open-nav');
+})
+//these final three closes the menu when an item of the menu is clicked
+const aboutUs = document.getElementById('aboutUs');
+const subsystems = document.getElementById('subsystems');
+const contact = document.getElementById('contact')
+subsystems.addEventListener('click', () => {
+  nav.classList.remove('open-nav');
+})
+aboutUs.addEventListener('click', () => {
+  nav.classList.remove('open-nav');
+})
+contact.addEventListener('click', () => {
+  nav.classList.remove('open-nav');
+})
+
+
+
 //This makes header background appear white when scrolling down 20 px.
 window.onscroll = function() {scrollFunction()};
 

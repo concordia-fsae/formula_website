@@ -421,7 +421,6 @@ svg.social {
 .credentials {
     display: flex;
     flex-direction: column;
-    gap: 1em;
     align-items: center;
     padding: 1em;
     text-align: center;

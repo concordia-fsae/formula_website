@@ -166,7 +166,8 @@ section.categories {
 
 .categories div.category{
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
     height: fit-content;
     width: -webkit-fill-available;
     margin: 2em 1em 0 1em;
@@ -176,12 +177,13 @@ section.categories {
 }
 .categories div.category h1 {
     font-size: 2em;
+    width: 100%;
 }
 .categories div.category .frameSponso {
     display: flex;
     align-self: flex-start;
     height: 10em;
-    width: -webkit-fill-available;
+    width: 46.6%;
     margin: 0em 1em 1em 1em;
     
     background: rgba(230,230,230,0.33);
@@ -195,10 +197,12 @@ section.categories {
     flex-direction: column;
 }
 
-@media only screen and (min-width: 1000px) {
-    .categories .twoCategories {
-        flex-direction: row;
+@media only screen and (max-width: 1000px) {
+
+    .categories div.category .frameSponso {
+        width: -webkit-fill-available;
     }
+
 }
 
 
@@ -367,7 +371,6 @@ svg.social {
 .credentials {
     display: flex;
     flex-direction: column;
-    gap: 1em;
     align-items: center;
     padding: 1em;
     text-align: center;
