@@ -353,9 +353,9 @@ section.subsystems {
 } 
 
 .imageWrapper a { 
-    /* only works without the hover function, but then does it at all times */
     position: absolute;
     inset: 0;
+    
     &:hover {
         cursor: pointer;
         background: rgba(230,230,230,0.83);
@@ -681,21 +681,42 @@ svg.social {
 /* TEST */
 /*  */
 
+/* these when item is show  */
 .hidden {
     opacity: 0;
     transition: all 1s;
 }
 .show {
     opacity: 1;
-    
 }
 
-/* delays to make it look clean */.parentTitleSlide {
+/* left right elements are to determine where to animation movement start (either from the left or the right) */
+.left {
+    transform: translateX(-100%);
+}
+.right {
+    transform: translateX(100%);
+}
+.down {
+    transform: translateY(15%);
+}
+.noMove {
+    transition: 1s;
+}
+.move {
+    transform: translate(0);
+}
+
+
+
+/* delays to make it look clean */
+.parentTitleSlide {
     transition-delay: 200ms;
 }
-.arrow.one {
+.arrow {
     transition-delay: 500ms;
 }
+
 
 
 

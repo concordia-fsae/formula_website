@@ -96,10 +96,15 @@ const observer = new IntersectionObserver ((entries) => {
   entries.forEach((entry) => {
     console.log(entry)
     if (entry.isIntersecting) {
-      if (entry.target.classList)
       entry.target.classList.add('show');
+      if (entry.target.classList.contains('noMove')) {
+        entry.target.classList.add('move');
+      }
     } else {
       entry.target.classList.remove('show');
+      if (entry.target.classList.contains('noMove')) {
+        entry.target.classList.remove('move');
+      }
     }
   });
 });
