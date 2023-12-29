@@ -291,14 +291,10 @@ header {
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
 }
-.logo1 {
-    background: url('assets/logo.jpg');
-    border-radius: 15px;
+.headerLogo {
     width: 2.7em;
     height: 2.7em;
-    margin: 0.5em;
-    background-position-x: 30%;
-    background-size: cover;
+    margin: 0.5em 0 0 0.5em;
 }
 svg.menu {
     width: 2.7em;
@@ -351,7 +347,7 @@ ul {
 
 /*for the burger menu*/
 @media only screen and (max-width: 750px) {
-    .logo1 {
+    .Logo {
         display: none;
     }
     header {
