@@ -89,3 +89,20 @@ async function initMap() {
 }
 
 initMap();
+
+
+// animation java script
+const observer = new IntersectionObserver ((entries) => {
+  entries.forEach((entry) => {
+    console.log(entry)
+    if (entry.isIntersecting) {
+      if (entry.target.classList)
+      entry.target.classList.add('show');
+    } else {
+      entry.target.classList.remove('show');
+    }
+  });
+});
+
+const hiddenElements = document.querySelectorAll('.hidden');
+hiddenElements.forEach((el) => observer.observe(el));

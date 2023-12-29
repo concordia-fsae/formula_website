@@ -64,12 +64,11 @@ header {
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
 }
-.logo1 {
-    background: url('assets/logo.jpg');
-    border-radius: 15px;
+.headerLogo {
+    /* background: url('assets/logo.jpg'); */
     width: 2.7em;
     height: 2.7em;
-    margin: 0.5em;
+    margin: 0.5em 0 0 0.5em;
     background-position-x: 30%;
     background-size: cover;
 }
@@ -128,18 +127,20 @@ section.home-page {
     height: 100vh;
 }
 .parentTitleSlide {
-    display: flex;
-    
-    margin-top: 16rem;
+    position: absolute;
+    top: 17em;
     white-space: nowrap;
-    
+    overflow-x: hidden;
+    width: 100%;
+    left: 0;
 }
 .scrolling-text{
-    position: absolute;
     font-size: 4rem;
     font-family: Formula1-Bold;
     color: white;
     user-select: none;
+
+    width: fit-content;
     
     /* this keeps text start at the left of the screen so no teleportation of text */
     left: 0em;
@@ -168,29 +169,33 @@ section.intro {
     flex-direction: column;
     overflow-x: hidden;
 }
-.logo2 {
-    background: url('assets/logo.jpg');
-    width: 60vh;
-    max-width: 500px;
-    height: 60vh;
-    max-height: 500px;
-    margin-top: -5em;
-    background-position-x: 50%;
-    background-position-y: 50%;
-    background-size: cover;
-    z-index: -2;
-    align-self: center;
+svg.Logo {
+    width: 20em;
+    height: 20em;
+    flex-shrink: 0;
+}
+/* ------- */
+/* THESE ATTRIBUTES CHANGE ALL LOGO PARTS TO THE COLOR WHITE*/
+svg.Logo circle {
+    stroke: white;
+}
+svg.Logo path {
+    stroke: white;
+}
+svg.Logo line {
+    stroke: white;
+}
+svg.Logo text {
+    fill: white;
+}
+/* ------- */
+
+.introFrame {
+    display: flex;
+    align-items: center;
+    min-height: 80vh;
 }
 
-h1.intro-concordia {
-    margin-top: -8rem;
-    margin-left: 3rem;
-    align-self: center;
-    color: white;
-    font-family: Formula1-Bold;
-    font-size: 3.5rem;
-    
-}
 p.subhead {
     color: white;
     margin-top: -1rem;
@@ -202,7 +207,7 @@ p.subhead {
 }
 .arrow.two {
     align-self: center;
-    margin-bottom: 2em;
+    height: 10vh;
     cursor: pointer;
 }
 
@@ -537,6 +542,12 @@ svg.social {
     svg.menu {
         margin: 1em;
     }
+
+    .introFrame {
+        flex-direction: column;
+        gap: 3em;
+        margin-top: 3em;
+    }
 }
 
 /* this gets rid of the burger menu when screen size is over 750px, and formats the header */
@@ -648,9 +659,6 @@ svg.social {
     .intro {
         justify-content: space-between;
     }
-    .logo2 {
-        margin-right: 3em;
-    }
     p.subhead {
         font-size: 1.25rem;
     }
@@ -669,4 +677,31 @@ svg.social {
     }
 }
 
+/*  */
+/* TEST */
+/*  */
 
+.hidden {
+    opacity: 0;
+    transition: all 1s;
+}
+.show {
+    opacity: 1;
+    
+}
+
+/* delays to make it look clean */.parentTitleSlide {
+    transition-delay: 200ms;
+}
+.arrow.one {
+    transition-delay: 500ms;
+}
+
+
+
+/* not sure what this does */
+@media (prefers-reduced-motion) {
+    .hidden {
+        transition: none;
+    }
+}
