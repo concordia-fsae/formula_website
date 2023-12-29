@@ -128,7 +128,7 @@ section.home-page {
 }
 .parentTitleSlide {
     position: absolute;
-    top: 17em;
+    top: 35vh;
     white-space: nowrap;
     overflow-x: hidden;
     width: 100%;
@@ -472,7 +472,7 @@ svg.social {
 
 
 
-/*MAKES IT MORE SUITABLE FOR */
+/*MAKES IT MORE SUITABLE FOR mobile*/
 @media only screen and (max-width: 450px) {
     /* for intro page items */
     .intro-imageAndtext {

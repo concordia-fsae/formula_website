@@ -105,7 +105,6 @@ section.directors {
 .profile {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     margin: 0 0.5em 0 0.5em;
     max-width: 20em;
 }
@@ -150,8 +149,9 @@ section.directors {
     display: block;
     object-fit: cover;
     width: 100%;
-    height: auto;
+    height: 20em;
 }
+
 
 @media only screen and (max-width: 500px){
     .theTitle h1 {
@@ -195,6 +195,7 @@ section.subsystems {
 }
 .group {
     display: flex;
+    width: 50%;
 }
 .titleFrame.subsystems {
     height: 10vmin;
@@ -207,7 +208,6 @@ section.subsystems {
 @media only screen and (max-width: 750px) {
     .group {
         flex-direction: column;
-        width: 50%;
     }
     .titleFrame {
         height: 5em;
@@ -235,9 +235,23 @@ section.subsystems {
     .profile.jason {
         width: 50%;
     } 
+    .profile.lucas {
+        width: 50%;
+    } 
+}
+
+@media only screen and (min-width: 750px) {
+    /* so james profile doesn't get squished */
+    .profile {
+        width: 50%;
+    }
 }
 
 @media only screen and (max-width: 400px) {
+    .imageWrapper img {
+        height: 15em;
+    }
+
     .titleFrame {
         height: 4em;
         width: 13em 
@@ -262,6 +276,7 @@ section.subsystems {
         font-size: 1.65em;
     }
 }
+
 
 /* --------------------------------------------------------  */
 /* COPY CODE FOR THE MENU/HEADER (SAME AS IN STYLE.CSS) */
