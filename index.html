@@ -67,7 +67,8 @@
             <div class="title subsystem">FORMULA SUBSYSTEMS</div>
             <div class="sub_section hidden">
                 <div class="cardSec one">
-                    <div class="sub-cardSec one">
+                    <label>
+                        <input type="checkbox" id="toCheck" class="hover">
                         <div class="card aero">
                             <p class="title forCards">Aerodynamics</p>
                             <div class="frame">
@@ -75,7 +76,9 @@
                                 <p class="text">Responsible for the creation of components such as wings and diffusers used to create downforce and push the car into the ground.</p>
                             </div>
                         </div>
-
+                    </label>
+                    <label>
+                        <input type="checkbox" id="toCheck" class="hover">
                         <div class="card brakes">
                             
                             <p class="title forCards">Brakes</p>
@@ -84,9 +87,9 @@
                                 <p class="text toolong">Responsible for slowing the car through the combination of hydraulic and friction systems.</p>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="sub-cardSec two">
+                    </label>
+                    <label>
+                        <input type="checkbox" id="toCheck" class="hover">
                         <div class="card chassis">
                             <p class="title forCards">Chassis</p>
                             <div class="frame">
@@ -94,7 +97,9 @@
                                 <p class="text">Responsible for attaching the other subsystems together as well as protecting the driver from the elements.</p>
                             </div>                
                         </div>
-
+                    </label>
+                    <label>
+                        <input type="checkbox" id="toCheck" class="hover">
                         <div class="card data">
                             <p class="title forCards">Data Acquisition</p>
                             <div class="frame">
@@ -102,11 +107,76 @@
                                 <p class="text">Responsible for the acquiring of sensor data and refining it with the objective of assisting other subsystems with the analysis of said data.</p>
                             </div>                
                         </div>
-                    </div>
+                    </label>
+                    <label>
+                        <input type="checkbox" id="toCheck" class="hover">
+                        <div class="card accumulator">
+                            <p class="title forCards">Accumulator</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/accumulator.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for the battery and its management systems which are mostly high voltage.</p>
+                            </div>                
+                        </div>
+                    </label>
+                    <!--  -->
+                    <label>
+                        <input type="checkbox" id="toCheck" class="hover">
+                        <div class="card aero">
+                            <p class="title forCards">Aerodynamics</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/aero-photo.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for the creation of components such as wings and diffusers used to create downforce and push the car into the ground.</p>
+                            </div>
+                        </div>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" id="toCheck" class="hover">
+                        <div class="card brakes">
+                            
+                            <p class="title forCards">Brakes</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/brakes.jpg" alt="dfasd">                    
+                                <p class="text toolong">Responsible for slowing the car through the combination of hydraulic and friction systems.</p>
+                            </div>
+                        </div>
+                    </label>
+                    <label>
+                        <input type="checkbox" id="toCheck" class="hover">
+                        <div class="card chassis">
+                            <p class="title forCards">Chassis</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/chassis.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for attaching the other subsystems together as well as protecting the driver from the elements.</p>
+                            </div>                
+                        </div>
+                    </label>
+                    <label>
+                        <input type="checkbox" id="toCheck" class="hover">
+                        <div class="card data">
+                            <p class="title forCards">Data Acquisition</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/dataAcquisiton.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for the acquiring of sensor data and refining it with the objective of assisting other subsystems with the analysis of said data.</p>
+                            </div>                
+                        </div>
+                    </label>
+                    <label>
+                        <input type="checkbox" id="toCheck" class="hover">
+                        <div class="card accumulator">
+                            <p class="title forCards">Accumulator</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/accumulator.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for the battery and its management systems which are mostly high voltage.</p>
+                            </div>                
+                        </div>
+                    </label>
                 </div>
 
                 <div class="cardSec two">
-                    <div class="sub-cardSec one">
+                    
+                    <label>
+                        <input type="checkbox" id="toCheck">
                         <div class="card steering">
                             <p class="title forCards">Steering</p>
                             <div class="frame">
@@ -114,36 +184,92 @@
                                 <p class="text">Responsible for the steering geometry, closely related to the suspension subsystem.</p>
                             </div>                
                         </div>
+                    </label>
 
-                        <div class="card suspension">
-                            <p class="title forCards">Suspension</p>
-                            <div class="frame">
-                                <img class="card-photo" src="assets/subsystems/suspension.jpg" alt="dfasd">                    
-                                <p class="text">Responsible for translating forces from the tires into the rest of the car through the establishment of car specific geometry.</p>
-                            </div>                
-                        </div>
+                    <div class="card suspension">
+                        <p class="title forCards">Suspension</p>
+                        <div class="frame">
+                            <img class="card-photo" src="assets/subsystems/suspension.jpg" alt="dfasd">                    
+                            <p class="text">Responsible for translating forces from the tires into the rest of the car through the establishment of car specific geometry.</p>
+                        </div>                
                     </div>
 
-                    <div class="sub-cardSec two">
-                        <div class="card wheels">
-                            <p class="title forCards">Wheels & Tires</p>
-                            <div class="frame">
-                                <img class="card-photo" src="assets/subsystems/wheelsTires.jpg" alt="dfasd">                    
-                                <p class="text">Responsible for all cornering and acceleration forces transferring between the road and the car.</p>
-                            </div>                
-                        </div>
 
-                        <div class="card electric">
-                            <p class="title forCards">ELV Electrical</p>
+                    
+                    <div class="card wheels">
+                        <p class="title forCards">Wheels & Tires</p>
+                        <div class="frame">
+                            <img class="card-photo" src="assets/subsystems/wheelsTires.jpg" alt="dfasd">                    
+                            <p class="text">Responsible for all cornering and acceleration forces transferring between the road and the car.</p>
+                        </div>                
+                    </div>
+
+                    <div class="card electric">
+                        <p class="title forCards">ELV Electrical</p>
+                        <div class="frame">
+                            <img class="card-photo" src="assets/subsystems/electrical.jpg" alt="dfasd">                    
+                            <p class="text">Responsible for the low voltage systems of the car such as safety equipment and sensing equipment.</p>
+                        </div>                
+                    </div>
+
+                    <div class="card powertrain">
+                        <p class="title forCards">Powertrain</p>
+                        <div class="frame">
+                            <img class="card-photo" src="assets/subsystems/powertrain.jpg" alt="dfasd">
+                            <p class="text">Responsible for the motor, motor controller, and gearbox that power the car.</p>
+                        </div>                
+                    </div>
+
+                    <!--  -->
+
+                    <label>
+                        <input type="checkbox" id="toCheck">
+                        <div class="card steering">
+                            <p class="title forCards">Steering</p>
                             <div class="frame">
-                                <img class="card-photo" src="assets/subsystems/electrical.jpg" alt="dfasd">                    
-                                <p class="text">Responsible for the low voltage systems of the car such as safety equipment and sensing equipment.</p>
+                                <img class="card-photo" src="assets/subsystems/steering.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for the steering geometry, closely related to the suspension subsystem.</p>
                             </div>                
                         </div>
+                    </label>
+
+                    <div class="card suspension">
+                        <p class="title forCards">Suspension</p>
+                        <div class="frame">
+                            <img class="card-photo" src="assets/subsystems/suspension.jpg" alt="dfasd">                    
+                            <p class="text">Responsible for translating forces from the tires into the rest of the car through the establishment of car specific geometry.</p>
+                        </div>                
                     </div>
+
+
+                    
+                    <div class="card wheels">
+                        <p class="title forCards">Wheels & Tires</p>
+                        <div class="frame">
+                            <img class="card-photo" src="assets/subsystems/wheelsTires.jpg" alt="dfasd">                    
+                            <p class="text">Responsible for all cornering and acceleration forces transferring between the road and the car.</p>
+                        </div>                
+                    </div>
+
+                    <div class="card electric">
+                        <p class="title forCards">ELV Electrical</p>
+                        <div class="frame">
+                            <img class="card-photo" src="assets/subsystems/electrical.jpg" alt="dfasd">                    
+                            <p class="text">Responsible for the low voltage systems of the car such as safety equipment and sensing equipment.</p>
+                        </div>                
+                    </div>
+
+                    <div class="card powertrain">
+                        <p class="title forCards">Powertrain</p>
+                        <div class="frame">
+                            <img class="card-photo" src="assets/subsystems/powertrain.jpg" alt="dfasd">
+                            <p class="text">Responsible for the motor, motor controller, and gearbox that power the car.</p>
+                        </div>                
+                    </div>
+                
                 </div>
 
-                <div class="cardSec three">
+                <!-- <div class="cardSec three">
                     <div class="card powertrain">
                         <p class="title forCards">Powertrain</p>
                         <div class="frame">
@@ -159,7 +285,7 @@
                             <p class="text">Responsible for the battery and its management systems which are mostly high voltage.</p>
                         </div>                
                     </div>
-                </div>
+                </div> -->
 
             </div>
 

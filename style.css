@@ -16,7 +16,7 @@
         and is linked to the length of the text in index.html */
     }
 }
-@keyframes slide {
+@keyframes slideToLeft {
     from {
         transform: translateX(0);
     }
@@ -24,7 +24,16 @@
         transform: translateX(-100%);
     }
 }
+@keyframes slideToRight {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(00%);
+    }
+}
 
+s
 /*this html element makes scrolling smooth for when a button is pressed */
 html {
     scroll-behavior: smooth;
@@ -33,9 +42,13 @@ html {
 /*general styles*/
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Futura-Medium, Futura;
   background-color: #CA3F3A;
   overflow-x: hidden;
+}
+.wrapper {
+    /* this is for mobile, because chrome mobile doesnt take into account styling for html/body element (for some reason) */
+    overflow-x: hidden;
 }
 a {
     text-decoration: none;
@@ -175,7 +188,8 @@ svg.Logo {
 /* ------- */
 /* THESE ATTRIBUTES CHANGE ALL LOGO PARTS TO THE COLOR WHITE*/
 svg.Logo circle {
-    stroke: white;
+    /* this hides the the circle */
+    stroke: #CA3F3A;
 }
 svg.Logo path {
     stroke: white;
@@ -246,9 +260,10 @@ section.subsystems {
 }
 
 .title.subsystem {
+    /* display: none; */
     margin-top: .5em;
-    display: none;
     font-size: 3.8rem;
+    text-align: center;
 }
 .title {
     color: white;
@@ -263,14 +278,14 @@ section.subsystems {
     flex-direction: column;
 }
 .card-photo {
-    background-size: contain;
+    object-fit: cover;
     height: 10.5rem;
     width: auto;
     border-radius: 25px;
     margin-top: -1em;
 }
 .text {
-    color: white;
+    color: black;
     text-align: left;
     font-size: 1.31rem;
     margin-top: 35px;
@@ -291,21 +306,20 @@ section.subsystems {
     align-items: center;
 
     /* hides any overflow of sponsors outside the sponsor box section */
-    overflow-x: hidden;
+    overflow: hidden;
 }
 .secTitle {
     font-size: 2.5rem;
     color: white;
     font-family: Formula1-Bold;
+    margin-top: 0.3em;
 }
 .viewMore {
     text-align: center;
     height: 3vh;
-    width: 100%;
 }
 .sponsorSlide {
     display: flex;
-   
 }
 
 .theSponsors {
@@ -318,7 +332,7 @@ section.subsystems {
     display: flex;
     height: 15em;
     left: 0;
-    animation: slide 15s linear infinite;
+    animation: slideToLeft 15s linear infinite;
     gap: 3em;
 }
 
@@ -333,7 +347,7 @@ section.subsystems {
 }
 .teamSlide {
     display: flex;
-    animation: slide 20s linear infinite;
+    animation: slideToLeft 20s linear infinite;
 }
 /* idea: stop the animation when mouse is hovered over the profiles */
 .TheTeam:hover .teamSlide {
@@ -591,20 +605,118 @@ svg.social {
 }
 
 
+label input {
+    display: none;
+}
+
+.sub_section{
+    mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
+}
+
+@keyframes bg-shift {
+    from {background-color: red;}
+    to {background-color: blue;}
+}
+
 /*formating for the pages for desktop*/
 @media only screen and (min-width: 900px) {
-
-    /*SUBSYSTEMS REDESIGN FOR DESKTOP*/
-    section.subsystems {
-        height: fit-content;
-        justify-content: space-even;
-        margin-right: 1em;
-        margin-left: 1em;
+    .cardSec{
+        width: max-content;
     }
+    .cardSec.one {
+        animation: slideToLeft linear;
+        animation-timeline: scroll(root);
+        flex-wrap: nowrap;
+        align-items: flex-start;
+    }
+    .cardSec.two {
+        animation: slideToRight linear;
+        animation-timeline: scroll(root);
+        animation-range: entry;
+        flex-wrap: nowrap;
+    }
+    label {
+        display: inline-block;
+       
+    }
+    
+    .card:hover {
+        outline: solid white 2px;
+        outline-offset: -2px;
+        transition: .1s;
+    }
+    
+    label input:checked ~ div.card {
+        height: 19em;
+        z-index: 3;
+
+        width: 17em;
+        outline: solid white 2px;
+        outline-offset: -2px;
+    }
+    label input:checked ~ div.card 
+
+    
+
+
+    
+
+    /* SUBSYSTEMS REDESIGN FOR DESKTOP */
+
     .title.subsystem {
         display: unset;
         font-size: 3.7rem;
         align-self: center;
+    }
+
+    .sub_section {
+        flex-direction: column;
+        gap: 2em;
+    }
+    
+
+    .cardSec {
+        gap: 1em;
+    }
+    /* .cardSec.one {
+        transform: translateX(50%);
+    }
+    .cardSec.two {
+        transform: translateX(50%);
+    } */
+
+    .card {
+        justify-content: unset;
+        margin: 0;
+        height: 16em;
+        width: 14em;
+        padding: 1em;
+        transition: all 1s;
+        overflow: hidden;
+    }
+
+    .card p.title {
+        text-align: center;
+        margin: -0.4em 0 0 0 ;
+        font-size: 23px;
+    }
+
+    .card div.frame {
+        margin: 0;
+    }
+    .frame p.text {
+        margin-top: .8em;
+        font-size: 1.2em;
+    }
+
+    .card-photo {
+        margin: 0;
+    }
+    /* section.subsystems {
+        height: fit-content;
+        justify-content: space-even;
+        margin-right: 1em;
+        margin-left: 1em;
     }
     .sub_section {
         margin-top: 1em;
@@ -612,16 +724,16 @@ svg.social {
         background: #FFAE03;
         border-radius: 25px;
 
-        /* this sets the scroll snapping for the cards */
+        
         scroll-snap-type: x mandatory;
-    }
-    .cardSec {
+    } */
+    /* .cardSec {
         min-width: 100%;
         justify-content: space-around;
-        margin-top: 1em;
+        margin-top: 1em; */
 
         /* this sets the snapping to the center of each page of 4 cards */
-        scroll-snap-align: center;
+        /* scroll-snap-align: center;
     }
     .card {
         flex-direction: unset;
@@ -635,9 +747,9 @@ svg.social {
     img.card-photo {
         height: 12.5rem;
         width: 100%;
-    }
+    } */
     
-    .sub-cardSec {
+    /* .sub-cardSec {
         display: unset;
         width: 27em;
     }
@@ -648,9 +760,9 @@ svg.social {
         max-width: 20px;
         font-size: 1.45rem;
     }
-    
+     */
     /* intro section changes for desktop */
-    section.intro.introFrame {
+    /* section.intro.introFrame {
         flex-direction: row;
         align-items: center;
     }
@@ -659,7 +771,7 @@ svg.social {
     }
     p.subhead {
         font-size: 1.25rem;
-    }
+    } */
 }
 
 

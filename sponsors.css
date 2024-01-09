@@ -79,12 +79,14 @@ section.introText .text {
     margin: 1em 0em 0 1em;
     max-width: 60%;
     border-radius: 20px;
-    outline: 1.5px solid white;
-    background: (230,230,230,0.33);
+    /* outline: 1.5px solid white; */
+    /* background: rgba(230,230,230,0.33); */
+    background: white;
+    opacity: 0.5;
 }
 .text p {
     margin: 0.5em 0.5em 0.5em 0.5em;
-    color: white;
+    color: black;
     font-size: 1.2em;
 }
 
@@ -277,7 +279,7 @@ ul {
 
 /*for the burger menu*/
 @media only screen and (max-width: 750px) {
-    .logo1 {
+    .Logo {
         display: none;
     }
     header {
