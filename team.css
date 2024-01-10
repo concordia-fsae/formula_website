@@ -130,8 +130,9 @@ section.directors {
     inset: 0;
     &:hover {
         cursor: pointer;
-        background: rgba(230,230,230,0.83);
+        background: rgba(230,230,230,0.5);
         border-radius: 15px;
+        transition: all 0.3s ease-in-out;
     }
 }
 .imageWrapper a svg {

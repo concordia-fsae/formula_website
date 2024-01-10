@@ -260,7 +260,7 @@ section.subsystems {
 }
 
 .title.subsystem {
-    /* display: none; */
+    display: none;
     margin-top: .5em;
     font-size: 3.8rem;
     text-align: center;
@@ -282,7 +282,7 @@ section.subsystems {
     height: 10.5rem;
     width: auto;
     border-radius: 25px;
-    margin-top: -1em;
+    margin-top: -2em;
 }
 .text {
     color: black;
@@ -296,7 +296,7 @@ section.subsystems {
 .sec {
     margin: 1em;
     margin-top: 4em;
-    height: 20em;
+    height: 21em;
     background: #FFAE03;
     border-radius: 25px;
 
@@ -316,7 +316,11 @@ section.subsystems {
 }
 .viewMore {
     text-align: center;
-    height: 3vh;
+    height: 4vh;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 .sponsorSlide {
     display: flex;
@@ -326,7 +330,9 @@ section.subsystems {
     display: flex;
     height: 15em;
     align-self: flex-start;
-    overflow-y: hidden;
+    overflow: hidden;
+    width: 100%;
+    mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
 }
 .sponsoRepeat {
     display: flex;
@@ -344,6 +350,7 @@ section.subsystems {
     align-self: flex-start;
     overflow-x: hidden;
     white-space: nowrap;
+    mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
 }
 .teamSlide {
     display: flex;
@@ -352,6 +359,7 @@ section.subsystems {
 /* idea: stop the animation when mouse is hovered over the profiles */
 .TheTeam:hover .teamSlide {
     animation-play-state: paused;
+    
 }
 .profile {
     display: flex;
@@ -370,8 +378,9 @@ section.subsystems {
     
     &:hover {
         cursor: pointer;
-        background: rgba(230,230,230,0.83);
+        background: rgba(230,230,230,0.5);
         border-radius: 15px;
+        transition: all .3s;
     }
 }
 .imageWrapper a svg {
@@ -379,6 +388,7 @@ section.subsystems {
     width: 3em;
     height: 3em;
     margin: 1.5em;
+   
 }
 /* when profile pic is hovered it unhides svg element */
 .imageWrapper a:hover svg{
@@ -389,7 +399,7 @@ section.subsystems {
     display: block;
     object-fit: cover;
     width: 100%;
-    height: auto;
+    height: 10em;
 }
 .profile p{
     color: white;
@@ -400,6 +410,9 @@ section.subsystems {
 .last {
     color: white;
     font-weight: bold;
+}
+.last.toolong {
+    font-size: 0.83rem;
 }
 
 
@@ -654,12 +667,7 @@ label input {
         outline: solid white 2px;
         outline-offset: -2px;
     }
-    label input:checked ~ div.card 
 
-    
-
-
-    
 
     /* SUBSYSTEMS REDESIGN FOR DESKTOP */
 
@@ -690,7 +698,7 @@ label input {
         margin: 0;
         height: 16em;
         width: 14em;
-        padding: 1em;
+        padding: .8em;
         transition: all 1s;
         overflow: hidden;
     }
@@ -707,10 +715,23 @@ label input {
     .frame p.text {
         margin-top: .8em;
         font-size: 1.2em;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
+    /* when subsystem box is clicked it reveals all of the text */
+    label input:checked ~ div.card div.frame p.text {
+        display: unset;
+        overflow: unset;
+    }
+    
 
     .card-photo {
         margin: 0;
+        width: 100%;
+        height: auto;
     }
     /* section.subsystems {
         height: fit-content;
