@@ -322,6 +322,9 @@ ul {
             text-decoration: underline;
         }
     }
+    .burger-items.hide {
+        display: none;
+    }
 }
 /* -------------------------------------------------------- */
 /* END OF COPIED SECTION                                    */

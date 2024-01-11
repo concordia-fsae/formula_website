@@ -18,7 +18,7 @@ html {
 /*general styles*/
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Futura-Medium, Futura;
     background-color: #FFAE03;
     overflow-x: hidden;
 }
@@ -128,8 +128,11 @@ section.directors {
 .imageWrapper a { 
     position: absolute;
     inset: 0;
+    border-radius: 25px;
     &:hover {
         cursor: pointer;
+        outline: solid white 2px;
+        outline-offset: -2px;
         background: rgba(230,230,230,0.5);
         border-radius: 15px;
         transition: all 0.3s ease-in-out;
@@ -246,6 +249,8 @@ section.subsystems {
     .profile {
         width: 50%;
     }
+
+    
 }
 
 @media only screen and (max-width: 400px) {
@@ -381,6 +386,7 @@ ul {
         display: flex;
         margin: 0;
     }
+    
     .burger-items {
         padding: .5em 1.5em;
         font-size: .9rem;
@@ -390,6 +396,9 @@ ul {
             background: unset;
             text-decoration: underline;
         }
+    }
+    .burger-items.hide {
+        display: none;
     }
 }
 /* -------------------------------------------------------- */
@@ -531,3 +540,87 @@ svg.social {
 /* --------------------------------------------------------  */
 /* COPY CODE FOR CONTACT SECTION (COPIED FROM STYLE.CSS) */
 /* -------------------------------------------------------- */
+
+
+/*  */
+/* CLASSES FOR THE ANIMATION OF ELEMENTS */
+/*  */
+
+.hidden {
+    opacity: 0;
+    transition: all 1s;
+}
+.show {
+    opacity: 1;
+}
+/* left right elements are to determine where to animation movement start (either from the left or the right) */
+.left {
+    transform: translateX(-20%);
+}
+.right {
+    transform: translateX(20%);
+}
+.down {
+    transform: translateY(15%);
+}
+.noMove {
+    transition: 1s;
+}
+.move {
+    transform: translate(0);
+}
+
+
+section.theTitle {
+    transition-delay: 100ms;
+}
+/* THE DIRECTORS */
+.profile.joshua {
+    transition-delay: 100ms;
+}
+.profile.james {
+    transition-delay: 200ms;
+}
+.profile.peter {
+    transition-delay: 300ms;
+}
+
+/* ELECTRICAL */
+.profile.lucas {
+    transition-delay: 200ms;
+}
+
+/* SUBSYSTEMS */
+.profile.leandre {
+    transition-delay: 100ms;
+}
+.profile.sabrina {
+    transition-delay: 200ms;
+}
+.profile.matthieu {
+    transition-delay: 300ms;
+}
+
+@media only screen and (max-width: 750px) {
+    /* THE DIRECTORS */
+    .profile.joshua {
+        transition-delay: 0ms;
+    }
+    .profile.james {
+        transition-delay: 100ms;
+    }
+    .profile.peter {
+        transition-delay: 100ms;
+    }
+    /* SUBSYSTEMS */
+    .profile.leandre {
+        transition-delay: 00ms;
+    }
+    .profile.sabrina {
+        transition-delay: 100ms;
+    }
+    .profile.matthieu {
+        transition-delay: 100ms;
+    }
+    
+}

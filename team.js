@@ -74,3 +74,24 @@ async function initMap() {
 }
 
 initMap();
+
+// animation java script
+const observer = new IntersectionObserver ((entries) => {
+  entries.forEach((entry) => {
+    console.log(entry)
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      if (entry.target.classList.contains('noMove')) {
+        entry.target.classList.add('move');
+      }
+    } else {
+      entry.target.classList.remove('show');
+      if (entry.target.classList.contains('noMove')) {
+        entry.target.classList.remove('move');
+      }
+    }
+  });
+});
+
+const hiddenElements = document.querySelectorAll('.hidden');
+hiddenElements.forEach((el) => observer.observe(el));
