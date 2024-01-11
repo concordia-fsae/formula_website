@@ -16,7 +16,7 @@ html {
 /*general styles*/
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Futura-Medium, Futura;
   background-color: #FFAE03;
   overflow-x: hidden;
 }
@@ -25,7 +25,7 @@ a {
     font-size: 1.3rem;
 }
 .title {
-    color: lightyellow;
+    color: white;
     font-family: Formula1-Bold;
     font-size: 29px;
     margin-top: 0em;
@@ -75,20 +75,40 @@ section.introText {
     height: fit-content;
     width: 100%;
 }
-section.introText .text {
+section.introText label {
     margin: 1em 0em 0 1em;
     max-width: 60%;
     border-radius: 20px;
-    /* outline: 1.5px solid white; */
-    /* background: rgba(230,230,230,0.33); */
-    background: white;
-    opacity: 0.5;
+    /* opacity: 0.5; */
 }
-.text p {
-    margin: 0.5em 0.5em 0.5em 0.5em;
+label:hover {
+    outline: solid white 2px;
+    outline-offset: -2px;
+}
+.textFrame {
+    padding: 0.5em;
+    border-radius: 20px;
+    background: rgba(230,230,230,0.5);
+}
+label p {
+    margin: 0;
     color: black;
     font-size: 1.2em;
+    cursor: pointer;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 15;
+    -webkit-box-orient: vertical;
+    overflow-y: hidden;
 }
+input {
+    display: none;
+}
+label input:checked ~ div.textFrame p {
+    display: unset;
+    overflow: unset;
+}
+
 
 .sponsorshipPackage {
     display: flex;
@@ -111,26 +131,31 @@ section.introText .text {
 .sponsorshipPackage a{
     width: fit-content;
     align-self: center;
-    height: 3em;
+    height: 3em; 
+    
+    
 }
 .sponsorshipPackage a:hover svg{
-    border-radius: 15px;
-    border: 1.5px solid white ;
-    background: rgba(230,230,230,0.33);
+   
+    outline: 1.5px solid white ;
+    outline-offset: -1.5px;
+    background: rgba(230,230,230,0.53);
+    transition: all 0.2s;
 }
 .sponsorshipPackage a svg{
     width: 3em;
     height: 3em;
+    border-radius: 15px;
 }
 @media only screen and (max-width: 500px) {
     section.introText {
         flex-direction: column;
     }
-    section.introText .text {
+    section.introText label {
         margin: 1em 1em 0 1em;
         max-width: 100%;
     }
-    .text p {
+    label p {
         font-size: 1.1em;
     }
     .sponsorshipPackage {
@@ -162,7 +187,7 @@ section.categories {
     font-size: 7vmin;
     text-align: center;
     vertical-align: middle;
-    color: lightyellow;
+    color: white;
     width: 100%;
     margin: 0;
 }
@@ -465,3 +490,51 @@ svg.social {
 /* COPY CODE FOR CONTACT SECTION (COPIED FROM STYLE.CSS) */
 /* -------------------------------------------------------- */
 
+/*  */
+/* CLASSES FOR THE ANIMATION OF ELEMENTS */
+/*  */
+
+/* these when item is show  */
+.hidden {
+    opacity: 0;
+    transition: all 1s;
+}
+.show {
+    opacity: 1;
+}
+
+/* left right elements are to determine where to animation movement start (either from the left or the right) */
+.left {
+    transform: translateX(-20%);
+}
+.right {
+    transform: translateX(20%);
+}
+.down {
+    transform: translateY(15%);
+}
+.noMove {
+    transition: 1s;
+}
+.move {
+    transform: translate(0);
+}
+
+/* delays for certain elements */
+
+label.hidden {
+    transition-delay: 00ms;
+}
+.sponsorIntro {
+    transition-delay: 100ms;
+}
+.sponsorshipPackage {
+    transition-delay: 200ms;
+}
+
+.frameSponso.one {
+    transition-delay: 100ms;
+}
+.frameSponso.two {
+    transition-delay: 200ms;
+}

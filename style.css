@@ -631,16 +631,10 @@ svg.social {
 }
 
 
+
 label input {
     display: none;
 }
-
-
-@keyframes bg-shift {
-    from {background-color: red;}
-    to {background-color: blue;}
-}
-
 
 /* these last 3 are to set big length to make the scrolling more sensitive for the desktop version of the subsystem section */
 .firstEmptySpace {
@@ -692,7 +686,7 @@ label input {
     }
     label {
         display: inline-block;
-       
+        cursor: pointer;
     }
     
     .card:hover {
@@ -831,8 +825,6 @@ label input {
 .arrow {
     transition-delay: 500ms;
 }
-
-
 
 
 /* not sure what this does */

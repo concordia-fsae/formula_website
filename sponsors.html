@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <header>
+        <header class="hidden">
 
             <!-- HEADER MENU -->
             <a href="index.html" class="Logo">
@@ -38,21 +38,23 @@
         <!-- ------------------------ -->
         <!-- THE REST -->
 
-        <section class="sponsorIntro">
+        <section class="sponsorIntro hidden">
             <img src="assets/HomeImage.jpg" alt="">
             <h1>BE PART OF OUR JOURNEY</h1>
         </section>
 
-        <section class="introText">
-            <div class="text">
-                <p style="text-indent: 10px;">
-                The team brings together students of diverse backgrounds, from different engineering disciplines including mechanical, electrical, and software, and leverages skills and experience from various student-run organizations. It currently includes many members eager to work on sustainable transport for a greener future and always ready to reach new heights.
-                </p>
-                <p style="text-indent: 10px;">
-                By sponsoring Concordia Formula Racing, you will help promote learning and growth, furthering student initiative and innovation, and encouraging creativity and passion. This interdisciplinary project gives Concordia students unforgettable experiences and the possibility of being part of an ambitious and passionate team. 
-                </p>
-            </div>
-            <div class="sponsorshipPackage">
+        <section class="introText ">
+            <label class="" >
+                <input type="checkbox">
+                <div class="textFrame hidden noMove left">
+                    <p>
+                        The team brings together students of diverse backgrounds, from different engineering disciplines including mechanical, electrical, and software, and leverages skills and experience from various student-run organizations. It currently includes many members eager to work on sustainable transport for a greener future and always ready to reach new heights.
+                        <br><br>
+                        By sponsoring Concordia Formula Racing, you will help promote learning and growth, furthering student initiative and innovation, and encouraging creativity and passion. This interdisciplinary project gives Concordia students unforgettable experiences and the possibility of being part of an ambitious and passionate team. 
+                    </p> 
+                </div>
+            </label>
+            <div class="sponsorshipPackage hidden noMove right">
                 <div class="packageTitleFrame">
                     <p>TAKE A PEEK AT OUR SPONSORSHIP PACKAGE ...</p>
                     
@@ -65,52 +67,52 @@
 
 
         <section class="categories">
-            <div class="ourTextFrame">  
+            <div class="ourTextFrame hidden">  
                 <h1>OUR SPONSORS</h1>
             </div>
             <div class="twoCategories PlatGold">
-                <div class="category platinum">
+                <div class="category platinum hidden">
                     <h1>PLATINUM</h1>
-                    <div class="frameSponso one">
+                    <div class="frameSponso one hidden">
                         <img src="assets/sponsors/Ansys.svg" alt="">
                         <img src="assets/sponsors/Concordia.svg" alt="">
                     </div>
-                    <div class="frameSponso two">
+                    <div class="frameSponso two hidden">
                         <img src="assets/sponsors/elegooLogoTransparent.svg" alt="">
                         <img src="assets/sponsors/MathWorks.svg" alt="">
                     </div>
                 </div>
-                <div class="category gold">
+                <div class="category gold hidden">
                     <h1>GOLD</h1>
-                    <div class="frameSponso one">
+                    <div class="frameSponso one hidden">
                         <img src="assets/sponsors/Ansys.svg" alt="">
                         <img src="assets/sponsors/Concordia.svg" alt="">
                     </div>
-                    <div class="frameSponso two">
+                    <div class="frameSponso two hidden">
                         <img src="assets/sponsors/elegooLogoTransparent.svg" alt="">
                         <img src="assets/sponsors/MathWorks.svg" alt="">
                     </div>
                 </div>
             </div>  
             <div class="twoCategories SilverBronze">
-                <div class="category silver">
+                <div class="category silver hidden">
                     <h1>SILVER</h1>
-                    <div class="frameSponso one">
+                    <div class="frameSponso one hidden">
                         <img src="assets/sponsors/Ansys.svg" alt="">
                         <img src="assets/sponsors/Concordia.svg" alt="">
                     </div>
-                    <div class="frameSponso two">
+                    <div class="frameSponso two hidden">
                         <img src="assets/sponsors/elegooLogoTransparent.svg" alt="">
                         <img src="assets/sponsors/MathWorks.svg" alt="">
                     </div>
                 </div>
-                <div class="category bronze">
+                <div class="category bronze hidden">
                     <h1>BRONZE</h1>
-                    <div class="frameSponso one">
+                    <div class="frameSponso one hidden">
                         <img src="assets/sponsors/Ansys.svg" alt="">
                         <img src="assets/sponsors/Concordia.svg" alt="">
                     </div>
-                    <div class="frameSponso two">
+                    <div class="frameSponso two hidden">
                         <img src="assets/sponsors/elegooLogoTransparent.svg" alt="">
                         <img src="assets/sponsors/MathWorks.svg" alt="">
                     </div>
@@ -131,7 +133,7 @@
         <section class="contact" id="scrollBottom">
             <div class="title contact">CONTACT</div>
             <div class="contactFrame">
-                <div class="socialAndCredentials">
+                <div class="socialAndCredentials hidden noMove left">
                     <div class="credentials">
                         <!-- credentials of the team -->
                         
@@ -162,7 +164,7 @@
                 </div>
                 
                 <!-- this element designates the google map icon, and is located here for the position on the page -->
-                <div id="map"></div>
+                <div id="map" class="hidden noMove right"></div>
             </div>
         </section>
     </div>
