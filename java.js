@@ -13,9 +13,13 @@ close.addEventListener('click', () => {
     nav.classList.remove('open-nav');
 })
 //these final three closes the menu when an item of the menu is clicked
+const home = document.getElementById('home');
 const aboutUs = document.getElementById('aboutUs');
 const subsystems = document.getElementById('subsystems');
 const contact = document.getElementById('contact')
+home.addEventListener('click', () => {
+  nav.classList.remove('open-nav');
+})
 subsystems.addEventListener('click', () => {
   nav.classList.remove('open-nav');
 })
@@ -27,16 +31,18 @@ contact.addEventListener('click', () => {
 })
 
 
+ 
+// !!! USELESS NOW, OTHER SOLUTION USED
 //when arrow1 or arrow2 is clicked the screen scrolls down
-const arrow1 = document.querySelector('.arrow.one');
-const arrow2 = document.querySelector('.arrow.two');
+// const arrow1 = document.querySelector('.arrow.one');
+// const arrow2 = document.querySelector('.arrow.two');
 
-arrow1.addEventListener('click', () => {
-    window.scrollTo(0, 740) ;
-})
-arrow2.addEventListener('click', () => {
-    window.scrollTo(0, 1400) ;
-})
+// arrow1.addEventListener('click', () => {
+//     window.scrollTo(0, 740) ;
+// })
+// arrow2.addEventListener('click', () => {
+//     window.scrollTo(0, 1400) ;
+// })
 
 
 
@@ -62,17 +68,17 @@ function scrollFunction() {
 
 
 
-// check for click and expand card when clicked (only desktop format)
-const checkbox = document.getElementById('toCheck');
-if (document.querySelector('.card').matches(':hover')) {
-  checkbox.checked = true;
-}
-else {
-  checkbox.checked = false;
-}
-if (checkbox.checked == true){
-    alert("a");
-  }
+// // check for click and expand card when clicked (only desktop format)
+// const checkbox = document.getElementById('toCheck');
+// if (document.querySelector('.card').matches(':hover')) {
+//   checkbox.checked = true;
+// }
+// else {
+//   checkbox.checked = false;
+// }
+// if (checkbox.checked == true){
+//     alert("a");
+//   }
 
 // const cards = document.querySelectorAll(".card");
 // for (const card of cards) {

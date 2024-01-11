@@ -23,6 +23,7 @@
                 </svg>
                     
                 <ul>
+                    <li><a class="burger-items hide" id="home" href="#scrollToTop">HOME</a></li>
                     <li><a class="burger-items" id="aboutUs" href="#scrollToIntro">ABOUT US</a></li>
                     <li><a class="burger-items" id="subsystems" href="#scrollToSubs">SUBSYSTEMS</a></li>
                     <li><a class="burger-items" href="team.html">MEET THE TEAM</a></li>
@@ -31,6 +32,7 @@
                 </ul>
             </nav>
 
+            
             <svg class="menu" id="desktop-menu" width="48" height="32" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M24 32H0V26.6667H24V32ZM48 18.6667H0V13.3333H48V18.6667ZM48 5.33333H24V0H48V5.33333Z" fill="black"/>
             </svg>
@@ -42,24 +44,33 @@
             </div>
 
                                     <!-- the id here is a marker for the smooth scrolling when pressing the arrow, which goes to the intro page, when pressing the menu: 'about us'-->
-            <svg class="arrow one hidden" id="scrollToIntro" width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.9393 32.0607C11.5251 32.6464 12.4749 32.6464 13.0607 32.0607L22.6066 22.5147C23.1924 21.9289 23.1924 20.9792 22.6066 20.3934C22.0208 19.8076 21.0711 19.8076 20.4853 20.3934L12 28.8787L3.51472 20.3934C2.92893 19.8076 1.97919 19.8076 1.3934 20.3934C0.807612 20.9792 0.807612 21.9289 1.3934 22.5147L10.9393 32.0607ZM10.5 6.55671e-08L10.5 31L13.5 31L13.5 -6.55671e-08L10.5 6.55671e-08Z" fill="black"/>
-            </svg>
+            <div class="arrowFrame">
+                <a class="arrowLink" href="#scrollToIntro">
+                    <svg class="arrow one hidden"  width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.9393 32.0607C11.5251 32.6464 12.4749 32.6464 13.0607 32.0607L22.6066 22.5147C23.1924 21.9289 23.1924 20.9792 22.6066 20.3934C22.0208 19.8076 21.0711 19.8076 20.4853 20.3934L12 28.8787L3.51472 20.3934C2.92893 19.8076 1.97919 19.8076 1.3934 20.3934C0.807612 20.9792 0.807612 21.9289 1.3934 22.5147L10.9393 32.0607ZM10.5 6.55671e-08L10.5 31L13.5 31L13.5 -6.55671e-08L10.5 6.55671e-08Z" fill="black"/>
+                    </svg>
+                </a>
+            </div>
         </section>
 
         <!-- intro section -->
-        <section class="intro" >
+        <section class="intro" id="scrollToIntro" >
             <div class="introFrame">
                 
                 <svg class="Logo hidden noMove left" xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="125 220 400 300"><defs><style>.cls-1{font-family:Futura-Medium, Futura;font-size:20px;font-weight:500;}.cls-1,.cls-2{fill:#231f20;}.cls-3{letter-spacing:.21em;}.cls-4{letter-spacing:.22em;}.cls-5{stroke-miterlimit:10;stroke-width:1.09px;}.cls-5,.cls-6,.cls-7,.cls-8{fill:none;stroke:#231f20;}.cls-9{letter-spacing:-.03em;}.cls-6{stroke-width:1.83px;}.cls-6,.cls-7,.cls-8{stroke-linecap:round;stroke-linejoin:round;}.cls-10{letter-spacing:.25em;}.cls-7{stroke-width:2px;}.cls-11{letter-spacing:.21em;}.cls-12{letter-spacing:.21em;}.cls-13{letter-spacing:.17em;}.cls-8{stroke-width:3px;}.cls-2{font-family:Formula1-Display-Black, Formula1;font-size:38px;font-weight:800;}</style></defs><circle class="cls-5" cx="325.28" cy="369.85" r="172.25"/><path class="cls-7" d="M249.6,304.85s7.74-11.86,4.38-22.44-51.32-9.54-51.32-9.54c0,0-2.06,22.69,1.03,29.4s-1.71,17.79-1.71,17.79l32.13,4.9"/><line class="cls-7" x1="259.15" y1="297.37" x2="277.46" y2="313.87"/><line class="cls-7" x1="254.83" y1="306.65" x2="265.85" y2="331.67"/><path class="cls-7" d="M265.85,335.02s34.56-43.55,34.56-57.36,1.29,57.36,1.29,57.36"/><path class="cls-7" d="M285.71,341.47l72.21-26.3s-.77,2.06,11.35,1.81,67.05,13.41,67.05,13.41c0,0,5.16,2.32,6.45,8.51s-4.9,11.09-4.9,11.09"/><path class="cls-7" d="M399.43,347.91s.26,13.93,2.32,15.73,43.32,3.35,45.9,0,3.02-9.36,2.06-10.83c-2.66-4.1-50.29-4.9-50.29-4.9Z"/><path class="cls-8" d="M358.48,332.69c3.63-3.63,8.65-5.88,14.19-5.88,11.08,0,20.06,8.98,20.06,20.06s-8.98,20.06-20.06,20.06c-4.55,0-8.74-1.51-12.1-4.06"/><path class="cls-8" d="M231.32,331.66c3.65-3.8,8.78-6.17,14.47-6.17,11.08,0,20.06,8.98,20.06,20.06s-8.98,20.06-20.06,20.06c-6.52,0-12.31-3.11-15.98-7.93"/><path class="cls-8" d="M373.2,355.24c4.16-.85,7.3-4.54,7.3-8.95,0-5.05-4.09-9.14-9.14-9.14-3.1,0-5.84,1.55-7.49,3.91"/><path class="cls-8" d="M239.14,353.77c1.21.59,2.57.92,4.01.92,5.05,0,9.14-4.09,9.14-9.14s-4.09-9.14-9.14-9.14c-2.52,0-4.81,1.02-6.46,2.68"/><path class="cls-6" d="M270.38,345.67c6.11,2.72,17.06,6.61,31.05,6.25,20.73-.53,35.35-10.04,40.93-14.11"/><path class="cls-6" d="M269.17,351.94s24.8,8.65,27.62,10.86c2.82,2.22,48.39,1.41,48.39,1.41l6.85-6.07-5.04-10.24"/><path class="cls-6" d="M306.54,319.47c1.61-.2,3.92-.25,6.41.62,4.26,1.48,4.76,4.18,8.25,4.68,3.76.54,7.27-1.98,7.76-2.34,2.41-1.77,2.43-3.3,4.43-3.82,2.54-.65,3.71,1.49,5.79.74,2.44-.88,2.16-4.3,4.43-5.05,1.01-.33,2.52-.13,4.8,1.72"/><path class="cls-6" d="M303.83,312.82s-1.11-6.53.62-9.61,10.59-3.94,13.92-3.45,5.91,2.34,5.91,2.34c0,0,1.48,3.08,1.72,5.79-6.06.95-11.26,0-11.26,0,0,0-1.18.37-.56,3.08,2.54,1.45,6.65.62,9.73,1.85l3.08,1.23s-.1,5.3-1.72,6.78-21.44-8.01-21.44-8.01Z"/><text xmlns="http://www.w3.org/2000/svg" class="cls-2" transform="translate(199.23 405.74)"><tspan class="cls-9" x="5" y="0">CONCORDIA</tspan></text><text class="cls-1" transform="translate(211.69 432.43)"><tspan class="cls-3" x="-10" y="0">FORMULA RACING</tspan></text></svg>
                 <p class="subhead hidden noMove right">Our team combines years of knowledge from formerly building combustion race cars in building electric race cars. Our years of mechanical development let us tackle these new technologies head-on while maintaining a solid racing platform. We strive to push Concordia engineering students to become top-notch, relevant future employees in an ever-changing job market. Here at Concordia Formula Racing, we don't just make race cars go fast, we create the race car of the future.</p>
+
+                
             </div>
             
             <!-- the id here is a marker for the smooth scrolling, which goes to subsystems, so when 'subsystems' menu is pressed -->
-            <svg class="arrow two hidden" id="scrollToSubs" width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.9393 32.0607C11.5251 32.6464 12.4749 32.6464 13.0607 32.0607L22.6066 22.5147C23.1924 21.9289 23.1924 20.9792 22.6066 20.3934C22.0208 19.8076 21.0711 19.8076 20.4853 20.3934L12 28.8787L3.51472 20.3934C2.92893 19.8076 1.97919 19.8076 1.3934 20.3934C0.807612 20.9792 0.807612 21.9289 1.3934 22.5147L10.9393 32.0607ZM10.5 6.55671e-08L10.5 31L13.5 31L13.5 -6.55671e-08L10.5 6.55671e-08Z" fill="black"/>
-            </svg>
-                
+            <div class="arrowFrame two"> 
+                <a href="#scrollToSubs">
+                    <svg class="arrow two hidden" width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.9393 32.0607C11.5251 32.6464 12.4749 32.6464 13.0607 32.0607L22.6066 22.5147C23.1924 21.9289 23.1924 20.9792 22.6066 20.3934C22.0208 19.8076 21.0711 19.8076 20.4853 20.3934L12 28.8787L3.51472 20.3934C2.92893 19.8076 1.97919 19.8076 1.3934 20.3934C0.807612 20.9792 0.807612 21.9289 1.3934 22.5147L10.9393 32.0607ZM10.5 6.55671e-08L10.5 31L13.5 31L13.5 -6.55671e-08L10.5 6.55671e-08Z" fill="black"/>
+                    </svg>
+                </a>
+            </div>
         </section>
 
         <!-- subsystems which is a list of cards with each subsystem inside of it -->
@@ -67,8 +78,10 @@
             <div class="title subsystem">FORMULA SUBSYSTEMS</div>
             <div class="sub_section hidden">
                 <div class="cardSec one">
+                    <div class="firstEmptySpace one"></div>
+
                     <label>
-                        <input type="checkbox" id="toCheck" class="hover">
+                        <input type="checkbox" class="hover">
                         <div class="card aero">
                             <p class="title forCards">Aerodynamics</p>
                             <div class="frame">
@@ -78,7 +91,7 @@
                         </div>
                     </label>
                     <label>
-                        <input type="checkbox" id="toCheck" class="hover">
+                        <input type="checkbox" class="hover">
                         <div class="card brakes">
                             
                             <p class="title forCards">Brakes</p>
@@ -89,7 +102,7 @@
                         </div>
                     </label>
                     <label>
-                        <input type="checkbox" id="toCheck" class="hover">
+                        <input type="checkbox" class="hover">
                         <div class="card chassis">
                             <p class="title forCards">Chassis</p>
                             <div class="frame">
@@ -99,7 +112,7 @@
                         </div>
                     </label>
                     <label>
-                        <input type="checkbox" id="toCheck" class="hover">
+                        <input type="checkbox" class="hover">
                         <div class="card data">
                             <p class="title forCards">Data Acquisition</p>
                             <div class="frame">
@@ -109,7 +122,7 @@
                         </div>
                     </label>
                     <label>
-                        <input type="checkbox" id="toCheck" class="hover">
+                        <input type="checkbox" class="hover">
                         <div class="card accumulator">
                             <p class="title forCards">Accumulator</p>
                             <div class="frame">
@@ -119,64 +132,14 @@
                         </div>
                     </label>
                     <!--  -->
-                    <label>
-                        <input type="checkbox" id="toCheck" class="hover">
-                        <div class="card aero">
-                            <p class="title forCards">Aerodynamics</p>
-                            <div class="frame">
-                                <img class="card-photo" src="assets/subsystems/aero-photo.jpg" alt="dfasd">                    
-                                <p class="text">Responsible for the creation of components such as wings and diffusers used to create downforce and push the car into the ground.</p>
-                            </div>
-                        </div>
-                    </label>
-
-                    <label>
-                        <input type="checkbox" id="toCheck" class="hover">
-                        <div class="card brakes">
-                            
-                            <p class="title forCards">Brakes</p>
-                            <div class="frame">
-                                <img class="card-photo" src="assets/subsystems/brakes.jpg" alt="dfasd">                    
-                                <p class="text toolong">Responsible for slowing the car through the combination of hydraulic and friction systems.</p>
-                            </div>
-                        </div>
-                    </label>
-                    <label>
-                        <input type="checkbox" id="toCheck" class="hover">
-                        <div class="card chassis">
-                            <p class="title forCards">Chassis</p>
-                            <div class="frame">
-                                <img class="card-photo" src="assets/subsystems/chassis.jpg" alt="dfasd">                    
-                                <p class="text">Responsible for attaching the other subsystems together as well as protecting the driver from the elements.</p>
-                            </div>                
-                        </div>
-                    </label>
-                    <label>
-                        <input type="checkbox" id="toCheck" class="hover">
-                        <div class="card data">
-                            <p class="title forCards">Data Acquisition</p>
-                            <div class="frame">
-                                <img class="card-photo" src="assets/subsystems/dataAcquisiton.jpg" alt="dfasd">                    
-                                <p class="text">Responsible for the acquiring of sensor data and refining it with the objective of assisting other subsystems with the analysis of said data.</p>
-                            </div>                
-                        </div>
-                    </label>
-                    <label>
-                        <input type="checkbox" id="toCheck" class="hover">
-                        <div class="card accumulator">
-                            <p class="title forCards">Accumulator</p>
-                            <div class="frame">
-                                <img class="card-photo" src="assets/subsystems/accumulator.jpg" alt="dfasd">                    
-                                <p class="text">Responsible for the battery and its management systems which are mostly high voltage.</p>
-                            </div>                
-                        </div>
-                    </label>
+                    <div class="firstEmptySpace two"></div>
                 </div>
 
                 <div class="cardSec two">
-                    
+                    <div class="secondEmptySpace one"></div>
+
                     <label>
-                        <input type="checkbox" id="toCheck">
+                        <input type="checkbox">
                         <div class="card steering">
                             <p class="title forCards">Steering</p>
                             <div class="frame">
@@ -186,89 +149,54 @@
                         </div>
                     </label>
 
-                    <div class="card suspension">
-                        <p class="title forCards">Suspension</p>
-                        <div class="frame">
-                            <img class="card-photo" src="assets/subsystems/suspension.jpg" alt="dfasd">                    
-                            <p class="text">Responsible for translating forces from the tires into the rest of the car through the establishment of car specific geometry.</p>
-                        </div>                
-                    </div>
+                    <label>
+                        <input type="checkbox">
+                        <div class="card suspension">
+                            <p class="title forCards">Suspension</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/suspension.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for translating forces from the tires into the rest of the car through the establishment of car specific geometry.</p>
+                            </div>                
+                        </div>
+                    </label>
 
+                    <label>
+                        <input type="checkbox">
+                        <div class="card wheels">
+                            <p class="title forCards">Wheels & Tires</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/wheelsTires.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for all cornering and acceleration forces transferring between the road and the car.</p>
+                            </div>                
+                        </div>
+                    </label>
 
-                    
-                    <div class="card wheels">
-                        <p class="title forCards">Wheels & Tires</p>
-                        <div class="frame">
-                            <img class="card-photo" src="assets/subsystems/wheelsTires.jpg" alt="dfasd">                    
-                            <p class="text">Responsible for all cornering and acceleration forces transferring between the road and the car.</p>
-                        </div>                
-                    </div>
+                    <label>
+                        <input type="checkbox">
+                        <div class="card electric">
+                            <p class="title forCards">ELV Electrical</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/electrical.jpg" alt="dfasd">                    
+                                <p class="text">Responsible for the low voltage systems of the car such as safety equipment and sensing equipment.</p>
+                            </div>                
+                        </div>
+                    </label>
 
-                    <div class="card electric">
-                        <p class="title forCards">ELV Electrical</p>
-                        <div class="frame">
-                            <img class="card-photo" src="assets/subsystems/electrical.jpg" alt="dfasd">                    
-                            <p class="text">Responsible for the low voltage systems of the car such as safety equipment and sensing equipment.</p>
-                        </div>                
-                    </div>
+                    <label>
+                        <input type="checkbox">
+                        <div class="card powertrain">
+                            <p class="title forCards">Powertrain</p>
+                            <div class="frame">
+                                <img class="card-photo" src="assets/subsystems/powertrain.jpg" alt="dfasd">
+                                <p class="text">Responsible for the motor, motor controller, and gearbox that powers the car.</p>
+                            </div>                
+                        </div>
+                    </label>
 
-                    <div class="card powertrain">
-                        <p class="title forCards">Powertrain</p>
-                        <div class="frame">
-                            <img class="card-photo" src="assets/subsystems/powertrain.jpg" alt="dfasd">
-                            <p class="text">Responsible for the motor, motor controller, and gearbox that power the car.</p>
-                        </div>                
-                    </div>
-
+                    <div class="secondEmptySpace two"></div>
                     <!--  -->
 
-                    <label>
-                        <input type="checkbox" id="toCheck">
-                        <div class="card steering">
-                            <p class="title forCards">Steering</p>
-                            <div class="frame">
-                                <img class="card-photo" src="assets/subsystems/steering.jpg" alt="dfasd">                    
-                                <p class="text">Responsible for the steering geometry, closely related to the suspension subsystem.</p>
-                            </div>                
-                        </div>
-                    </label>
-
-                    <div class="card suspension">
-                        <p class="title forCards">Suspension</p>
-                        <div class="frame">
-                            <img class="card-photo" src="assets/subsystems/suspension.jpg" alt="dfasd">                    
-                            <p class="text">Responsible for translating forces from the tires into the rest of the car through the establishment of car specific geometry.</p>
-                        </div>                
-                    </div>
-
-
                     
-                    <div class="card wheels">
-                        <p class="title forCards">Wheels & Tires</p>
-                        <div class="frame">
-                            <img class="card-photo" src="assets/subsystems/wheelsTires.jpg" alt="dfasd">                    
-                            <p class="text">Responsible for all cornering and acceleration forces transferring between the road and the car.</p>
-                        </div>                
-                    </div>
-
-                    <div class="card electric">
-                        <p class="title forCards">ELV Electrical</p>
-                        <div class="frame">
-                            <img class="card-photo" src="assets/subsystems/electrical.jpg" alt="dfasd">                    
-                            <p class="text">Responsible for the low voltage systems of the car such as safety equipment and sensing equipment.</p>
-                        </div>                
-                    </div>
-
-                    <div class="card powertrain">
-                        <p class="title forCards">Powertrain</p>
-                        <div class="frame">
-                            <img class="card-photo" src="assets/subsystems/powertrain.jpg" alt="dfasd">
-                            <p class="text">Responsible for the motor, motor controller, and gearbox that power the car.</p>
-                        </div>                
-                    </div>
-                
-                </div>
-
                 <!-- <div class="cardSec three">
                     <div class="card powertrain">
                         <p class="title forCards">Powertrain</p>
@@ -292,7 +220,7 @@
         </section>
 
         <!-- sponsors section which links to the sponsor's page -->
-        <section class="sec sponsors hidden">
+        <section class="sec sponsors">
             <div class="secTitle sponsor">SPONSORS</div>
             <div class="theSponsors">
                 <div class="sponsorSlide">
@@ -317,7 +245,7 @@
         </section>
 
         <!-- team section which links to the team's page -->
-        <section class="sec team hidden ">
+        <section class="sec team">
             <div class="secTitle team">MEET THE TEAM</div>
             <div class="TheTeam">
                 <div class="teamSlide">

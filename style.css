@@ -33,7 +33,7 @@
     }
 }
 
-s
+
 /*this html element makes scrolling smooth for when a button is pressed */
 html {
     scroll-behavior: smooth;
@@ -159,12 +159,20 @@ section.home-page {
     /* animation of text using the @keyframes function RightToLeft */
     animation: 12s RightToLeft infinite linear;
 }
-.arrow.one {
+
+.arrowFrame {
     position: absolute;
+    display: flex;
+    justify-content: space-around;
     width: 100%;
-    bottom: 2em;
-    align-self: center;
-    cursor: pointer;
+    height: 2em;
+    bottom: 3em;
+
+    /* keeps it center when screen bigger than 1200px */
+    left: 0;
+}
+.arrowFrame.two {
+    position: unset;
 }
 
 span {
@@ -174,11 +182,14 @@ span {
 /*2nd page styling (introduction)*/
 section.intro {
     display: flex;
+    /* mobile needs changing for desktop */
     justify-content: space-between;
+    position: relative;
+
     height: fit-content;
-    min-height: 90vh;
+    min-height: 95vh;
     flex-direction: column;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 svg.Logo {
     width: 20em;
@@ -217,11 +228,8 @@ p.subhead {
     line-height: 1.6rem;
     text-align: justify;
 }
-.arrow.two {
-    align-self: center;
-    height: 10vh;
-    cursor: pointer;
-}
+
+
 
 /*MEET OUR TEAMS SCROLLING TITLE (FOR DESKTOP), work in progress (neeeds to be changed in the media area*/
 
@@ -236,6 +244,7 @@ section.subsystems {
 .sub_section {
     display: flex;
     overflow-x: auto;
+    mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
 }
 .card {
     display: flex;
@@ -247,6 +256,7 @@ section.subsystems {
     margin-right: 0.75rem;
     border-radius: 25px;
     background: #FFAE03;
+    /* background-image: linear-gradient(0deg, #CA3F3A 0%, #FFAE03 20%); */
     padding: 1.38rem;
     width: 17.5625rem;
     height: 27.1875rem;
@@ -355,11 +365,11 @@ section.subsystems {
 .teamSlide {
     display: flex;
     animation: slideToLeft 20s linear infinite;
+    transition: all 1s;
 }
 /* idea: stop the animation when mouse is hovered over the profiles */
 .TheTeam:hover .teamSlide {
     animation-play-state: paused;
-    
 }
 .profile {
     display: flex;
@@ -596,6 +606,9 @@ svg.social {
         display: flex;
         margin: 0;
     }
+    .burger-items.hide {
+        display: none;
+    }
     .burger-items {
         padding: .5em 1.5em;
         font-size: .9rem;
@@ -609,8 +622,8 @@ svg.social {
 
     
 
-    .intro {
-        justify-content: unset;
+    section.intro {
+        justify-content: center;
     }
     p.subhead {
         font-size: 1.25rem;
@@ -622,14 +635,43 @@ label input {
     display: none;
 }
 
-.sub_section{
-    mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
-}
 
 @keyframes bg-shift {
     from {background-color: red;}
     to {background-color: blue;}
 }
+
+
+/* these last 3 are to set big length to make the scrolling more sensitive for the desktop version of the subsystem section */
+.firstEmptySpace {
+    display: none;
+    height: 17.6em;
+    border-radius: 25px;
+    background-color: white;
+    opacity: 0.3;
+}
+.firstEmptySpace.one {
+    width: 150em;
+}
+.firstEmptySpace.two {
+    width: 85em;
+}
+
+.secondEmptySpace {
+    display: none;
+    height: 17.6em;
+    border-radius: 25px;
+    background-color: white;
+    opacity: 0.3;
+}
+.secondEmptySpace.one {
+    width: 130em;
+}
+.secondEmptySpace.two {
+    width: 150em;
+}
+
+
 
 /*formating for the pages for desktop*/
 @media only screen and (min-width: 900px) {
@@ -680,18 +722,13 @@ label input {
     .sub_section {
         flex-direction: column;
         gap: 2em;
+        overflow: hidden;
     }
     
 
     .cardSec {
         gap: 1em;
     }
-    /* .cardSec.one {
-        transform: translateX(50%);
-    }
-    .cardSec.two {
-        transform: translateX(50%);
-    } */
 
     .card {
         justify-content: unset;
@@ -701,6 +738,13 @@ label input {
         padding: .8em;
         transition: all 1s;
         overflow: hidden;
+    }
+    /* makes it visible when in desktop format */
+    .firstEmptySpace {
+        display: unset;
+    }
+    .secondEmptySpace {
+        display: unset;
     }
 
     .card p.title {
@@ -733,66 +777,6 @@ label input {
         width: 100%;
         height: auto;
     }
-    /* section.subsystems {
-        height: fit-content;
-        justify-content: space-even;
-        margin-right: 1em;
-        margin-left: 1em;
-    }
-    .sub_section {
-        margin-top: 1em;
-        overflow-y: hidden;
-        background: #FFAE03;
-        border-radius: 25px;
-
-        
-        scroll-snap-type: x mandatory;
-    } */
-    /* .cardSec {
-        min-width: 100%;
-        justify-content: space-around;
-        margin-top: 1em; */
-
-        /* this sets the snapping to the center of each page of 4 cards */
-        /* scroll-snap-align: center;
-    }
-    .card {
-        flex-direction: unset;
-        width: 25.5rem;
-        margin-left: -1em;
-        padding: 0;
-        height: 24.1875rem;
-        margin-top: 0;
-        background: unset;
-    }
-    img.card-photo {
-        height: 12.5rem;
-        width: 100%;
-    } */
-    
-    /* .sub-cardSec {
-        display: unset;
-        width: 27em;
-    }
-    .title.forCards {
-        writing-mode: vertical-lr;
-        text-orientation: upright;
-        margin-top: .5em;
-        max-width: 20px;
-        font-size: 1.45rem;
-    }
-     */
-    /* intro section changes for desktop */
-    /* section.intro.introFrame {
-        flex-direction: row;
-        align-items: center;
-    }
-    .intro {
-        justify-content: space-between;
-    }
-    p.subhead {
-        font-size: 1.25rem;
-    } */
 }
 
 
@@ -823,10 +807,10 @@ label input {
 
 /* left right elements are to determine where to animation movement start (either from the left or the right) */
 .left {
-    transform: translateX(-100%);
+    transform: translateX(-20%);
 }
 .right {
-    transform: translateX(100%);
+    transform: translateX(20%);
 }
 .down {
     transform: translateY(15%);
