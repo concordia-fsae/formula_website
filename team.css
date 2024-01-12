@@ -101,6 +101,7 @@ section.directors {
 .profiles {
     display: flex;
     width: 100%;
+    justify-content: center;
 }
 .profile {
     display: flex;
@@ -137,6 +138,10 @@ section.directors {
         border-radius: 15px;
         transition: all 0.3s ease-in-out;
     }
+}
+.imageWrapper:hover a.nolink {
+    cursor: unset;
+    background: rgba(230,230,230,0.2);
 }
 .imageWrapper a svg {
     display: none;
@@ -212,6 +217,7 @@ section.subsystems {
 @media only screen and (max-width: 750px) {
     .group {
         flex-direction: column;
+        width: unset;
     }
     .titleFrame {
         height: 5em;
@@ -458,6 +464,7 @@ svg.social {
     margin-top: .5em;
 }
 .contactText.mail {
+    transition: all 0.2s;
     &:hover {
         color: black;
         text-decoration: underline;
@@ -486,6 +493,7 @@ svg.social {
     margin-bottom: 1em;
 }
 .social {
+    transition: all 0.2s;
     &:hover {
         fill: black;
     }

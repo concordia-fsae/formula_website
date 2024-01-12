@@ -408,6 +408,7 @@ svg.social {
     margin-top: .5em;
 }
 .contactText.mail {
+    transition: all 0.2s;
     &:hover {
         color: black;
         text-decoration: underline;
@@ -436,6 +437,7 @@ svg.social {
     margin-bottom: 1em;
 }
 .social {
+    transition: all 0.2s;
     &:hover {
         fill: black;
     }
