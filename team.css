@@ -22,6 +22,10 @@ body {
     background-color: #FFAE03;
     overflow-x: hidden;
 }
+.wrapper {
+    /* do this for mobile, because overflow doesn't work on body element */
+    overflow-x: hidden;
+}
 a {
     text-decoration: none;
     font-size: 1.3rem;
@@ -40,6 +44,9 @@ a {
 section.theTitle {
     height: fit-content;
     width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 .theTitle img {
     object-fit: cover;
@@ -51,9 +58,9 @@ section.theTitle {
 .theTitle h1 {
     position: absolute;
     margin: 0 0.5em 0 0.5em;
-    top: 3em;
     color: white;
-    
+    text-shadow: 4px 4px 4px rgba(0,0,0,0.3);
+    opacity: 0.8;
     font-family: Formula1-Bold;
     font-size: 4em;
     width: -webkit-fill-available;
@@ -130,12 +137,15 @@ section.directors {
     position: absolute;
     inset: 0;
     border-radius: 25px;
+    outline: white;
+    border-radius: 15px;
+    
     &:hover {
         cursor: pointer;
         outline: solid white 2px;
         outline-offset: -2px;
         background: rgba(230,230,230,0.5);
-        border-radius: 15px;
+        
         transition: all 0.3s ease-in-out;
     }
 }
@@ -164,8 +174,7 @@ section.directors {
 
 @media only screen and (max-width: 500px){
     .theTitle h1 {
-        font-size: 2.5em;
-        top: 5em;
+        font-size: 3em;
     }
 }
 @media only screen and (max-width: 400px){

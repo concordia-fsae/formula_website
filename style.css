@@ -55,7 +55,7 @@ a {
     font-size: 1.3rem;
 }
 .home-image {
-    background: url('assets/HomeImage.jpg');
+    background: url('assets/backgrounds/HomeImageLowQuality.JPG');
     position: absolute;
     top: 0;
     left: 0;
@@ -149,6 +149,7 @@ section.home-page {
     font-size: 4rem;
     font-family: Formula1-Bold;
     color: white;
+    text-shadow: 4px 4px 4px rgba(0,0,0,0.3);
     user-select: none;
 
     width: fit-content;

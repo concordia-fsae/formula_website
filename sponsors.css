@@ -20,6 +20,10 @@ body {
   background-color: #FFAE03;
   overflow-x: hidden;
 }
+.wrapper {
+    /* do this for mobile, because overflow doesn't work on body element */
+    overflow-x: hidden;
+}
 a {
     text-decoration: none;
     font-size: 1.3rem;
@@ -33,22 +37,25 @@ a {
 
 /* First section: photo with text 'be part of our journey' */
 section.sponsorIntro {
+    display: flex;
     height: fit-content;
     width: 100%;
+    position: relative;
+    align-items: center;
 }
 .sponsorIntro img {
     object-fit: cover;
     border-radius: 30px;
     width: -webkit-fill-available;
     height: 20em;
-    margin: 5em 1em 0 1em;
+    margin: 0em 1em 0 1em;
 }
 .sponsorIntro h1 {
     position: absolute;
     margin: 0 0.5em 0 0.5em;
-    top: 4.3em;
     color: white;
-    
+    text-shadow: 4px 4px 4px rgba(0,0,0,0.3);
+    opacity: 0.8;
     font-family: Formula1-Bold;
     font-size: 3em;
     width: -webkit-fill-available;
@@ -59,14 +66,9 @@ section.sponsorIntro {
 @media only screen and (max-width: 500px){
     .sponsorIntro h1 {
         font-size: 2.5em;
-        top: 5em;
     }
 }
-@media only screen and (max-width: 378px){
-    .sponsorIntro h1 {
-        top: 4.2em;
-    }
-}
+
 
 /* section on first page with text and link to the sponsorship package */
 section.introText {
@@ -90,6 +92,9 @@ label:hover {
     border-radius: 20px;
     background: rgba(230,230,230,0.5);
 }
+.cover {
+    display: none;
+}
 label p {
     margin: 0;
     color: black;
@@ -108,6 +113,8 @@ label input:checked ~ div.textFrame p {
     display: unset;
     overflow: unset;
 }
+
+
 
 
 .sponsorshipPackage {
@@ -143,6 +150,7 @@ label input:checked ~ div.textFrame p {
     transition: all 0.2s;
 }
 .sponsorshipPackage a svg{
+    outline: white;
     width: 3em;
     height: 3em;
     border-radius: 15px;
@@ -160,6 +168,29 @@ label input:checked ~ div.textFrame p {
     }
     .sponsorshipPackage {
         margin: 1em 1em 1em 1em;
+    }
+}
+@media only screen and (min-width: 812px) {
+    label:hover {
+        outline: unset;
+    }
+    label p {
+        cursor: unset;
+    }
+    .cover {
+        display: unset;
+        position: absolute;
+
+        /* to have normal cursor */
+        user-select: none;
+
+        /* cover element with same size as the label (for the intro text) */
+        font-size: 1.2em;
+        margin: 1em 0em 0 1em;
+        max-width: 60%;
+        border-radius: 20px;
+        opacity: 0;
+        z-index: 2;
     }
 }
 
@@ -209,6 +240,7 @@ section.categories {
 }
 .categories div.category .frameSponso {
     display: flex;
+    justify-content: center;
     align-self: flex-start;
     height: 10em;
     width: 46.6%;
@@ -217,12 +249,36 @@ section.categories {
     background: rgba(230,230,230,0.33);
     border-radius: 15px;
 }
-.categories div.category .frameSponso img {
+.frameSponso a {
+    display: flex;
+    justify-content: center;
     width: 50%;
+    border-radius: 20px;
+    outline: white;
+
+    &:hover {
+        outline: white 1.5px solid;
+        outline-offset: -1.5px;
+        transition: 0.2s;
+        background-color: rgba(250, 249, 249, 0.2);
+    }
+}
+/* for empty sponsor boxes */
+.categories .category .frameSponso.empty {
+    display: none;
+}
+.category p {
+    color: white;
+    font-size: 20px;
+}
+
+.categories div.category .frameSponso a img {
+    width: 100%;
 }
 .categories .twoCategories {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 @media only screen and (max-width: 1000px) {
