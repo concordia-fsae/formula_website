@@ -199,9 +199,7 @@ section.electrical {
 .title.electrical {
     font-size: 6vmin;
 }
-.profile.jason {
-    width: 20em;
-}
+
 
 /* Profile characteristics for subsystems section */
 section.subsystems {
@@ -210,6 +208,14 @@ section.subsystems {
     gap: 2em;
     justify-content: center;
     align-items: center;
+}
+.profiles.subs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.groupSec {
+    display: flex;
 }
 .group {
     display: flex;
@@ -224,17 +230,33 @@ section.subsystems {
 }
 
 @media only screen and (max-width: 750px) {
+    
+    /* IMPORTANT */
+    /* changes mode to mobile format, switches to .profiles.two */
+    .profiles.subs.one {
+        display: none;
+    }
+    .profiles.subs.two {
+        display: flex;
+    }
+
+
     .group {
         flex-direction: column;
         width: unset;
     }
+    .group.subs {
+        flex-direction: row;
+    }
+    .groupSec {
+        flex-direction: column;
+    } 
+    .profile.subs {
+        width: 50%;
+    }
     .titleFrame {
         height: 5em;
         width: 19em 
-    }
-    .titleFrame.electrical{
-        height: 4em;
-        width: 15em 
     }
     .titleFrame.subsystems{
         height: 4em;
@@ -251,20 +273,24 @@ section.subsystems {
         font-size: 2.5em;
     }
 
-    .profile.jason {
-        width: 50%;
-    } 
-    .profile.lucas {
-        width: 50%;
-    } 
 }
 
 @media only screen and (min-width: 750px) {
+
+    /* IMPORTANT */
+    /* changes mode to desktop format, switches to .profiles.one */
+    .profiles.subs.one {
+        display: flex;
+    }
+    .profiles.subs.two {
+        display: none;
+    }
+
     /* so james profile doesn't get squished */
     .profile {
         width: 50%;
     }
-
+    
     
 }
 
@@ -554,14 +580,14 @@ svg.social {
     }
 }
 
-/* --------------------------------------------------------  */
-/* COPY CODE FOR CONTACT SECTION (COPIED FROM STYLE.CSS) */
+/* -------------------------------------------------------- */
+/* COPY CODE FOR CONTACT SECTION (COPIED FROM STYLE.CSS)    */
 /* -------------------------------------------------------- */
 
 
-/*  */
-/* CLASSES FOR THE ANIMATION OF ELEMENTS */
-/*  */
+/* --------------------------------------- */
+/*  CLASSES FOR THE ANIMATION OF ELEMENTS  */
+/* --------------------------------------- */
 
 .hidden {
     opacity: 0;
@@ -602,12 +628,8 @@ section.theTitle {
     transition-delay: 300ms;
 }
 
-/* ELECTRICAL */
-.profile.lucas {
-    transition-delay: 200ms;
-}
 
-/* SUBSYSTEMS */
+/* SUBSYSTEMS
 .profile.leandre {
     transition-delay: 100ms;
 }
@@ -619,7 +641,6 @@ section.theTitle {
 }
 
 @media only screen and (max-width: 750px) {
-    /* THE DIRECTORS */
     .profile.joshua {
         transition-delay: 0ms;
     }
@@ -629,7 +650,6 @@ section.theTitle {
     .profile.peter {
         transition-delay: 100ms;
     }
-    /* SUBSYSTEMS */
     .profile.leandre {
         transition-delay: 00ms;
     }
@@ -639,5 +659,75 @@ section.theTitle {
     .profile.matthieu {
         transition-delay: 100ms;
     }
-    
+} */
+
+
+/* SUBSYSTEMS DESKTOP VERSION (.profiles.one layout) */
+/* first row */
+.profile.peter.subs {
+    transition-delay: 0ms;
+}
+.profile.matthieu {
+    transition-delay: 100ms;
+}
+.profile.subs.james {
+    transition-delay: 200ms;
+}
+/* second row */
+.profile.leandre {
+    transition-delay: 100ms;
+}
+.profile.philippe {
+    transition-delay: 200ms;
+}
+/* third row */
+.profile.jason {
+    transition-delay: 100ms;
+}
+.profile.lucas {
+    transition-delay: 200ms;
+}
+
+@media only screen and (max-width: 750px) {
+    /* DIRECTORS */
+    .profile.joshua {
+        transition-delay: 0ms;
+    }
+    .profile.james {
+        transition-delay: 100ms;
+    }
+    .profile.peter {
+        transition-delay: 100ms;
+    }
+
+    /* SUBSYSTEMS MOBILE VERSION (.profiles.two layout) */
+    /* first row */
+    .profile.peter.subs {
+        transition-delay: 0ms;
+    }
+    .profile.matthieu {
+        transition-delay: 100ms;
+    }
+    /* second row */
+    .profile.subs.james {
+        transition-delay: 0ms;
+    }
+    .profile.sabrina {
+        transition-delay: 100ms;
+    }
+    /* third row */
+    .profile.leandre {
+        transition-delay: 0ms;
+    }
+    .profile.philippe {
+        transition-delay: 100ms;
+    }
+    /* fourth row */
+    .profile.jacob {
+        transition-delay: 0ms;
+    }
+    .profile.jason {
+        transition-delay: 100ms;
+    }
+
 }

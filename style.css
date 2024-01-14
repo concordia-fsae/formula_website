@@ -386,11 +386,13 @@ section.subsystems {
 .imageWrapper a { 
     position: absolute;
     inset: 0;
-    
+    border-radius: 15px;
+    outline: white;
     &:hover {
         cursor: pointer;
         background: rgba(230,230,230,0.5);
-        border-radius: 15px;
+        outline: white solid 1.5px;
+        outline-offset: -1.5px;
         transition: all .3s;
     }
 }
