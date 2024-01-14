@@ -192,16 +192,30 @@ section.intro {
     flex-direction: column;
     overflow: hidden;
 }
+.videoLogoFrame{
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: center;
+    max-width: 50%;
+}
 svg.Logo {
-    width: 20em;
+    width: 100%;
     height: 20em;
     flex-shrink: 0;
+}
+video {
+    width: 80%;
+    height: fit-content;
+    margin-top: -3em;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 /* ------- */
 /* THESE ATTRIBUTES CHANGE ALL LOGO PARTS TO THE COLOR WHITE*/
 svg.Logo circle {
     /* this hides the the circle */
-    stroke: #CA3F3A;
+    stroke: transparent;
 }
 svg.Logo path {
     stroke: white;
@@ -327,7 +341,7 @@ section.subsystems {
 }
 .viewMore {
     text-align: center;
-    height: 4vh;
+    height: 1.5em;
 
     &:hover {
         text-decoration: underline;
@@ -570,7 +584,7 @@ svg.social {
     }
 }
 
-/*for the burger menu*/
+/*for the burger menu and intro elements*/
 @media only screen and (max-width: 750px) {
     .logo1 {
         display: none;
@@ -583,10 +597,15 @@ svg.social {
         margin: 1em;
     }
 
+
+    /* for mobile */
     .introFrame {
         flex-direction: column;
         gap: 3em;
         margin-top: 3em;
+    }
+    .videoLogoFrame {
+        max-width: 100%;
     }
 }
 
