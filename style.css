@@ -186,6 +186,7 @@ section.intro {
     /* mobile needs changing for desktop */
     justify-content: space-between;
     position: relative;
+    gap: 1em;
 
     height: fit-content;
     min-height: 95vh;
@@ -601,8 +602,7 @@ svg.social {
     /* for mobile */
     .introFrame {
         flex-direction: column;
-        gap: 3em;
-        margin-top: 3em;
+        gap: 4em;
     }
     .videoLogoFrame {
         max-width: 100%;
