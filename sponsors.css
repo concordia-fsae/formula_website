@@ -213,6 +213,9 @@ section.categories {
     background-color: #CA3F3A;
     border-radius: 15px;
 }
+.categories p.date {
+    color: rgba(0,0,0,0.6);
+}
 .categories h1 {
     font-family: Formula1-Bold;
     font-size: 7vmin;
@@ -273,7 +276,7 @@ section.categories {
 }
 
 .categories div.category .frameSponso a img {
-    width: 100%;
+    width: 95%;
 }
 .categories .twoCategories {
     display: flex;
@@ -305,9 +308,16 @@ header {
     border-bottom-right-radius: 25px;
 }
 .headerLogo {
+    /* background: url('assets/logo.jpg'); */
     width: 2.7em;
     height: 2.7em;
-    margin: 0.5em 0 0 0.5em;
+    margin: 0.5em;
+    border-radius: 10px;
+    transition: 0.3s;
+    &:hover {
+        /* background: #FFAE03; */
+        background: white !important;
+    }
 }
 svg.menu {
     width: 2.7em;
@@ -334,11 +344,15 @@ ul {
     margin-top: 8em;
     height: fit-content;
 }
+li {
+    margin: 0 0.5em 0 0.5em;
+}
 .burger-items {
     color: black;
-    padding: .75em 1em;
+    padding: .75em .75em;
     display: block;
-
+    border-radius: 10px;
+    transition: 0.3s;
     /* in mobile version when menu items are hovers they have a light grey background color */
     &:hover{
         background: rgb(207, 206, 206);
@@ -346,9 +360,15 @@ ul {
 }
 .close{
     float: right;
-    margin: 2em;
-    width: 2em;
+    margin: 1.5em;
+    width: 3.5em;
+    height: 3.5em;
     cursor: pointer;
+    
+    &:hover g g #rectangle {
+        transition: all 0.2s;
+        fill: rgba(207, 206, 206, 0.8);;
+    }
 }
 /*.open-nav is created by some javascript when burger and close icon is clicked*/
 .open-nav {
@@ -394,12 +414,12 @@ ul {
         margin: 0;
     }
     .burger-items {
-        padding: .5em 1.5em;
+        padding: .5em 1em;
         font-size: .9rem;
         color: #CA3F3A;
-
         &:hover {
-            background: unset;
+            /* background-color: #FFAE03; */
+            background: white!important;
             text-decoration: underline;
         }
     }

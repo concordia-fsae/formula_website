@@ -35,14 +35,15 @@ window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
   if (window.innerWidth > 750){
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      document.querySelector("header").style.background = "rgba(255,255,255,0.8)";
+      document.querySelectorAll(".burger-items").forEach(item => {
+        item.style.background = "rgba(255,255,255,0.8)";
+      })
     } 
     else {
-      document.querySelector("header").style.background = "unset";
+      document.querySelectorAll(".burger-items").forEach(item => {
+        item.style.background = "unset";
+      })
    }
-  }
-  else {
-    document.querySelector("header").style.background = "unset";
   }
 }
 

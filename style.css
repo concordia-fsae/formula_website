@@ -76,12 +76,19 @@ header {
     z-index: 2;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
+
 }
 .headerLogo {
     /* background: url('assets/logo.jpg'); */
     width: 2.7em;
     height: 2.7em;
-    margin: 0.5em 0 0 0.5em;
+    margin: 0.5em;
+    border-radius: 10px;
+    transition: 0.3s;
+    &:hover {
+        /* background: #FFAE03; */
+        background: white !important;
+    }
 }
 svg.menu {
     width: 2.7em;
@@ -108,21 +115,32 @@ ul {
     margin-top: 8em;
     height: fit-content;
 }
+li {
+    margin: 0 0.5em 0 0.5em;
+    
+}
 .burger-items {
     color: black;
-    padding: .75em 1em;
+    padding: .75em .75em;
     display: block;
-
+    border-radius: 10px;
+    transition: 0.3s;
     /* in mobile version when menu items are hovers they have a light grey background color */
     &:hover{
-        background: rgb(207, 206, 206);
+        background: rgba(207, 206, 206, 0.8);
     }
 }
 .close{
     float: right;
-    margin: 2em;
-    width: 2em;
+    margin: 1.5em;
+    width: 3.5em;
+    height: 3.5em;
     cursor: pointer;
+    
+    &:hover g g #rectangle {
+        transition: all 0.2s;
+        fill: rgba(207, 206, 206, 0.8);;
+    }
 }
 /*.open-nav is created by some javascript when burger and close icon is clicked*/
 .open-nav {
@@ -302,6 +320,9 @@ section.subsystems {
     display: flex;
     height: 100%;
     flex-direction: column;
+}
+.frame svg.arrowCard {
+    display: none;
 }
 .card-photo {
     object-fit: cover;
@@ -630,16 +651,13 @@ svg.social {
         display: flex;
         margin: 0;
     }
-    .burger-items.hide {
-        display: none;
-    }
     .burger-items {
-        padding: .5em 1.5em;
+        padding: .5em 1em;
         font-size: .9rem;
         color: #CA3F3A;
-
         &:hover {
-            background: unset;
+            /* background-color: #FFAE03; */
+            background: white!important;
             text-decoration: underline;
         }
     }
@@ -653,6 +671,7 @@ svg.social {
         font-size: 1.25rem;
     }
 }
+
 
 
 
@@ -754,7 +773,7 @@ label input {
         height: 16em;
         width: 14em;
         padding: .8em;
-        transition: all 1s;
+        transition: all .5s;
         overflow: hidden;
     }
     /* makes it visible when in desktop format */
@@ -773,6 +792,7 @@ label input {
 
     .card div.frame {
         margin: 0;
+        position: relative;
     }
     .frame p.text {
         margin-top: .8em;
@@ -782,6 +802,22 @@ label input {
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
+    }
+    .frame svg.arrowCard {
+        position: absolute;
+        display: unset;
+        -webkit-transform: rotate(-90deg);
+        bottom: -0.2em;
+        height: 1.4em;
+        width: 1em;
+        left: 0.5em 
+    }
+    .card:hover .frame svg.arrowCard {
+        -webkit-transform: rotate(-180deg);
+        transition: 0.2s;
+    }
+    label input:checked ~ div.card div.frame svg {
+        display: none;
     }
     /* when subsystem box is clicked it reveals all of the text */
     label input:checked ~ div.card div.frame p.text {
@@ -793,7 +829,7 @@ label input {
     .card-photo {
         margin: 0;
         width: 100%;
-        height: auto;
+        height: 8em;
     }
 }
 
@@ -817,7 +853,7 @@ label input {
 /* these when item is show  */
 .hidden {
     opacity: 0;
-    transition: all 1s;
+    transition: all 0.8s;
 }
 .show {
     opacity: 1;
