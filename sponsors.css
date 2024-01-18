@@ -277,6 +277,7 @@ section.categories {
 
 .categories div.category .frameSponso a img {
     width: 95%;
+    object-fit: contain;
 }
 .categories .twoCategories {
     display: flex;
@@ -355,7 +356,7 @@ li {
     transition: 0.3s;
     /* in mobile version when menu items are hovers they have a light grey background color */
     &:hover{
-        background: rgb(207, 206, 206);
+        background: rgb(207, 206, 206)!important;
     }
 }
 .close{
