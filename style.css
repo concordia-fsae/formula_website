@@ -386,9 +386,13 @@ section.subsystems {
     height: 15em;
     left: 0;
     animation: slideToLeft 15s linear infinite;
-    gap: 3em;
+    gap: 5em;
+    align-items: center;
 }
-
+.sponsoRepeat img {
+    max-width: 25em;
+    object-fit: contain;
+}
 /* team section, with all the profiles */
 
 .TheTeam  {
@@ -730,6 +734,8 @@ label input {
     label {
         display: inline-block;
         cursor: pointer;
+
+        scroll-snap-type: x mandatory;
     }
     
     .card:hover {

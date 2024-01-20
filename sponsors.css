@@ -258,6 +258,7 @@ section.categories {
     width: 50%;
     border-radius: 20px;
     outline: white;
+    padding: .5em;
 
     &:hover {
         outline: white 1.5px solid;
@@ -276,7 +277,7 @@ section.categories {
 }
 
 .categories div.category .frameSponso a img {
-    width: 95%;
+    width: 100%;
     object-fit: contain;
 }
 .categories .twoCategories {
