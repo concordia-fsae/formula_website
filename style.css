@@ -1,14 +1,11 @@
 @font-face {
-    font-family: Helvetica-Neue;
-    src: url("assets/HelveticaNeueRegular.otf");
-}
-@font-face {
     font-family: Formula1-Bold;
     font-weight: bold;
     src: url("assets/Formula1-Bold.otf") format("opentype");
 }
 @font-face { 
-    font-family: Futura-Medium, Futura;
+    font-family: Futura-Medium;
+    font-weight: bold;
     src: url("assets/FuturaMedium.otf");
 }
 @keyframes RightToLeft { /*animation function for the sliding text*/
@@ -46,7 +43,8 @@ html {
 /*general styles*/
 body {
   margin: 0;
-  font-family: Futura-Medium, Futura;
+  font-family: Futura-Medium;
+  font-weight: bolder;
   background-color: #CA3F3A;
   overflow-x: hidden;
 }
