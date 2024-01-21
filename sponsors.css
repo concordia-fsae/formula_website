@@ -7,6 +7,10 @@
     font-weight: bold;
     src: url("assets/Formula1-Bold.otf") format("opentype");
 }
+@font-face { 
+    font-family: HelveticaNeue;
+    src: url("assets/HelveticaNeue\ Medium.ttf") format("truetype");
+}
 
 /*this html element makes scrolling smooth for when a button is pressed */
 html {
@@ -16,7 +20,7 @@ html {
 /*general styles*/
 body {
   margin: 0;
-  font-family: Futura-Medium, Futura;
+  font-family: HelveticaNeue-Medium;
   background-color: #FFAE03;
   overflow-x: hidden;
 }
@@ -91,9 +95,6 @@ label:hover {
     padding: 0.5em;
     border-radius: 20px;
     background: rgba(230,230,230,0.5);
-}
-.cover {
-    display: none;
 }
 label p {
     margin: 0;
@@ -170,27 +171,15 @@ label input:checked ~ div.textFrame p {
         margin: 1em 1em 1em 1em;
     }
 }
-@media only screen and (min-width: 812px) {
+@media only screen and (min-width: 827px) {
+    input {
+        pointer-events: none;
+    }
     label:hover {
         outline: unset;
     }
     label p {
         cursor: unset;
-    }
-    .cover {
-        display: unset;
-        position: absolute;
-
-        /* to have normal cursor */
-        user-select: none;
-
-        /* cover element with same size as the label (for the intro text) */
-        font-size: 1.2em;
-        margin: 1em 0em 0 1em;
-        max-width: 60%;
-        border-radius: 20px;
-        opacity: 0;
-        z-index: 1;
     }
 }
 
@@ -271,6 +260,9 @@ section.categories {
 .frameSponso a .spacer {
     position: absolute;
     top: -5em;
+}
+.QSTC img {
+    width: 12em !important;
 }
 /* for empty sponsor boxes */
 .categories .category .frameSponso.empty {
@@ -461,7 +453,6 @@ section.contact {
     align-items: center;
 
     margin-top: 5rem;
-    margin-bottom: 2em;
 }
 /* englobes the credentials+socials and the google maps */
 .contactFrame {
@@ -531,6 +522,27 @@ svg.social {
     &:hover {
         fill: black;
     }
+}
+
+/* my small section :) */
+section.creator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    /* margin-top: -1em; */
+}
+.creator p {
+    text-align: center; 
+    color: white;
+    font-size: 1.3em;
+}
+.creator p span {
+    text-decoration: underline;
+    color: white;
+}
+.creator .linkedin {
+    height: 2em;
 }
 
 

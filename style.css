@@ -4,10 +4,14 @@
     src: url("assets/Formula1-Bold.otf") format("opentype");
 }
 @font-face { 
-    font-family: Futura-Medium;
-    font-weight: bold;
-    src: url("assets/FuturaMedium.otf");
+    font-family: Futura;
+    src: url("assets/FuturaMedium.otf") format("opentype");
 }
+@font-face { 
+    font-family: HelveticaNeue;
+    src: url("assets/HelveticaNeue\ Medium.ttf") format("truetype");
+}
+
 @keyframes RightToLeft { /*animation function for the sliding text*/
     from {
         transform: translateX(0);
@@ -43,8 +47,7 @@ html {
 /*general styles*/
 body {
   margin: 0;
-  font-family: Futura-Medium;
-  font-weight: bolder;
+  font-family: HelveticaNeue-Medium;
   background-color: #CA3F3A;
   overflow-x: hidden;
 }
@@ -231,15 +234,16 @@ svg.introLogo {
 }
 video {
     width: 80%;
-    min-height: 15em;
     height: fit-content;
     margin-top: -3em;
     border-radius: 15px;
+    
+    /* min-height: 15em;
     background-color: rgba(0, 0, 0, 0.2);
     transition: 0.5s;
     &:hover {
         background-color: rgba(0, 0, 0, 1);
-    }
+    } */
 }
 /* ------- */
 /* THESE ATTRIBUTES CHANGE ALL LOGO PARTS TO THE COLOR WHITE*/
@@ -421,6 +425,12 @@ section.subsystems {
     object-fit: contain;
     margin-right: 3em;
 }
+.QSTC img{
+    width: 12em;
+}
+
+
+
 /* team section, with all the profiles */
 
 .TheTeam  {
@@ -490,7 +500,7 @@ section.subsystems {
 }
 .last {
     color: white;
-    font-weight: bold;
+    font-family: Futura-Bold;
 }
 .last.toolong {
     font-size: 0.83rem;
@@ -505,7 +515,6 @@ section.contact {
     align-items: center;
 
     margin-top: 5rem;
-    margin-bottom: 2em;
 }
 /* englobes the credentials+socials and the google maps */
 .contactFrame {
@@ -576,7 +585,26 @@ svg.social {
         fill: black;
     }
 }
-
+/* my small section :) */
+section.creator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    /* margin-top: -1em; */
+}
+.creator p {
+    text-align: center; 
+    color: white;
+    font-size: 1.3em;
+}
+.creator p span {
+    text-decoration: underline;
+    color: white;
+}
+.creator .linkedin {
+    height: 2em;
+}
 
 
 
@@ -883,6 +911,7 @@ label input {
 
 
 
+
 /* delays to make it look clean */
 .parentTitleSlide {
     transition-delay: 200ms;
@@ -890,7 +919,14 @@ label input {
 .arrow {
     transition-delay: 500ms;
 }
-
+@media only screen and (min-width: 900px) {
+    .card.two {
+        transition-delay: 100ms;
+    }
+    .card.three {
+        transition-delay: 200ms;
+    }
+}
 
 /* not sure what this does */
 @media (prefers-reduced-motion) {

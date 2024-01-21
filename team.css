@@ -7,6 +7,10 @@
     font-weight: bold;
     src: url("assets/Formula1-Bold.otf") format("opentype");
 }
+@font-face { 
+    font-family: HelveticaNeue;
+    src: url("assets/HelveticaNeue\ Medium.ttf") format("truetype");
+}
 
 
 
@@ -18,7 +22,7 @@ html {
 /*general styles*/
 body {
     margin: 0;
-    font-family: Futura-Medium, Futura;
+    font-family: HelveticaNeue-Medium;
     background-color: #FFAE03;
     overflow-x: hidden;
 }
@@ -532,7 +536,6 @@ section.contact {
     align-items: center;
 
     margin-top: 5rem;
-    margin-bottom: 2em;
 }
 /* englobes the credentials+socials and the google maps */
 .contactFrame {
@@ -604,6 +607,26 @@ svg.social {
     }
 }
 
+/* my small section :) */
+section.creator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    /* margin-top: -1em; */
+}
+.creator p {
+    text-align: center; 
+    color: white;
+    font-size: 1.3em;
+}
+.creator p span {
+    text-decoration: underline;
+    color: white;
+}
+.creator .linkedin {
+    height: 2em;
+}
 
 /* adapted for contact section for different screen sizes */
 @media only screen and (max-width: 450px) {
