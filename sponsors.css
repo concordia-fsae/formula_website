@@ -254,6 +254,7 @@ section.categories {
 }
 .frameSponso a {
     display: flex;
+    position: relative; /* this is so we can put an invisible element over it so when scrolled to there is some space */
     justify-content: center;
     width: 50%;
     border-radius: 20px;
@@ -266,6 +267,10 @@ section.categories {
         transition: 0.2s;
         background-color: rgba(250, 249, 249, 0.2);
     }
+}
+.frameSponso a .spacer {
+    position: absolute;
+    top: -5em;
 }
 /* for empty sponsor boxes */
 .categories .category .frameSponso.empty {
@@ -309,17 +314,24 @@ header {
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
 }
+a.logo1 {
+    height: 3.5em;
+}
 .headerLogo {
     /* background: url('assets/logo.jpg'); */
-    width: 2.7em;
-    height: 2.7em;
-    margin: 0.5em;
+    width: 3.5em;
+    height: 3em;
+    margin: 0.5em 0 0 0.5em;
     border-radius: 10px;
     transition: 0.3s;
     &:hover {
         /* background: #FFAE03; */
         background: white !important;
     }
+}
+/* make circle around the logo transparent */
+svg.headerLogo circle {
+    stroke: transparent;
 }
 svg.menu {
     width: 2.7em;

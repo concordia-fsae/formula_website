@@ -78,11 +78,14 @@ header {
     border-bottom-right-radius: 25px;
 
 }
+a.logo1 {
+    height: 3.5em;
+}
 .headerLogo {
     /* background: url('assets/logo.jpg'); */
-    width: 2.7em;
-    height: 2.7em;
-    margin: 0.5em;
+    width: 3.5em;
+    height: 3em;
+    margin: 0.5em 0 0 0.5em;
     border-radius: 10px;
     transition: 0.3s;
     &:hover {
@@ -125,6 +128,7 @@ li {
     display: block;
     border-radius: 10px;
     transition: 0.3s;
+    /* background: rgba(255,255,255,0.8); */
     /* in mobile version when menu items are hovers they have a light grey background color */
     &:hover{
         background: rgba(207, 206, 206, 0.8);
@@ -211,24 +215,29 @@ section.intro {
     flex-direction: column;
     overflow: hidden;
 }
-.videoLogoFrame{
+.videoLogoFrame {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
     align-items: center;
-    max-width: 50%;
+    max-width: 60%;
 }
-svg.Logo {
+svg.introLogo {
     width: 100%;
     height: 20em;
     flex-shrink: 0;
 }
 video {
     width: 80%;
+    min-height: 15em;
     height: fit-content;
     margin-top: -3em;
     border-radius: 15px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+    &:hover {
+        background-color: rgba(0, 0, 0, 1);
+    }
 }
 /* ------- */
 /* THESE ATTRIBUTES CHANGE ALL LOGO PARTS TO THE COLOR WHITE*/
@@ -236,13 +245,13 @@ svg.Logo circle {
     /* this hides the the circle */
     stroke: transparent;
 }
-svg.Logo path {
+svg.introLogo path {
     stroke: white;
 }
-svg.Logo line {
+svg.introLogo line {
     stroke: white;
 }
-svg.Logo text {
+svg.introLogo text {
     fill: white;
 }
 /* ------- */
@@ -255,9 +264,7 @@ svg.Logo text {
 
 p.subhead {
     color: white;
-    margin-top: -1rem;
-    margin-right: 3rem;
-    margin-left: 3rem;
+    margin: -1rem 2rem 0 2rem;
     font-size: 1rem;
     line-height: 1.6rem;
     text-align: justify;
@@ -272,7 +279,7 @@ p.subhead {
 section.subsystems {
     display: flex;
     flex-direction: column;
-    height: fit-content em;
+    height: fit-content;
     overflow-x: auto;
 }
 .sub_section {
@@ -372,6 +379,9 @@ section.subsystems {
 .sponsorSlide {
     display: flex;
 }
+.theSponsors:hover .sponsorSlide .sponsoRepeat {
+    animation-play-state: paused;
+}
 
 .theSponsors {
     display: flex;
@@ -383,15 +393,31 @@ section.subsystems {
 }
 .sponsoRepeat {
     display: flex;
+    align-items: center;
     height: 15em;
     left: 0;
-    animation: slideToLeft 15s linear infinite;
-    gap: 5em;
-    align-items: center;
+    animation: slideToLeft 20s linear infinite;
+    /* animation-play-state: paused; */
 }
-.sponsoRepeat img {
+.sponsoRepeat a img{
+    display: flex;
+    height: 8em;
+    justify-content: center;
+    border-radius: 20px;
+    outline: white;
+    padding: .5em;
+
+    &:hover {
+        outline: white 1.5px solid;
+        outline-offset: -1.5px;
+        transition: 0.2s;
+        background-color: rgba(250, 249, 249, 0.2);
+    }
+}
+.sponsoRepeat a img {
     max-width: 25em;
     object-fit: contain;
+    margin-right: 3em;
 }
 /* team section, with all the profiles */
 
@@ -673,6 +699,8 @@ svg.social {
     }
     p.subhead {
         font-size: 1.25rem;
+        margin-left: 0;
+        margin-top: unset;
     }
 }
 
@@ -683,36 +711,6 @@ label input {
     display: none;
 }
 
-/* these last 3 are to set big length to make the scrolling more sensitive for the desktop version of the subsystem section */
-.firstEmptySpace {
-    display: none;
-    height: 17.6em;
-    border-radius: 25px;
-    background-color: white;
-    opacity: 0.3;
-}
-.firstEmptySpace.one {
-    width: 150em;
-}
-.firstEmptySpace.two {
-    width: 85em;
-}
-
-.secondEmptySpace {
-    display: none;
-    height: 17.6em;
-    border-radius: 25px;
-    background-color: white;
-    opacity: 0.3;
-}
-.secondEmptySpace.one {
-    width: 130em;
-}
-.secondEmptySpace.two {
-    width: 150em;
-}
-
-
 
 /*formating for the pages for desktop*/
 @media only screen and (min-width: 900px) {
@@ -720,14 +718,12 @@ label input {
         width: max-content;
     }
     .cardSec.one {
-        animation: slideToLeft linear;
-        animation-timeline: scroll(root);
+        
         flex-wrap: nowrap;
         align-items: flex-start;
     }
     .cardSec.two {
-        animation: slideToRight linear;
-        animation-timeline: scroll(root);
+        
         animation-range: entry;
         flex-wrap: nowrap;
     }
@@ -766,6 +762,7 @@ label input {
         flex-direction: column;
         gap: 2em;
         overflow: hidden;
+        align-items: center;
     }
     
 
