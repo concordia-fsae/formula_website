@@ -7,6 +7,10 @@
     font-weight: bold;
     src: url("assets/Formula1-Bold.otf") format("opentype");
 }
+@font-face { 
+    font-family: Futura-Medium, Futura;
+    src: url("assets/FuturaMedium.otf");
+}
 @keyframes RightToLeft { /*animation function for the sliding text*/
     from {
         transform: translateX(0);
