@@ -1,7 +1,12 @@
 @font-face {
     font-family: Formula1-Bold;
-    font-weight: bold;
-    src: url("assets/Formula1-Bold.otf") format("opentype");
+    font-weight: 600;
+    src: url("assets/Formula1-Bold.ttf") format("truetype");
+}
+@font-face {
+    font-family: Formula1-Bolder;
+    font-weight: 900;
+    src: url("assets/Formula1-Black.ttf") format("truetype");
 }
 @font-face { 
     font-family: Futura;
@@ -84,15 +89,16 @@ header {
 
 }
 a.logo1 {
-    height: 3.5em;
-}
-.headerLogo {
-    /* background: url('assets/logo.jpg'); */
-    width: 3.5em;
     height: 3em;
     margin: 0.5em 0 0 0.5em;
+}
+.headerLogo {
+    width: 3.5em;
+    height: 2.5em;
+    object-fit: contain;
     border-radius: 10px;
     transition: 0.3s;
+    background: rgba(255,255,255,0.8);
     &:hover {
         /* background: #FFAE03; */
         background: white !important;
@@ -158,10 +164,9 @@ li {
 
 /*1st page styling, everything but the header*/
 section.home-page {
-    display: flex;
+    display: grid;
     flex-direction: column;
     justify-content: space-between;
-    color: orange;
     height: 100vh;
 }
 .parentTitleSlide {
@@ -174,7 +179,7 @@ section.home-page {
 }
 .scrolling-text{
     font-size: 4rem;
-    font-family: Formula1-Bold;
+    font-family:  Formula1-Bolder;
     color: white;
     text-shadow: 4px 4px 4px rgba(0,0,0,0.3);
     user-select: none;
@@ -187,6 +192,12 @@ section.home-page {
     /* animation of text using the @keyframes function RightToLeft */
     animation: 12s RightToLeft infinite linear;
 }
+
+
+span {
+    color: #CA3F3A;
+}
+
 
 .arrowFrame {
     position: absolute;
@@ -203,9 +214,7 @@ section.home-page {
     position: unset;
 }
 
-span {
-    color: #CA3F3A;
-}
+
 
 /*2nd page styling (introduction)*/
 section.intro {
@@ -321,10 +330,11 @@ section.subsystems {
     margin-top: .5em;
     font-size: 3.8rem;
     text-align: center;
+    font-family:  Formula1-Bolder;
 }
 .title {
     color: white;
-    font-family: Formula1-Bold;
+    font-family:  Formula1-Bold;
     font-size: 29px;
     margin-top: 0em;
 }
@@ -371,7 +381,7 @@ section.subsystems {
 .secTitle {
     font-size: 2.5rem;
     color: white;
-    font-family: Formula1-Bold;
+    font-family:  Formula1-Bolder;
     margin-top: 0.3em;
 }
 .viewMore {
@@ -570,6 +580,7 @@ svg.social {
     border-bottom: 1.5px solid white;
     margin-bottom: 0.4em;
     font-size: 4rem;
+    font-family:  Formula1-Bolder;
 }
 .socials {
     margin-top: .8rem;

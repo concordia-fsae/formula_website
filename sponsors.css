@@ -1,11 +1,12 @@
 @font-face {
-    font-family: Helvetica-Neue;
-    src: url("assets/HelveticaNeueRegular.otf");
+    font-family: Formula1-Bold;
+    font-weight: 600;
+    src: url("assets/Formula1-Bold.ttf") format("truetype");
 }
 @font-face {
-    font-family: Formula1-Bold;
-    font-weight: bold;
-    src: url("assets/Formula1-Bold.otf") format("opentype");
+    font-family: Formula1-Bolder;
+    font-weight: 900;
+    src: url("assets/Formula1-Black.ttf") format("truetype");
 }
 @font-face { 
     font-family: HelveticaNeue;
@@ -60,7 +61,7 @@ section.sponsorIntro {
     color: white;
     text-shadow: 4px 4px 4px rgba(0,0,0,0.3);
     opacity: 0.8;
-    font-family: Formula1-Bold;
+    font-family: Formula1-Bolder;
     font-size: 3em;
     width: -webkit-fill-available;
     
@@ -263,6 +264,7 @@ section.categories {
 }
 .QSTC img {
     width: 12em !important;
+    max-width: 100%;
 }
 /* for empty sponsor boxes */
 .categories .category .frameSponso.empty {
@@ -310,12 +312,13 @@ a.logo1 {
     height: 3.5em;
 }
 .headerLogo {
-    /* background: url('assets/logo.jpg'); */
     width: 3.5em;
-    height: 3em;
+    height: 2.5em;
+    object-fit: contain;
     margin: 0.5em 0 0 0.5em;
     border-radius: 10px;
     transition: 0.3s;
+    background: rgba(255,255,255,0.8);
     &:hover {
         /* background: #FFAE03; */
         background: white !important;
@@ -508,6 +511,7 @@ svg.social {
     border-bottom: 1.5px solid white;
     margin-bottom: 0.4em;
     font-size: 4rem;
+    font-family:  Formula1-Bolder;
 }
 .socials {
     margin-top: .8rem;
