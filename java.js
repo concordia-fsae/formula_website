@@ -64,27 +64,24 @@ function scrollFunction() {
   }
 }
 
+// set scroll variable 
+window.addEventListener("scroll", setScrollVar);
+window.addEventListener("resize", setScrollVar);
+
+function setScrollVar() {
+  const htmlElement = document.documentElement;
+  const percentOfScreenHeightScrolled = htmlElement.scrollTop / htmlElement.clientHeight;
+  console.log(Math.min(percentOfScreenHeightScrolled*100, 100))
+  htmlElement.style.setProperty(
+    "--scroll",
+    Math.min(percentOfScreenHeightScrolled*100, 100)
+  )
+}
+
+setScrollVar;
 
 
 
-// // check for click and expand card when clicked (only desktop format)
-// const checkbox = document.getElementById('toCheck');
-// if (document.querySelector('.card').matches(':hover')) {
-//   checkbox.checked = true;
-// }
-// else {
-//   checkbox.checked = false;
-// }
-// if (checkbox.checked == true){
-//     alert("a");
-//   }
-
-// const cards = document.querySelectorAll(".card");
-// for (const card of cards) {
-//   if (document.querySelector('#toCheck').matches(":hover")) {
-//     document.querySelector('#toCheck') = true;
-//   }
-// }
 
 
 // this is the full google maps java code

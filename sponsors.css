@@ -10,7 +10,7 @@
 }
 @font-face { 
     font-family: HelveticaNeue;
-    src: url("assets/HelveticaNeue\ Medium.ttf") format("truetype");
+    src: url("assets/HelveticaNeueMedium.ttf") format("truetype");
 }
 
 /*this html element makes scrolling smooth for when a button is pressed */

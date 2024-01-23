@@ -14,7 +14,7 @@
 }
 @font-face { 
     font-family: HelveticaNeue;
-    src: url("assets/HelveticaNeue\ Medium.ttf") format("truetype");
+    src: url("assets/HelveticaNeueMedium.ttf") format("truetype");
 }
 
 @keyframes RightToLeft { /*animation function for the sliding text*/
@@ -42,6 +42,14 @@
         transform: translateX(00%);
     }
 }
+@keyframes scrollUp {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
 
 
 /*this html element makes scrolling smooth for when a button is pressed */
@@ -53,27 +61,45 @@ html {
 body {
   margin: 0;
   font-family: HelveticaNeue-Medium;
-  background-color: #CA3F3A;
+  background: rgb(236 238 241);
   overflow-x: hidden;
 }
 .wrapper {
     /* this is for mobile, because chrome mobile doesnt take into account styling for html/body element (for some reason) */
     overflow-x: hidden;
+    position: sticky;
+    z-index: 2;
 }
+.wrapperBackground {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    background: #CA3F3A;
+    z-index: 1;
+    
+}
+/* .wrapper::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #CA3F3A;
+    z-index: 1;
+} */
 a {
     text-decoration: none;
     font-size: 1.3rem;
 }
 .home-image {
     background: url('assets/backgrounds/HomeImageLowQuality.JPG');
-    position: absolute;
+    position: sticky;
     top: 0;
+
     left: 0;
     width: 100%;
     height: 100vh;
     background-size: cover;
     background-position-x: 50%;
-    z-index: -1;
 }
 
 /*1st page styling for header*/
@@ -83,7 +109,8 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    z-index: 2;
+    top: 0;
+    z-index: 10;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
 
@@ -168,6 +195,9 @@ section.home-page {
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
+
+    position: sticky;
+    top: 0;
 }
 .parentTitleSlide {
     position: absolute;
@@ -178,7 +208,7 @@ section.home-page {
     left: 0;
 }
 .scrolling-text{
-    font-size: 4rem;
+    font-size: 3rem;
     font-family:  Formula1-Bolder;
     color: white;
     text-shadow: 4px 4px 4px rgba(0,0,0,0.3);
@@ -223,11 +253,14 @@ section.intro {
     justify-content: space-between;
     position: relative;
     gap: 1em;
+    background: #CA3F3A;
 
     height: fit-content;
     min-height: 95vh;
     flex-direction: column;
     overflow: hidden;
+
+    z-index: 3;
 }
 .videoLogoFrame {
     display: flex;
@@ -771,7 +804,7 @@ label input {
     label {
         display: inline-block;
         cursor: pointer;
-
+        height: fit-content;
         scroll-snap-type: x mandatory;
     }
     
@@ -781,6 +814,9 @@ label input {
         transition: .1s;
     }
     
+    label {
+        transition: all .1s !important;
+    }
     label input:checked ~ div.card {
         height: 19em;
         z-index: 3;
@@ -788,6 +824,9 @@ label input {
         width: 17em;
         outline: solid white 2px;
         outline-offset: -2px;
+    }
+    label input:checked ~ div.card .frame .card-photo {
+        
     }
 
 

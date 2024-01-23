@@ -1,16 +1,14 @@
 @font-face {
     font-family: Formula1-Bold;
-    font-weight: 600;
     src: url("assets/Formula1-Bold.ttf") format("truetype");
 }
 @font-face {
     font-family: Formula1-Bolder;
-    font-weight: 900;
     src: url("assets/Formula1-Black.ttf") format("truetype");
 }
 @font-face { 
     font-family: HelveticaNeue;
-    src: url("assets/HelveticaNeue\ Medium.ttf") format("truetype");
+    src: url("assets/HelveticaNeueMedium.ttf") format("truetype");
 }
 
 
@@ -130,12 +128,7 @@ section.directors {
 .profile .position {
     margin-top: 0em;
 }
-.jason .position {
-    margin-top: -1.5em;
-}
-.lucas .position {
-    margin-top: -1.5em;
-}
+
 .profile p{
     color: white;
     text-wrap: wrap;
