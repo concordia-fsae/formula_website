@@ -64,6 +64,35 @@ function scrollFunction() {
   }
 }
 
+// make home-image background zoom in on scroll
+// some JQuery to do this
+
+// function uses home-image height and width, and fits it on the screen, by changing background-size percentage
+$(window).scroll(function() {
+  var density = 1920/innerWidth;
+  var heightImageOnScreen = 1166/density;
+  var scrollPos = $(this).scrollTop();
+  $(".home-image").css({
+    'background-size' :  Math.max(((innerHeight/heightImageOnScreen)*100), 100) + scrollPos/50 + '%'
+  })
+  console.log(innerHeight)
+  console.log(innerWidth)
+})
+
+// does it on window resize as well to keep it at the right size
+$(window).resize(function() {
+  var density = 1920/innerWidth;
+  var heightImageOnScreen = 1166/density;
+  var scrollPos = $(this).scrollTop();
+  $(".home-image").css({
+    'background-size' :  Math.max(((innerHeight/heightImageOnScreen)*100), 100) + scrollPos/50 + '%'
+  })
+  console.log(innerHeight)
+  console.log(innerWidth)
+})
+
+
+
 // set scroll variable 
 window.addEventListener("scroll", setScrollVar);
 window.addEventListener("resize", setScrollVar);
@@ -71,15 +100,16 @@ window.addEventListener("resize", setScrollVar);
 function setScrollVar() {
   const htmlElement = document.documentElement;
   const percentOfScreenHeightScrolled = htmlElement.scrollTop / htmlElement.clientHeight;
-  console.log(Math.min(percentOfScreenHeightScrolled*100, 100))
+  // console.log(Math.min(percentOfScreenHeightScrolled*100, 100))
   htmlElement.style.setProperty(
     "--scroll",
     Math.min(percentOfScreenHeightScrolled*100, 100)
   )
 }
 
-setScrollVar;
 
+
+console.log(setScrollVar);
 
 
 

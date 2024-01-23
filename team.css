@@ -1,16 +1,22 @@
 @font-face {
-    font-family: Formula1-Bold;
-    src: url("assets/Formula1-Bold.ttf") format("truetype");
+    font-family: Formula1;
+    font-weight: 600;
+    src: url("assets/formula1-bold-webfont.woff") format("woff");
 }
 @font-face {
-    font-family: Formula1-Bolder;
-    src: url("assets/Formula1-Black.ttf") format("truetype");
+    font-family: Formula1;
+    font-weight: 900;
+    src: url("assets/formula1-black-webfont.woff") format("woff");
 }
 @font-face { 
     font-family: HelveticaNeue;
-    src: url("assets/HelveticaNeueMedium.ttf") format("truetype");
+    src: url("assets/helveticaneuemedium-webfont.woff") format("woff");
 }
-
+@font-face { 
+    font-family: Futura;
+    font-weight: 600;
+    src: url("assets/futura_bold-webfont.woff") format("woff");
+}
 
 
 /*this html element makes scrolling smooth for when a button is pressed */
@@ -35,7 +41,8 @@ a {
 }
 .title {
     color: white;
-    font-family: Formula1-Bold;
+    font-family: Formula1;
+    font-weight: 600;
     font-size: 29px;
     margin-top: 0em;
 }
@@ -64,7 +71,8 @@ section.theTitle {
     color: white;
     text-shadow: 4px 4px 4px rgba(0,0,0,0.3);
     opacity: 0.8;
-    font-family: Formula1-Bolder;
+    font-family: Formula1;
+    font-weight: 900;
     font-size: 4em;
     width: -webkit-fill-available;
     
@@ -89,7 +97,8 @@ section.theTitle {
     border-radius: 15px;
 }
 .titleFrame h1 {
-    font-family: Formula1-Bolder;
+    font-family: Formula1;
+    font-weight: 900;
     font-size: 7vmin;
     text-align: center;
     vertical-align: middle;
@@ -138,7 +147,8 @@ section.directors {
 }
 .last {
     color: white;
-    font-weight: bold;
+    font-family: Futura;
+    font-weight: 600;
 }
 .last.leandre {
     font-size: .9em;
@@ -586,7 +596,8 @@ svg.social {
     border-bottom: 1.5px solid white;
     margin-bottom: 0.4em;
     font-size: 4rem;
-    font-family:  Formula1-Bolder;
+    font-family:  Formula1;
+    font-weight: 900;
 }
 .socials {
     margin-top: .8rem;

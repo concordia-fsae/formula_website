@@ -1,20 +1,21 @@
 @font-face {
-    font-family: Formula1-Bold;
+    font-family: Formula1;
     font-weight: 600;
-    src: url("assets/Formula1-Bold.ttf") format("truetype");
+    src: url("assets/formula1-bold-webfont.woff") format("woff");
 }
 @font-face {
-    font-family: Formula1-Bolder;
+    font-family: Formula1;
     font-weight: 900;
-    src: url("assets/Formula1-Black.ttf") format("truetype");
+    src: url("assets/formula1-black-webfont.woff") format("woff");
 }
 @font-face { 
     font-family: Futura;
-    src: url("assets/FuturaMedium.otf") format("opentype");
+    font-weight: 600;
+    src: url("assets/futura_bold-webfont.woff") format("woff");
 }
 @font-face { 
     font-family: HelveticaNeue;
-    src: url("assets/HelveticaNeueMedium.ttf") format("truetype");
+    src: url("assets/helveticaneuemedium-webfont.woff") format("woff");
 }
 
 @keyframes RightToLeft { /*animation function for the sliding text*/
@@ -60,7 +61,7 @@ html {
 /*general styles*/
 body {
   margin: 0;
-  font-family: HelveticaNeue-Medium;
+  font-family: HelveticaNeue;
   background: rgb(236 238 241);
   overflow-x: hidden;
 }
@@ -90,6 +91,10 @@ a {
     text-decoration: none;
     font-size: 1.3rem;
 }
+.home {
+    position: sticky;
+    top: 0;
+}
 .home-image {
     background: url('assets/backgrounds/HomeImageLowQuality.JPG');
     position: sticky;
@@ -100,6 +105,7 @@ a {
     height: 100vh;
     background-size: cover;
     background-position-x: 50%;
+    background-position-y: 50%;
 }
 
 /*1st page styling for header*/
@@ -209,7 +215,8 @@ section.home-page {
 }
 .scrolling-text{
     font-size: 3rem;
-    font-family:  Formula1-Bolder;
+    font-family: Formula1;
+    font-weight: 900;
     color: white;
     text-shadow: 4px 4px 4px rgba(0,0,0,0.3);
     user-select: none;
@@ -253,7 +260,6 @@ section.intro {
     justify-content: space-between;
     position: relative;
     gap: 1em;
-    background: #CA3F3A;
 
     height: fit-content;
     min-height: 95vh;
@@ -363,11 +369,13 @@ section.subsystems {
     margin-top: .5em;
     font-size: 3.8rem;
     text-align: center;
-    font-family:  Formula1-Bolder;
+    font-family:  Formula1;
+    font-weight: 900;
 }
 .title {
     color: white;
-    font-family:  Formula1-Bold;
+    font-family:  Formula1;
+    font-weight: 600;
     font-size: 29px;
     margin-top: 0em;
 }
@@ -414,7 +422,8 @@ section.subsystems {
 .secTitle {
     font-size: 2.5rem;
     color: white;
-    font-family:  Formula1-Bolder;
+    font-family:  Formula1;
+    font-weight: 900;
     margin-top: 0.3em;
 }
 .viewMore {
@@ -543,7 +552,8 @@ section.subsystems {
 }
 .last {
     color: white;
-    font-family: Futura-Bold;
+    font-family: Futura;
+    font-weight: bold;
 }
 .last.toolong {
     font-size: 0.83rem;
@@ -613,7 +623,8 @@ svg.social {
     border-bottom: 1.5px solid white;
     margin-bottom: 0.4em;
     font-size: 4rem;
-    font-family:  Formula1-Bolder;
+    font-family:  Formula1;
+    font-weight: 900;
 }
 .socials {
     margin-top: .8rem;
@@ -887,6 +898,7 @@ label input {
         position: absolute;
         display: unset;
         -webkit-transform: rotate(-90deg);
+        transform: "";
         bottom: -0.2em;
         height: 1.4em;
         width: 1em;
@@ -894,6 +906,7 @@ label input {
     }
     .card:hover .frame svg.arrowCard {
         -webkit-transform: rotate(-180deg);
+        transform: "";
         transition: 0.2s;
     }
     label input:checked ~ div.card div.frame svg {
