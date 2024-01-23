@@ -825,9 +825,6 @@ label input {
         outline: solid white 2px;
         outline-offset: -2px;
     }
-    label input:checked ~ div.card .frame .card-photo {
-        
-    }
 
 
     /* SUBSYSTEMS REDESIGN FOR DESKTOP */
