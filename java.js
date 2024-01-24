@@ -92,20 +92,20 @@ $(window).resize(function() {
 })
 
 
-
+// NOT NEEDED FOR NOW
 // set scroll variable 
-window.addEventListener("scroll", setScrollVar);
-window.addEventListener("resize", setScrollVar);
+// window.addEventListener("scroll", setScrollVar);
+// window.addEventListener("resize", setScrollVar);
 
-function setScrollVar() {
-  const htmlElement = document.documentElement;
-  const percentOfScreenHeightScrolled = htmlElement.scrollTop / htmlElement.clientHeight;
-  // console.log(Math.min(percentOfScreenHeightScrolled*100, 100))
-  htmlElement.style.setProperty(
-    "--scroll",
-    Math.min(percentOfScreenHeightScrolled*100, 100)
-  )
-}
+// function setScrollVar() {
+//   const htmlElement = document.documentElement;
+//   const percentOfScreenHeightScrolled = htmlElement.scrollTop / htmlElement.clientHeight;
+//   // console.log(Math.min(percentOfScreenHeightScrolled*100, 100))
+//   htmlElement.style.setProperty(
+//     "--scroll",
+//     Math.min(percentOfScreenHeightScrolled*100, 100)
+//   )
+// }
 
 
 
