@@ -106,10 +106,7 @@ $(window).resize(function() {
 //     Math.min(percentOfScreenHeightScrolled*100, 100)
 //   )
 // }
-
-
-
-console.log(setScrollVar);
+// setScrollVar;
 
 
 
