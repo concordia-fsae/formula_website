@@ -73,7 +73,7 @@ $(window).scroll(function() {
   var heightImageOnScreen = 1166/density;
   var scrollPos = $(this).scrollTop();
   $(".home-image").css({
-    'background-size' :  Math.max(((innerHeight/heightImageOnScreen)*100), 100) + scrollPos/50 + '%'
+    'background-size' :  Math.max(((documentElement.clientHeight/heightImageOnScreen)*100), 100) + scrollPos/50 + '%'
   })
   console.log(innerHeight)
   console.log(innerWidth)
