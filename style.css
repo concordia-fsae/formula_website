@@ -66,8 +66,8 @@ body {
     font-family: HelveticaNeue;
     background: rgb(236 238 241);
     overflow-x: hidden;
-    /* height: 100%;
-    width: 100%; */
+    height: clientHeight;
+    width: 100%;
 }
 .wrapper {
     /* this is for mobile, because chrome mobile doesnt take into account styling for html/body element (for some reason) */
