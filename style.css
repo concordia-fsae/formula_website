@@ -66,8 +66,6 @@ body {
     font-family: HelveticaNeue;
     background: rgb(236 238 241);
     overflow-x: hidden;
-    height: clientHeight;
-    width: 100%;
 }
 .wrapper {
     /* this is for mobile, because chrome mobile doesnt take into account styling for html/body element (for some reason) */
@@ -103,8 +101,6 @@ a {
 }
 .home-image {
     background: url('assets/backgrounds/HomeImage.JPG');
-    position: sticky;
-    top: 0;
 
     left: 0;
     width: 100%;

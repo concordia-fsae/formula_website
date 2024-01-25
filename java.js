@@ -73,11 +73,9 @@ $(window).scroll(function() {
   var heightImageOnScreen = 1166/density;
   var scrollPos = $(this).scrollTop();
   $(".home-image").css({
-    'background-size' :  Math.max(((innerHeight/heightImageOnScreen)*100), 100) + '%'
-    ,'scale' : 100 + scrollPos/50 + '%'
+    'background-size' :  Math.max(((innerHeight/heightImageOnScreen)*100), 100) + scrollPos/50 +'%'
+    // 'scale' : 100 + scrollPos/50 + '%'
   })
-  console.log(innerHeight)
-  console.log(innerWidth)
 })
 
 // does it on window resize as well to keep it at the right size
@@ -86,8 +84,7 @@ $(window).resize(function() {
   var heightImageOnScreen = 1166/density;
   var scrollPos = $(this).scrollTop();
   $(".home-image").css({
-    'background-size' :  Math.max(((innnerHeight/heightImageOnScreen)*100), 100) + '%'
-    
+    'background-size' :  Math.max(((innerHeight/heightImageOnScreen)*100), 100) + '%'
   })
   console.log(innerHeight)
   console.log(innerWidth)
