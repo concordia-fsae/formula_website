@@ -97,15 +97,20 @@ a {
 .home {
     position: sticky;
     top: 0;
-    height: 100%;
-    width: 100%;
+    /* height: 100%;
+    width: 100%; */
+    position: fixed; bottom:0; top:0; left:0; right:0; max-width: 100vw; 
+}
+#update {
+    height: 100vh;
+    background: transparent;
 }
 .home-image {
     background: url('assets/backgrounds/HomeImage.JPG');
 
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-size: cover;
     background-position-x: 50%;
     background-position-y: 50%;
