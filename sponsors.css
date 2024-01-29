@@ -21,7 +21,7 @@ html {
 /*general styles*/
 body {
   margin: 0;
-  font-family: HelveticaNeue-Medium;
+  font-family: HelveticaNeue;
   background-color: #FFAE03;
   overflow-x: hidden;
 }
@@ -321,7 +321,7 @@ a.logo1 {
     margin: 0.5em 0 0 0.5em;
     border-radius: 10px;
     transition: 0.3s;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.7);
     &:hover {
         /* background: #FFAE03; */
         background: white !important;
@@ -365,6 +365,7 @@ li {
     display: block;
     border-radius: 10px;
     transition: 0.3s;
+    background: rgba(255,255,255,0.7);
     /* in mobile version when menu items are hovers they have a light grey background color */
     &:hover{
         background: rgb(207, 206, 206)!important;

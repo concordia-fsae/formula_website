@@ -45,24 +45,24 @@ contact.addEventListener('click', () => {
 
 
 //This makes header background appear white when scrolling down 20 px.
-window.onscroll = function() {scrollFunction()};
+// window.onscroll = function() {scrollFunction()};
 
 
 
-function scrollFunction() {
-  if (window.innerWidth > 750){
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      document.querySelectorAll(".burger-items").forEach(item => {
-        item.style.background = "rgba(255,255,255,0.8)";
-      })
-    } 
-    else {
-      document.querySelectorAll(".burger-items").forEach(item => {
-        item.style.background = "unset";
-      })
-   }
-  }
-}
+// function scrollFunction() {
+//   if (window.innerWidth > 750){
+//     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+//       document.querySelectorAll(".burger-items").forEach(item => {
+//         item.style.background = "rgba(255,255,255,0.8)";
+//       })
+//     } 
+//     else {
+//       document.querySelectorAll(".burger-items").forEach(item => {
+//         item.style.background = "unset";
+//       })
+//    }
+//   }
+// }
 
 // make home-image background zoom in on scroll
 // some JQuery to do this
@@ -86,26 +86,33 @@ $(window).resize(function() {
   $(".home-image").css({
     'background-size' :  Math.max(((innerHeight/heightImageOnScreen)*100), 100) + '%'
   })
-  console.log(innerHeight)
-  console.log(innerWidth)
 })
 
 
 // NOT NEEDED FOR NOW
 // set scroll variable 
-// window.addEventListener("scroll", setScrollVar);
-// window.addEventListener("resize", setScrollVar);
+window.addEventListener("scroll", setScrollVar);
+window.addEventListener("resize", setScrollVar);
 
-// function setScrollVar() {
-//   const htmlElement = document.documentElement;
-//   const percentOfScreenHeightScrolled = htmlElement.scrollTop / htmlElement.clientHeight;
-//   // console.log(Math.min(percentOfScreenHeightScrolled*100, 100))
-//   htmlElement.style.setProperty(
-//     "--scroll",
-//     Math.min(percentOfScreenHeightScrolled*100, 100)
-//   )
-// }
-// setScrollVar;
+function setScrollVar() {
+  const htmlElement = document.documentElement;
+  const percentOfScreenHeightScrolled = htmlElement.scrollTop / htmlElement.clientHeight;
+  // console.log(Math.min(percentOfScreenHeightScrolled*100, 100))
+  htmlElement.style.setProperty(
+    "--scroll",
+    Math.min(percentOfScreenHeightScrolled*100, 100)
+  )
+
+  // if (Math.min(percentOfScreenHeightScrolled*100, 100) >= 40 ) {
+  //   document.querySelector(".parentTitleSlide").style.position = "unset";
+  //   document.querySelector(".parentTitleSlide").style.top = "0";
+  // }
+  // else {
+  //   document.querySelector(".parentTitleSlide").style.position = "fixed";
+  //   document.querySelector(".parentTitleSlide").style.top = "35vh";
+  // }
+}
+setScrollVar;
 
 
 
@@ -143,7 +150,7 @@ initMap();
 // animation java script
 const observer = new IntersectionObserver ((entries) => {
   entries.forEach((entry) => {
-    console.log(entry)
+    // console.log(entry)
     if (entry.isIntersecting) {
       entry.target.classList.add('show');
       if (entry.target.classList.contains('noMove')) {

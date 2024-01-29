@@ -27,7 +27,7 @@ html {
 /*general styles*/
 body {
     margin: 0;
-    font-family: HelveticaNeue-Medium;
+    font-family: HelveticaNeue;
     background-color: #FFAE03;
     overflow-x: hidden;
 }
@@ -119,14 +119,32 @@ section.directors {
 }
 .profiles {
     display: flex;
-    width: 100%;
+    flex-wrap: wrap;
     justify-content: center;
+}
+.profiles.director {
+    flex-wrap: nowrap;
+    /* justify-content: unset; */
 }
 .profile {
     display: flex;
     flex-direction: column;
-    margin: 0 0.5em 0 0.5em;
+    /* margin: 0 0.5em 0 0.5em; */
     max-width: 20em;
+    padding: .5em;
+    width: 50%;
+    box-sizing: border-box;
+}
+@media only screen and (max-width: 1010px){
+    .profiles.director {
+        flex-wrap: wrap !important;
+    }
+    .profiles {
+        justify-content: center;
+    }
+    .profile {
+        max-width: 22em;
+    }
 }
 /* this class scrolls to requested profile 8em units above the profile, so the header doesn't hide the profile */
 .goToProfile {
@@ -238,25 +256,6 @@ section.subsystems {
     flex-direction: column;
     align-items: center;
 }
-.groupSec {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-}
-.groupSec.three .profileFrame {
-    display: flex;
-    justify-content: center;
-}
-@media only screen and (min-width: 750px) and (max-width: 1200px) {
-    .groupSec.three .profileFrame {
-        max-width: 66.66%;
-        flex-shrink: 0;
-    }
-}
-.group {
-    display: flex;
-    width: 50%;
-}
 .titleFrame.subsystems {
     height: 10vmin;
     width: 40vmin;
@@ -266,48 +265,7 @@ section.subsystems {
 }
 
 @media only screen and (max-width: 750px) {
-    
-    /* IMPORTANT */
-    /* changes mode to mobile format, switches to .profiles.two */
-    .profiles.subs.one {
-        /* display: none; */
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    .profiles.subs.two {
-        display: none;
-    }
 
-
-    .group {
-        flex-direction: column;
-        width: unset;
-    }
-    .groupSec {
-        flex-direction: column;
-        align-items: center;
-        max-width: 50%;
-        width: fit-content;
-    } 
-    .groupSec.three {
-        flex-direction: row;
-        flex-wrap: wrap;
-        width: 100%;
-        max-width: unset;
-    }
-    .group.subs {
-        flex-direction: row;
-    }
-    .profile.subs.james {
-        min-width: 92%;
-    }
-
-
-    
-    
-    .groupSec.three .profile {
-        width: 50%;
-    }
     .titleFrame {
         height: 5em;
         width: 19em 
@@ -329,28 +287,9 @@ section.subsystems {
 
 }
 
-@media only screen and (min-width: 750px) {
-
-    /* IMPORTANT */
-    /* changes mode to desktop format, switches to .profiles.one */
-    .profiles.subs.one {
-        display: flex;
-    }
-    .profiles.subs.two {
-        display: none;
-    }
-
-    /* so james profile doesn't get squished */
-    .profile {
-        width: 50%;
-    }
-    
-    
-}
-
 @media only screen and (max-width: 400px) {
     .imageWrapper img {
-        height: 15em;
+        height: 12em;
     }
 
     .titleFrame {
@@ -402,7 +341,7 @@ a.logo1 {
     margin: 0.5em 0 0 0.5em;
     border-radius: 10px;
     transition: 0.3s;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.7);
     &:hover {
         /* background: #FFAE03; */
         background: white !important;
@@ -446,6 +385,7 @@ li {
     display: block;
     border-radius: 10px;
     transition: 0.3s;
+    background: rgba(255,255,255,0.7);
     /* in mobile version when menu items are hovers they have a light grey background color */
     &:hover{
         background: rgb(207, 206, 206);
@@ -755,13 +695,13 @@ section.theTitle {
     transition-delay: 200ms;
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 1010px) {
     /* DIRECTORS */
     .profile.joshua {
-        transition-delay: 0ms;
+        transition-delay: 100ms;
     }
     .profile.james {
-        transition-delay: 100ms;
+        transition-delay: 0ms;
     }
     .profile.peter {
         transition-delay: 100ms;
@@ -772,18 +712,18 @@ section.theTitle {
     .profile.peter.subs {
         transition-delay: 0ms;
     }
-    .profile.sabrina {
+    .profile.matthieu {
         transition-delay: 100ms;
     }
     /* second row */
-    .profile.subs.matthieu {
+    .profile.subs.james {
         transition-delay: 0ms;
     }
-    .profile.leandre {
+    .profile.sabrina {
         transition-delay: 100ms;
     }
     /* third row */
-    .profile.subs.james {
+    .profile.leandre {
         transition-delay: 0ms;
     }
     .profile.philippe {

@@ -29,23 +29,23 @@ contact.addEventListener('click', () => {
 
 
 //This makes header background appear white when scrolling down 20 px.
-window.onscroll = function() {scrollFunction()};
+// window.onscroll = function() {scrollFunction()};
 
 
-function scrollFunction() {
-  if (window.innerWidth > 750){
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      document.querySelectorAll(".burger-items").forEach(item => {
-        item.style.background = "rgba(255,255,255,0.8)";
-      })
-    } 
-    else {
-      document.querySelectorAll(".burger-items").forEach(item => {
-        item.style.background = "unset";
-      })
-   }
-  }
-}
+// function scrollFunction() {
+//   if (window.innerWidth > 750){
+//     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+//       document.querySelectorAll(".burger-items").forEach(item => {
+//         item.style.background = "rgba(255,255,255,0.8)";
+//       })
+//     } 
+//     else {
+//       document.querySelectorAll(".burger-items").forEach(item => {
+//         item.style.background = "unset";
+//       })
+//    }
+//   }
+// }
 
 // this is the full google maps java code
 // Initialize and add the map
@@ -79,7 +79,7 @@ initMap();
 // animation java script
 const observer = new IntersectionObserver ((entries) => {
   entries.forEach((entry) => {
-    console.log(entry)
+    // console.log(entry)
     if (entry.isIntersecting) {
       entry.target.classList.add('show');
       if (entry.target.classList.contains('noMove')) {
