@@ -603,8 +603,8 @@ section.subsystems {
 }
 .last {
     color: white;
-    font-family: Futura;
-    font-weight: bold;
+    font-family: Futura-Bold;
+    font-weight: 600;
 }
 .last.toolong {
     font-size: 0.83rem;
