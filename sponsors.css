@@ -1,0 +1,659 @@
+@font-face {
+    font-family: Formula1;
+    font-weight: 600;
+    src: url("assets/formula1-bold-webfont.woff") format("woff");
+}
+@font-face {
+    font-family: Formula1;
+    font-weight: 900;
+    src: url("assets/formula1-black-webfont.woff") format("woff");
+}
+@font-face { 
+    font-family: HelveticaNeue;
+    src: url("assets/helveticaneuemedium-webfont.woff") format("woff");
+}
+
+/*this html element makes scrolling smooth for when a button is pressed */
+html {
+    scroll-behavior: smooth;
+}
+
+/*general styles*/
+body {
+  margin: 0;
+  font-family: HelveticaNeue;
+  background-color: #FFAE03;
+  overflow-x: hidden;
+}
+.wrapper {
+    /* do this for mobile, because overflow doesn't work on body element */
+    overflow-x: hidden;
+}
+a {
+    text-decoration: none;
+    font-size: 1.3rem;
+}
+.title {
+    color: white;
+    font-family: Formula1-Bold;
+    font-weight: 600;
+    font-size: 29px;
+    margin-top: 0em;
+}
+
+/* First section: photo with text 'be part of our journey' */
+section.sponsorIntro {
+    display: flex;
+    height: fit-content;
+    width: 100%;
+    position: relative;
+    align-items: center;
+}
+.sponsorIntro img {
+    object-fit: cover;
+    border-radius: 30px;
+    width: -webkit-fill-available;
+    height: 20em;
+    margin: 0em 1em 0 1em;
+}
+.sponsorIntro h1 {
+    position: absolute;
+    margin: 0 0.5em 0 0.5em;
+    color: white;
+    text-shadow: 4px 4px 4px rgba(0,0,0,0.3);
+    opacity: 0.8;
+    font-family: Formula1;
+    font-weight: 900;
+    font-size: 3em;
+    width: -webkit-fill-available;
+    
+    text-align: center;
+}
+
+@media only screen and (max-width: 500px){
+    .sponsorIntro h1 {
+        font-size: 2.5em;
+    }
+}
+
+
+/* section on first page with text and link to the sponsorship package */
+section.introText {
+    display: flex;
+    gap: 1em;
+    height: fit-content;
+    width: 100%;
+}
+section.introText label {
+    margin: 1em 0em 0 1em;
+    max-width: 60%;
+    border-radius: 20px;
+    /* opacity: 0.5; */
+}
+label:hover {
+    outline: solid white 2px;
+    outline-offset: -2px;
+}
+.textFrame {
+    padding: 0.5em;
+    border-radius: 20px;
+    background: rgba(230,230,230,0.5);
+}
+label p {
+    margin: 0;
+    color: black;
+    font-size: 1.2em;
+    cursor: pointer;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 15;
+    -webkit-box-orient: vertical;
+    overflow-y: hidden;
+}
+input {
+    display: none;
+}
+label input:checked ~ div.textFrame p {
+    display: unset;
+    overflow: unset;
+}
+
+
+
+
+.sponsorshipPackage {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    margin: 1em 1em 1em 0em;
+    justify-content: center;
+}
+.sponsorshipPackage .packageTitleFrame {
+    background-color: #CA3F3A;
+    height: fit-content;
+    border-radius: 20px;
+}
+.packageTitleFrame p {
+    color: white;
+    margin: 0.5em 0.5em 0.5em 0.5em;
+    text-align: center;
+    font-size: 1.5em;
+}
+.sponsorshipPackage a{
+    width: fit-content;
+    align-self: center;
+    height: 3em; 
+    
+    
+}
+.sponsorshipPackage a:hover svg{
+   
+    outline: 1.5px solid white ;
+    outline-offset: -1.5px;
+    background: rgba(230,230,230,0.53);
+    transition: all 0.2s;
+}
+.sponsorshipPackage a svg{
+    outline: white;
+    width: 3em;
+    height: 3em;
+    border-radius: 15px;
+}
+@media only screen and (max-width: 500px) {
+    section.introText {
+        flex-direction: column;
+    }
+    section.introText label {
+        margin: 1em 1em 0 1em;
+        max-width: 100%;
+    }
+    label p {
+        font-size: 1.1em;
+    }
+    .sponsorshipPackage {
+        margin: 1em 1em 1em 1em;
+    }
+}
+@media only screen and (min-width: 827px) {
+    input {
+        pointer-events: none;
+    }
+    label:hover {
+        outline: unset;
+    }
+    label p {
+        cursor: unset;
+    }
+}
+
+/* section for OUR SPONSORS */
+section.categories {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: fit-content;
+    width: 100%;
+}
+.categories div.ourTextFrame {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 2em;
+    height: 12vmin;
+    width: 75vmin;
+    background-color: #CA3F3A;
+    border-radius: 15px;
+}
+.categories p.date {
+    color: rgba(0,0,0,0.6);
+}
+.categories h1 {
+    font-family: Formula1;
+    font-weight: 600;
+    font-size: 7vmin;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    width: 100%;
+    margin: 0;
+}
+
+.categories div.category{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: fit-content;
+    width: -webkit-fill-available;
+    margin: 2em 1em 0 1em;
+
+    border: 2px solid #CA3F3A;
+    border-radius: 30px;
+}
+.categories div.category h1 {
+    font-size: 2em;
+    width: 100%;
+}
+.categories div.category .frameSponso {
+    display: flex;
+    justify-content: center;
+    align-self: flex-start;
+    height: 10em;
+    width: 46.6%;
+    margin: 0em 1em 1em 1em;
+    
+    background: rgba(230,230,230,0.33);
+    border-radius: 15px;
+}
+.frameSponso a {
+    display: flex;
+    position: relative; /* this is so we can put an invisible element over it so when scrolled to there is some space */
+    justify-content: center;
+    width: 50%;
+    border-radius: 20px;
+    outline: white;
+    padding: .5em;
+
+    &:hover {
+        outline: white 1.5px solid;
+        outline-offset: -1.5px;
+        transition: 0.2s;
+        background-color: rgba(250, 249, 249, 0.2);
+    }
+}
+.frameSponso a .spacer {
+    position: absolute;
+    top: -5em;
+}
+.QSTC img {
+    width: 12em !important;
+    max-width: 100%;
+}
+/* for empty sponsor boxes */
+.categories .category .frameSponso.empty {
+    display: none;
+}
+.category p {
+    color: white;
+    font-size: 20px;
+}
+
+.categories div.category .frameSponso a img {
+    width: 100%;
+    object-fit: contain;
+}
+.categories .twoCategories {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+
+    .categories div.category .frameSponso {
+        width: -webkit-fill-available;
+    }
+
+}
+
+
+
+/* --------------------------------------------------------  */
+/* COPY CODE FOR THE MENU/HEADER (SAME AS IN STYLE.CSS) */
+/* -------------------------------------------------------- */
+header { 
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    z-index: 2;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+a.logo1 {
+    height: 3.5em;
+}
+.headerLogo {
+    width: 3.5em;
+    height: 2.5em;
+    object-fit: contain;
+    margin: 0.5em 0 0 0.5em;
+    border-radius: 10px;
+    transition: 0.3s;
+    background: rgba(255,255,255,0.7);
+    &:hover {
+        /* background: #FFAE03; */
+        background: white !important;
+    }
+}
+/* make circle around the logo transparent */
+svg.headerLogo circle {
+    stroke: transparent;
+}
+svg.menu {
+    width: 2.7em;
+    margin-right: 1.5em;
+    color: white;
+
+    cursor: pointer;
+}
+nav {
+    position: fixed;
+    right: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.8);
+    width: 100%;
+    height: 100vh;
+    text-transform: uppercase;
+
+    transform: translateX(100%);
+    transition: transform .5s ease-in-out;
+}
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    list-style-type: none;
+    padding: 0;
+    margin-top: 8em;
+    height: fit-content;
+}
+li {
+    margin: 0 0.5em 0 0.5em;
+    text-align: center;
+}
+.burger-items {
+    color: black;
+    padding: .75em .75em;
+    display: block;
+    border-radius: 10px;
+    transition: 0.3s;
+    background: rgba(255,255,255,0.7);
+    /* in mobile version when menu items are hovers they have a light grey background color */
+    &:hover{
+        background: rgb(207, 206, 206)!important;
+    }
+}
+.close{
+    float: right;
+    margin: .5em;
+    width: 3.5em;
+    height: 3.5em;
+    cursor: pointer;
+    
+    &:hover g g #rectangle {
+        transition: all 0.2s;
+        fill: rgba(207, 206, 206, 0.8);;
+    }
+}
+/*.open-nav is created by some javascript when burger and close icon is clicked*/
+.open-nav {
+    transform: translateX(0%);
+}
+
+
+/* menu section adapted to different screen sizes */
+
+/*for the burger menu*/
+@media only screen and (max-width: 750px) {
+    .Logo {
+        display: none;
+    }
+    header {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    svg.menu {
+        margin: 1em;
+    }
+}
+
+/* this gets rid of the burger menu when screen size is over 750px, and formats the header */
+@media only screen and (min-width: 750px) {
+    .menu {
+        display: none;
+    }
+
+    nav {
+        transform: translateX(0);
+        position: unset;
+        height: auto;
+        width: auto;
+        display: block;
+        background: unset;
+    }
+    .close {
+        display: none;
+    }
+    ul {
+        display: flex;
+        flex-direction: row;
+        gap: unset;
+        margin: 0;
+    }
+    .burger-items {
+        padding: .5em 1em;
+        font-size: .9rem;
+        color: #CA3F3A;
+        &:hover {
+            /* background-color: #FFAE03; */
+            background: white!important;
+            text-decoration: underline;
+        }
+    }
+    .burger-items.hide {
+        display: none;
+    }
+}
+/* -------------------------------------------------------- */
+/* END OF COPIED SECTION                                    */
+/* -------------------------------------------------------- */
+
+
+
+/* --------------------------------------------------------  */
+/* COPY CODE FOR CONTACT SECTION (COPIED FROM STYLE.CSS) */
+/* -------------------------------------------------------- */
+
+
+
+/*page 3 - contact area*/
+section.contact {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    align-items: center;
+
+    margin-top: 5rem;
+}
+/* englobes the credentials+socials and the google maps */
+.contactFrame {
+    display: flex;
+    gap: 1em;
+}
+.socialAndCredentials {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    margin-left: 1em;
+    margin-right: 1em;
+    background: rgba(230,230,230,0.33);
+    outline: 1.5px solid white;
+    border-radius: 25px;
+    height:  18em;
+}
+/* size for the social media icons */
+svg.social {
+    width: 2.7rem;
+    height: 2.7rem;
+}
+.credentials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    text-align: center;
+}
+.contactText {
+    font-size: 1em;
+    color: white;
+    margin-top: .5em;
+}
+.contactText.mail {
+    transition: all 0.2s;
+    &:hover {
+        color: black;
+        text-decoration: underline;
+    }
+}
+#map {
+    flex-shrink: 0;
+    margin-right: 1em;
+    border-left: yellow fill;
+    border-radius: 25px;
+    height: 18em;
+    width: 18em;
+    background: grey;
+}
+.title.contact {
+    border-bottom: 1.5px solid white;
+    margin-bottom: 0.4em;
+    font-size: 4rem;
+    font-family:  Formula1;
+    font-weight: 900;
+}
+.socials {
+    margin-top: .8rem;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    width: 100%;
+    margin-bottom: 1em;
+}
+.social {
+    transition: all 0.2s;
+    &:hover {
+        fill: black;
+    }
+}
+
+/* my small section :) */
+section.creator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    /* margin-top: -1em; */
+}
+.creator p {
+    text-align: center; 
+    color: white;
+    font-size: 1.3em;
+}
+.creator p span {
+    text-decoration: underline;
+    color: white;
+}
+.creator .linkedin {
+    height: 2em;
+}
+
+
+/* adapted for contact section for different screen sizes */
+@media only screen and (max-width: 450px) {
+    /* for the socials in the contact section */
+    .socials {
+        gap: 3rem;
+    }
+
+    /* contact section modifications for mobile */
+    .title.contact {
+        font-size: 3rem;
+    }
+}
+
+@media only screen and (max-width: 625px) {
+    .contactFrame {
+        flex-direction: column;
+    }
+    #map {
+        margin-left: 1em;
+        margin-right: 1em;
+        height: 13em;
+        width: unset;
+    }
+    .credentials {
+        margin-left: unset;
+        height: 15em;
+    }
+}
+
+/* center all items within 1200 px when the window gets bigger*/
+@media only screen and (min-width: 1200px) {
+    .wrapper {
+        width: 1200px;
+        margin: 0 auto;
+    }
+
+    header {
+        width: 1200px;
+    }
+
+    .sponsorIntro h1 {
+        width: 1200px;
+    }
+}
+/* --------------------------------------------------------  */
+/* COPY CODE FOR CONTACT SECTION (COPIED FROM STYLE.CSS) */
+/* -------------------------------------------------------- */
+
+/*  */
+/* CLASSES FOR THE ANIMATION OF ELEMENTS */
+/*  */
+
+/* these when item is show  */
+.hidden {
+    opacity: 0;
+    transition: all 1s;
+}
+.show {
+    opacity: 1;
+}
+
+/* left right elements are to determine where to animation movement start (either from the left or the right) */
+.left {
+    transform: translateX(-20%);
+}
+.right {
+    transform: translateX(20%);
+}
+.down {
+    transform: translateY(15%);
+}
+.noMove {
+    transition: 1s;
+}
+.move {
+    transform: translate(0);
+}
+
+/* delays for certain elements */
+
+label.hidden {
+    transition-delay: 00ms;
+}
+.sponsorIntro {
+    transition-delay: 100ms;
+}
+.sponsorshipPackage {
+    transition-delay: 200ms;
+}
+
+.frameSponso.one {
+    transition-delay: 100ms;
+}
+.frameSponso.two {
+    transition-delay: 200ms;
+}

@@ -1,48 +1,122 @@
 @font-face {
-    font-family: Helvetica-Neue;
-    src: url("assets/HelveticaNeueRegular.otf");
+    font-family: Formula1;
+    font-weight: 600;
+    src: url("assets/formula1-bold-webfont.woff") format("woff");
 }
 @font-face {
-    font-family: Formula1-Bold;
-    font-weight: bold;
-    src: url("assets/Formula1-Bold.otf") format("opentype");
+    font-family: Formula1;
+    font-weight: 900;
+    src: url("assets/formula1-black-webfont.woff") format("woff");
 }
+@font-face { 
+    font-family: Futura-Bold;
+    font-weight: 600;
+    src: url("assets/futura_bold-webfont.woff") format("woff");
+}
+@font-face { 
+    font-family: HelveticaNeue;
+    src: url("assets/helveticaneuemedium-webfont.woff") format("woff");
+}
+
 @keyframes RightToLeft { /*animation function for the sliding text*/
     from {
-        transform: translateX(-33.7%);
+        transform: translateX(0);
     }
     to {
-        transform: translateX(-67.435%);/*This weird number is where the cycle restarts
+        transform: translateX(-50.4%);/*This weird number is where the cycle restarts
         and is linked to the length of the text in index.html */
     }
 }
+@keyframes slideToLeft {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+@keyframes slideToRight {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(00%);
+    }
+}
+@keyframes scrollUp {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
+
 
 /*this html element makes scrolling smooth for when a button is pressed */
 html {
     scroll-behavior: smooth;
+    height: 100%;
+    width: 100%;
 }
 
 /*general styles*/
 body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #CA3F3A;
-  overflow-x: hidden;
+    margin: 0;
+    font-family: HelveticaNeue;
+    background: rgb(236 238 241);
+    overflow-x: hidden;
+    overscroll-behavior: none;
+    height: fit-content;
 }
+.wrapper {
+    /* this is for mobile, because chrome mobile doesnt take into account styling for html/body element (for some reason) */
+    overflow-x: hidden;
+    position: sticky;
+    z-index: 2;
+}
+.wrapperBackground {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    background: #CA3F3A;
+    z-index: 1;
+    
+}
+/* .wrapper::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #CA3F3A;
+    z-index: 1;
+} */
 a {
     text-decoration: none;
     font-size: 1.3rem;
 }
-.home-image {
-    background: url('assets/HomeImage.jpg');
-    position: absolute;
+.home {
+    position: sticky;
     top: 0;
+    /* height: 100%;
+    width: 100%; */
+    position: fixed; bottom:0; top:0; left:0; right:0; max-width: 100vw; 
+}
+#spacer {
+    height: 100vh;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+}
+.home-image {
+    background: url('assets/backgrounds/HomeImage.JPG');
+
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-size: cover;
     background-position-x: 50%;
-    z-index: -1;
+    background-position-y: 50%;
 }
 
 /*1st page styling for header*/
@@ -52,17 +126,27 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 10vh;
-    z-index: 2;
+    top: 0;
+    z-index: 10;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
 }
-.logo1 {
-    background: url('assets/logo.jpg');
-    border-radius: 15px;
-    width: 2.7em;
-    height: 2.7em;
-    margin: 0.5em;
-    background-position-x: 30%;
-    background-size: cover;
+a.logo1 {
+    height: 3em;
+    margin: 0.5em 0 0 0.5em;
+}
+.headerLogo {
+    width: 3.5em;
+    height: 2.5em;
+    object-fit: contain;
+    border-radius: 10px;
+    transition: 0.3s;
+    background: rgba(255,255,255,0.7);
+    &:hover {
+        /* background: #FFAE03; */
+        background: white !important;
+    }
 }
 svg.menu {
     width: 2.7em;
@@ -75,8 +159,8 @@ nav {
     position: fixed;
     right: 0;
     top: 0;
-    background-color: white;
-    width: 50%;
+    background-color: rgba(0,0,0,0.8);
+    width: 100%;
     height: 100vh;
     text-transform: uppercase;
 
@@ -84,25 +168,41 @@ nav {
     transition: transform .5s ease-in-out;
 }
 ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
     list-style-type: none;
     padding: 0;
     margin-top: 8em;
     height: fit-content;
 }
+li {
+    margin: 0 0.5em 0 0.5em;
+    text-align: center;
+}
 .burger-items {
     color: black;
-    padding: .75em 2em;
+    padding: .75em .75em;
     display: block;
-
+    border-radius: 10px;
+    transition: 0.3s;
+    background: rgba(255,255,255,0.7);
+    /* in mobile version when menu items are hovers they have a light grey background color */
     &:hover{
         background: rgb(207, 206, 206);
     }
 }
 .close{
     float: right;
-    margin: 2em;
-    width: 2em;
+    margin: .5em;
+    width: 3.5em;
+    height: 3.5em;
     cursor: pointer;
+    
+    &:hover g g #rectangle {
+        transition: all 0.2s;
+        fill: rgba(207, 206, 206, 0.8);;
+    }
 }
 /*.open-nav is created by some javascript when burger and close icon is clicked*/
 .open-nav {
@@ -110,81 +210,175 @@ ul {
 }
 
 /*1st page styling, everything but the header*/
-section.home-page {
-    display: flex;
+/* section.home-page {
+    display: grid;
     flex-direction: column;
     justify-content: space-between;
-    color: orange;
     height: 100vh;
+
+    position: sticky;
+    top: 0;
+}
+.parentTitleSlide {
+    position: fixed;
+    top: 35vh;
+    white-space: nowrap;
+    overflow-x: hidden;
+    width: 100%;
+    left: 0;
 }
 .scrolling-text{
-    font-size: 4rem;
-    font-family: Formula1-Bold;
+    font-size: 3rem;
+    font-family: Formula1;
+    font-weight: 900;
     color: white;
-    position: absolute;
-    top: 16rem;
-    white-space: nowrap;
+    text-shadow: 4px 4px 4px rgba(0,0,0,0.3);
+    user-select: none;
 
-    animation: RightToLeft 8s linear infinite;
-}
-.arrow.one {
-    position: absolute;
-    width: 100%;
-    bottom: 2em;
-    align-self: center;
-    cursor: pointer;
-}
+    width: fit-content;
+     */
+    /* this keeps text start at the left of the screen so no teleportation of text */
+    /* left: 0em; */
 
+    /* animation of text using the @keyframes function RightToLeft */
+    /* animation: 12s RightToLeft infinite linear;
+}
 span {
     color: #CA3F3A;
+} */
+
+.PageTitle {
+    position: fixed;
+    justify-self: center;
+    align-self: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
 }
+.PageTitle h1 {
+    width: fit-content;
+    font-family: Formula1;
+    font-weight: 900;
+    font-size: 12vw;
+    color: #CA3F3A;
+    text-shadow: 4px 4px 4px rgba(0,0,0,0.2);
+    text-align: center;
+
+}
+.PageTitle .Racing {
+    color: #FFAE03;
+    font-family: Futura-Bold;
+    font-size: 8vw;
+    height: fit-content;
+}
+@media only screen and (min-width: 1000px) {
+    .PageTitle h1 {
+        font-size: 7.3em;
+    }
+    .PageTitle .Racing {
+        font-size: 0.65em;
+    }
+} 
+@media only screen and (max-width: 750px) {
+    .PageTitle h1 {
+        font-size: 14vw;
+    }
+    .PageTitle .Racing {
+        font-size: 9vw;
+    }
+} 
+
+
+.arrowFrame {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 2em;
+    bottom: 3em;
+
+    /* keeps it center when screen bigger than 1200px */
+    left: 0;
+}
+.arrowFrame.two {
+    position: unset;
+}
+
+
 
 /*2nd page styling (introduction)*/
 section.intro {
     display: flex;
+    /* mobile needs changing for desktop */
     justify-content: space-between;
+    position: relative;
+    gap: 1em;
+
     height: fit-content;
-    min-height: 90vh;
+    min-height: 95vh;
     flex-direction: column;
-    overflow-x: hidden;
+    overflow: hidden;
+
+    z-index: 3;
 }
-.logo2 {
-    background: url('assets/logo.jpg');
-    width: 60vh;
-    max-width: 500px;
-    height: 60vh;
-    max-height: 500px;
-    margin-top: -5em;
-    background-position-x: 50%;
-    background-position-y: 50%;
-    background-size: cover;
-    z-index: -2;
-    align-self: center;
+.videoLogoFrame {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: center;
+    max-width: 60%;
+}
+svg.introLogo {
+    width: 100%;
+    height: 20em;
+    flex-shrink: 0;
+}
+video {
+    width: 80%;
+    height: fit-content;
+    margin-top: -3em;
+    border-radius: 15px;
+    
+    /* min-height: 15em;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+    &:hover {
+        background-color: rgba(0, 0, 0, 1);
+    } */
+}
+/* ------- */
+/* THESE ATTRIBUTES CHANGE ALL LOGO PARTS TO THE COLOR WHITE*/
+svg.Logo circle {
+    /* this hides the the circle */
+    stroke: transparent;
+}
+svg.introLogo path {
+    stroke: white;
+}
+svg.introLogo line {
+    stroke: white;
+}
+svg.introLogo text {
+    fill: white;
+}
+/* ------- */
+
+.introFrame {
+    display: flex;
+    align-items: center;
+    min-height: 80vh;
 }
 
-h1.intro-concordia {
-    margin-top: -8rem;
-    margin-left: 3rem;
-    align-self: center;
-    color: white;
-    font-family: Formula1-Bold;
-    font-size: 3.5rem;
-    
-}
 p.subhead {
     color: white;
-    margin-top: -1rem;
-    margin-right: 3rem;
-    margin-left: 3rem;
+    margin: -1rem 2rem 0 2rem;
     font-size: 1rem;
     line-height: 1.6rem;
     text-align: justify;
 }
-.arrow.two {
-    align-self: center;
-    margin-bottom: 2em;
-    cursor: pointer;
-}
+
+
 
 /*MEET OUR TEAMS SCROLLING TITLE (FOR DESKTOP), work in progress (neeeds to be changed in the media area*/
 
@@ -192,7 +386,6 @@ p.subhead {
 /*PAGE 3 - SUBSYSTEMS*/
 section.subsystems {
     display: flex;
-    border-radius: 25px;
     flex-direction: column;
     height: fit-content;
     overflow-x: auto;
@@ -200,6 +393,7 @@ section.subsystems {
 .sub_section {
     display: flex;
     overflow-x: auto;
+    mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
 }
 .card {
     display: flex;
@@ -211,18 +405,31 @@ section.subsystems {
     margin-right: 0.75rem;
     border-radius: 25px;
     background: #FFAE03;
+    /* background-image: linear-gradient(0deg, #CA3F3A 0%, #FFAE03 20%); */
     padding: 1.38rem;
     width: 17.5625rem;
     height: 27.1875rem;
     flex-shrink: 0;
 }
+.cardSec {
+    display: flex;
+}
+.sub-cardSec {
+    display: flex;
+}
 
 .title.subsystem {
     display: none;
+    margin-top: .5em;
+    font-size: 3.8rem;
+    text-align: center;
+    font-family:  Formula1;
+    font-weight: 900;
 }
 .title {
     color: white;
-    font-family: Formula1-Bold;
+    font-family:  Formula1;
+    font-weight: 600;
     font-size: 29px;
     margin-top: 0em;
 }
@@ -232,26 +439,29 @@ section.subsystems {
     height: 100%;
     flex-direction: column;
 }
+.frame svg.arrowCard {
+    display: none;
+}
 .card-photo {
-    background-size: contain;
+    object-fit: cover;
     height: 10.5rem;
     width: auto;
     border-radius: 25px;
-    margin-top: -1em;
+    margin-top: -2em;
 }
 .text {
-    color: white;
+    color: black;
     text-align: left;
     font-size: 1.31rem;
-    margin-top: 60px;
+    margin-top: 35px;
     height: fit-content;
 }
 
-/*Sponsors Section*/
-.sponsors {
+/*basic framing settings for the team and sposnors section*/
+.sec {
     margin: 1em;
     margin-top: 4em;
-    height: 30vh;
+    height: 21em;
     background: #FFAE03;
     border-radius: 25px;
 
@@ -259,27 +469,148 @@ section.subsystems {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    /* hides any overflow of sponsors outside the sponsor box section */
+    overflow: hidden;
 }
-.title.sponsor {
-    font-size: 2rem;
+.secTitle {
+    font-size: 2.5rem;
+    color: white;
+    font-family:  Formula1;
+    font-weight: 900;
+    margin-top: 0.3em;
+}
+.viewMore {
+    text-align: center;
+    height: 1.5em;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+.sponsorSlide {
+    display: flex;
+}
+.theSponsors:hover .sponsorSlide .sponsoRepeat {
+    animation-play-state: paused;
+}
+
+.theSponsors {
+    display: flex;
+    height: 15em;
+    align-self: flex-start;
+    overflow: hidden;
+    width: 100%;
+    mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+}
+.sponsoRepeat {
+    display: flex;
+    align-items: center;
+    height: 15em;
+    left: 0;
+    animation: slideToLeft 20s linear infinite;
+    /* animation-play-state: paused; */
+}
+.sponsoRepeat a img{
+    display: flex;
+    height: 8em;
+    justify-content: center;
+    border-radius: 20px;
+    outline: white;
+    padding: .5em;
+
+    &:hover {
+        outline: white 1.5px solid;
+        outline-offset: -1.5px;
+        transition: 0.2s;
+        background-color: rgba(250, 249, 249, 0.2);
+    }
+}
+.sponsoRepeat a img {
+    max-width: 25em;
+    object-fit: contain;
+    margin-right: 3em;
+}
+.QSTC img{
+    width: 12em;
 }
 
 
-/*Meet the team Section*/
-.sponsors {
-    margin: 1em;
-    margin-top: 4em;
-    height: 30vh;
-    background: #FFAE03;
-    border-radius: 25px;
 
+/* team section, with all the profiles */
+
+.TheTeam  {
+    width: 100%;
+    display: flex;
+    align-self: flex-start;
+    overflow-x: hidden;
+    white-space: nowrap;
+    mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+}
+.teamSlide {
+    display: flex;
+    animation: slideToLeft 20s linear infinite;
+    transition: all 1s;
+}
+/* idea: stop the animation when mouse is hovered over the profiles */
+.TheTeam:hover .teamSlide {
+    animation-play-state: paused;
+}
+.profile {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    width: 8rem;
+    margin-right: 2em;
 }
-.title.sponsor {
-    font-size: 2rem;
+.imageWrapper {
+    position: relative;
+} 
+
+.imageWrapper a { 
+    position: absolute;
+    inset: 0;
+    border-radius: 15px;
+    outline: white;
+    &:hover {
+        cursor: pointer;
+        background: rgba(230,230,230,0.5);
+        outline: white solid 1.5px;
+        outline-offset: -1.5px;
+        transition: all .3s;
+    }
+}
+.imageWrapper a svg {
+    display: none;
+    width: 3em;
+    height: 3em;
+    margin: 1.5em;
+   
+}
+/* when profile pic is hovered it unhides svg element */
+.imageWrapper a:hover svg{
+    display: unset;
+}
+.imageWrapper img {
+    border-radius: 15px;
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 10em;
+}
+.profile p{
+    color: white;
+    text-wrap: wrap;
+    font-size: 1rem;
+    text-align: center;
+}
+.last {
+    color: white;
+    font-family: Futura-Bold;
+    font-weight: 600;
+}
+.last.toolong {
+    font-size: 0.83rem;
 }
 
 
@@ -291,76 +622,104 @@ section.contact {
     align-items: center;
 
     margin-top: 5rem;
-    margin-bottom: 2em;
+}
+/* englobes the credentials+socials and the google maps */
+.contactFrame {
+    display: flex;
+    gap: 1em;
+}
+.socialAndCredentials {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    margin-left: 1em;
+    margin-right: 1em;
+    background: rgba(230,230,230,0.33);
+    outline: 1.5px solid white;
+    border-radius: 25px;
+    height:  18em;
+}
+/* size for the social media icons */
+svg.social {
+    width: 2.7rem;
+    height: 2.7rem;
+}
+.credentials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    text-align: center;
+}
+.contactText {
+    font-size: 1em;
+    color: white;
+    margin-top: .5em;
+}
+.contactText.mail {
+    transition: all 0.2s;
+    &:hover {
+        color: black;
+        text-decoration: underline;
+    }
+}
+#map {
+    flex-shrink: 0;
+    margin-right: 1em;
+    border-left: yellow fill;
+    border-radius: 25px;
+    height: 18em;
+    width: 18em;
+    background: grey;
 }
 .title.contact {
+    border-bottom: 1.5px solid white;
+    margin-bottom: 0.4em;
     font-size: 4rem;
-}
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
-.c {
-    margin-top: 1.3em;
-    width: 33em;
-}
-.email {
-    background-color: rgb(231, 126, 126);
-    height: 2em;
-    outline: none;
-}
-.names {
-    display: flex;
-    justify-content: space-between;
-    width: 28em;
-    height: 2em;
-}
-.user-name {
-    width: 15em;
-}
-.talk {
-    background-color: rgb(231, 126, 126);
-    margin-bottom: 1.5em;
-}
-.submit {
-    width: 33em;
-    height: 2em;
-    background-color: rgb(231, 126, 126);
-}
-
-/*FOOTER PAGE 3*/
-section.footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    width: 100%;
-    height: fit-content;
-    justify-content: space-between;
-    border-top: 1.5px solid white;
-    
+    font-family:  Formula1;
+    font-weight: 900;
 }
 .socials {
     margin-top: .8rem;
     display: flex;
-    
-    justify-content: space-between;
+    justify-content: center;
+    gap: 4rem;
     width: 100%;
+    margin-bottom: 1em;
 }
-.link {
+.social {
+    transition: all 0.2s;
+    &:hover {
+        fill: black;
+    }
+}
+/* my small section :) */
+section.creator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    /* margin-top: -1em; */
+}
+.creator p {
+    text-align: center; 
     color: white;
-    font-size: 1em;
+    font-size: 1.3em;
 }
-.credentials {
-    font-size: .8em;
-    opacity: 0.4;
+.creator p span {
+    text-decoration: underline;
+    color: white;
+}
+.creator .linkedin {
+    height: 2em;
 }
 
 
 
+/*MAKES IT MORE SUITABLE FOR mobile*/
 @media only screen and (max-width: 450px) {
+    /* for intro page items */
     .intro-imageAndtext {
         display: flex;
         flex-direction: column;
@@ -376,8 +735,20 @@ section.footer {
         margin-right: 1.5em;
     }
 
-    .c {
-        width: 25em;
+    /* for the subsystem+team section */
+    .secTitle {
+        font-size: 1.5rem;
+        white-space: nowrap;
+    }
+
+    /* for the socials in the contact section */
+    .socials {
+        gap: 3rem;
+    }
+
+    /* contact section modifications for mobile */
+    .title.contact {
+        font-size: 3rem;
     }
     .names {
         width: 21.3em;
@@ -386,8 +757,26 @@ section.footer {
         width: 11em
     }
 }
-/*for the burger menu*/
-@media only screen and (max-width: 680px) {
+
+/*THIS IS FOR THE FORMAT OF THE MAP AND CONTACT AREA, FOR MOBILE (FROM ROW TO COLUMN)*/
+@media only screen and (max-width: 625px) {
+    .contactFrame {
+        flex-direction: column;
+    }
+    #map {
+        margin-left: 1em;
+        margin-right: 1em;
+        height: 13em;
+        width: unset;
+    }
+    .credentials {
+        margin-left: unset;
+        height: 15em;
+    }
+}
+
+/*for the burger menu and intro elements*/
+@media only screen and (max-width: 750px) {
     .logo1 {
         display: none;
     }
@@ -398,13 +787,23 @@ section.footer {
     svg.menu {
         margin: 1em;
     }
+
+
+    /* for mobile */
+    .introFrame {
+        flex-direction: column;
+        gap: 4em;
+    }
+    .videoLogoFrame {
+        max-width: 100%;
+    }
 }
 
-@media only screen and (min-width: 680px) {
+/* this gets rid of the burger menu when screen size is over 750px, and formats the header */
+@media only screen and (min-width: 750px) {
     .menu {
         display: none;
     }
-    
 
     nav {
         transform: translateX(0);
@@ -419,63 +818,172 @@ section.footer {
     }
     ul {
         display: flex;
+        flex-direction: row;
+        gap: unset;
         margin: 0;
     }
     .burger-items {
-        padding: .5em 1.5em;
+        padding: .5em 1em;
         font-size: .9rem;
         color: #CA3F3A;
-
         &:hover {
-            background: unset;
+            /* background-color: #FFAE03; */
+            background: white!important;
             text-decoration: underline;
         }
     }
 
     
 
-    .intro {
-        justify-content: unset;
+    section.intro {
+        justify-content: center;
     }
     p.subhead {
         font-size: 1.25rem;
+        margin-left: 0;
+        margin-top: unset;
     }
+}
+
+
+
+
+label input {
+    display: none;
 }
 
 
 /*formating for the pages for desktop*/
 @media only screen and (min-width: 900px) {
-
-    /*SUBSYSTEMS REDESIGN FOR DESKTOP*/
-    section.subsystems {
-        background: #FFAE03;
-        height: 90vh;
-        justify-content: space-around;
+    .cardSec{
+        width: max-content;
     }
+    .cardSec.one {
+        
+        flex-wrap: nowrap;
+        align-items: flex-start;
+    }
+    .cardSec.two {
+        
+        animation-range: entry;
+        flex-wrap: nowrap;
+    }
+    label {
+        display: inline-block;
+        cursor: pointer;
+        height: fit-content;
+        scroll-snap-type: x mandatory;
+    }
+    
+    .card:hover {
+        outline: solid white 2px;
+        outline-offset: -2px;
+        transition: .1s;
+    }
+    
+    label {
+        transition: all .1s !important;
+    }
+    label input:checked ~ div.card {
+        height: 19em;
+        z-index: 3;
+
+        width: 17em;
+        outline: solid white 2px;
+        outline-offset: -2px;
+    }
+
+
+    /* SUBSYSTEMS REDESIGN FOR DESKTOP */
+
     .title.subsystem {
         display: unset;
-        font-size: 3.9rem;
+        font-size: 3.7rem;
         align-self: center;
     }
 
-    section.intro.introFrame {
-        flex-direction: row;
+    .sub_section {
+        flex-direction: column;
+        gap: 2em;
+        overflow: hidden;
         align-items: center;
     }
-    .intro {
-        justify-content: space-between;
-    }
-    .logo2 {
-        margin-right: 3em;
-    }
-    p.subhead {
-        font-size: 1.25rem;
+    
+
+    .cardSec {
+        gap: 1em;
     }
 
+    .card {
+        justify-content: unset;
+        margin: 0;
+        height: 16em;
+        width: 14em;
+        padding: .8em;
+        transition: all .5s;
+        overflow: hidden;
+    }
+    /* makes it visible when in desktop format */
+    .firstEmptySpace {
+        display: unset;
+    }
+    .secondEmptySpace {
+        display: unset;
+    }
 
+    .card p.title {
+        text-align: center;
+        margin: -0.4em 0 0 0 ;
+        font-size: 23px;
+    }
+
+    .card div.frame {
+        margin: 0;
+        position: relative;
+    }
+    .frame p.text {
+        margin-top: .8em;
+        font-size: 1.2em;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .frame svg.arrowCard {
+        position: absolute;
+        display: unset;
+        -webkit-transform: rotate(-90deg);
+        transform: "";
+        bottom: -0.2em;
+        height: 1.4em;
+        width: 1em;
+        left: 0.5em 
+    }
+    .card:hover .frame svg.arrowCard {
+        -webkit-transform: rotate(-180deg);
+        transform: "";
+        transition: 0.2s;
+    }
+    label input:checked ~ div.card div.frame svg {
+        display: none;
+    }
+    /* when subsystem box is clicked it reveals all of the text */
+    label input:checked ~ div.card div.frame p.text {
+        display: unset;
+        overflow: unset;
+    }
+    
+
+    .card-photo {
+        margin: 0;
+        width: 100%;
+        height: 8em;
+    }
 }
 
-/**/
+
+/* center all items within 1200 px when the window gets bigger*/
 @media only screen and (min-width: 1200px) {
     .wrapper {
         width: 1200px;
@@ -484,5 +992,69 @@ section.footer {
 
     header {
         width: 1200px;
+    }
+}
+
+/*  */
+/* CLASSES FOR THE ANIMATION OF ELEMENTS */
+/*  */
+
+/* these when item is show  */
+.hidden {
+    opacity: 0;
+    transition: all 0.8s;
+}
+.show {
+    opacity: 1;
+}
+
+/* left right elements are to determine where to animation movement start (either from the left or the right) */
+.left {
+    transform: translateX(-20%);
+}
+.right {
+    transform: translateX(20%);
+}
+.down {
+    transform: translateY(15%);
+}
+.noMove {
+    transition: 1s;
+}
+.move {
+    transform: translate(0);
+}
+
+
+
+
+/* delays to make it look clean */
+.parentTitleSlide {
+    transition-delay: 200ms;
+}
+
+.TheTitle.Concordia.hidden {
+    transition-delay: 200ms;
+}
+.Racing.hidden {
+    transition-delay: 300ms;
+}
+.arrow {
+    transition-delay: 500ms;
+}
+
+@media only screen and (min-width: 900px) {
+    .card.two {
+        transition-delay: 100ms;
+    }
+    .card.three {
+        transition-delay: 200ms;
+    }
+}
+
+/* not sure what this does */
+@media (prefers-reduced-motion) {
+    .hidden {
+        transition: none;
     }
 }
