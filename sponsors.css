@@ -1,16 +1,16 @@
 @font-face {
     font-family: Formula1;
     font-weight: 600;
-    src: url("assets/formula1-bold-webfont.woff") format("woff");
+    src: url("assets/fonts/formula1-bold-webfont.woff") format("woff");
 }
 @font-face {
     font-family: Formula1;
     font-weight: 900;
-    src: url("assets/formula1-black-webfont.woff") format("woff");
+    src: url("assets/fonts/formula1-black-webfont.woff") format("woff");
 }
 @font-face { 
     font-family: HelveticaNeue;
-    src: url("assets/helveticaneuemedium-webfont.woff") format("woff");
+    src: url("assets/fonts/helveticaneuemedium-webfont.woff") format("woff");
 }
 
 /*this html element makes scrolling smooth for when a button is pressed */
@@ -129,7 +129,7 @@ label input:checked ~ div.textFrame p {
     justify-content: center;
 }
 .sponsorshipPackage .packageTitleFrame {
-    background-color: #CA3F3A;
+    background-color: #932339;
     height: fit-content;
     border-radius: 20px;
 }
@@ -202,7 +202,7 @@ section.categories {
     margin-top: 2em;
     height: 12vmin;
     width: 75vmin;
-    background-color: #CA3F3A;
+    background-color: #932339;
     border-radius: 15px;
 }
 .categories p.date {
@@ -227,7 +227,7 @@ section.categories {
     width: -webkit-fill-available;
     margin: 2em 1em 0 1em;
 
-    border: 2px solid #CA3F3A;
+    border: 2px solid #932339;
     border-radius: 30px;
 }
 .categories div.category h1 {
@@ -435,7 +435,7 @@ li {
     .burger-items {
         padding: .5em 1em;
         font-size: .9rem;
-        color: #CA3F3A;
+        color: #932339;
         &:hover {
             /* background-color: #FFAE03; */
             background: white!important;
