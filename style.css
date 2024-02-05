@@ -491,9 +491,11 @@ section.subsystems {
 .viewMore {
     text-align: center;
     height: 1.5em;
+    color: black;
 
     &:hover {
         text-decoration: underline;
+        text-decoration-color: black;
     }
 }
 .sponsorSlide {
