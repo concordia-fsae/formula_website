@@ -206,7 +206,7 @@ section.categories {
     border-radius: 15px;
 }
 .categories p.date {
-    color: rgba(0,0,0,0.6);
+    color: black;
 }
 .categories h1 {
     font-family: Formula1;
