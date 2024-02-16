@@ -140,7 +140,7 @@ async function initMap() {
   const marker = new AdvancedMarkerElement({
     map: map,
     position: position,
-    title: "CONCORDIA FORMULA RACING",
+    title: "Concordia Formula Racing",
   });
 }
 
