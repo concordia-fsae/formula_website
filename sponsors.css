@@ -288,10 +288,42 @@ section.categories {
     width: 100%;
 }
 
+/* FOR TITLE SPONSOR */
+.titleSponsor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 80%;
+    height: 15em;
+    margin-top: 2em;
+
+    background: rgba(230,230,230,0.33);
+    border-radius: 25px;
+    outline: white;
+    
+    &:hover {
+        outline: white 1.5px solid;
+        outline-offset: -1.5px;
+        transition: 0.2s;
+        background-color: rgba(250, 249, 249, 0.4);
+    }
+}
+.titleSponsor a {
+    width: 80%;
+}
+
 @media only screen and (max-width: 1000px) {
 
     .categories div.category .frameSponso {
         width: -webkit-fill-available;
+    }
+    .titleSponsor {
+        height: 12em;
+    }
+    .titleSponsor a {
+        width: 90%;
     }
 
 }
