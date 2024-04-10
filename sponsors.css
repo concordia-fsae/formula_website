@@ -261,7 +261,7 @@ section.categories {
         background-color: rgba(250, 249, 249, 0.2);
     }
 }
-.frameSponso a .spacer {
+.spacer {
     position: absolute;
     top: -5em;
 }
@@ -312,6 +312,7 @@ section.categories {
     }
 }
 .titleSponsor a {
+    position: relative;
     width: 80%;
     transition: all .3s;
     height: 100%;
