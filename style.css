@@ -518,7 +518,7 @@ section.subsystems {
     align-items: center;
     height: 15em;
     left: 0;
-    animation: slideToLeft 20s linear infinite;
+    animation: slideToLeft 45s linear infinite;
     /* animation-play-state: paused; */
 }
 .sponsoRepeat a img{
