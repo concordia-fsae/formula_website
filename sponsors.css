@@ -110,7 +110,7 @@ label p {
     -webkit-box-orient: vertical;
     overflow-y: hidden;
 }
-input {
+label input {
     display: none;
 }
 label input:checked ~ div.textFrame p {
@@ -175,7 +175,7 @@ label input:checked ~ div.textFrame p {
     }
 }
 @media only screen and (min-width: 827px) {
-    input {
+    label input {
         pointer-events: none;
     }
     label:hover {
@@ -605,6 +605,22 @@ section.creator {
 }
 .creator .linkedin {
     height: 2em;
+    align-self: center;
+}
+
+
+div.flex {
+    display: flex;
+}
+
+/* styling for PHP code */
+
+.login_bar.username {
+    position: fixed;
+    bottom: 0;
+    background: white;
+    border-radius: 5px;
+    z-index: 10;
 }
 
 

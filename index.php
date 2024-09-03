@@ -1,3 +1,18 @@
+<?php 
+require_once 'includes/config_session.inc.php';
+require_once 'includes/signup_view.inc.php';
+require_once 'includes/login_view.inc.php';
+require_once 'includes/upload_view.php';
+require_once 'includes/upload_model.php';
+require_once 'includes/bg_model.inc.php';
+
+if (!isset($_SESSION['uploaded_sponsors'])) {
+    $_SESSION['uploaded_sponsors'] = get_sponsors($pdo);
+}
+$uploaded_sponsors = $_SESSION['uploaded_sponsors'];
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,6 +33,9 @@
 
     <body id="scrollToTop"> <!-- this id element is a reference which smoothly scrolls to the top of the page when the logo on the header is displayed -->
 
+        <?php 
+            output_username();
+        ?>
         <div class="home">
             <div class="home-image"></div>
             
@@ -30,10 +48,6 @@
             </div>
         </div>
         <div id="spacer">
-            <!-- <div class="parentTitleSlide">
-                <div class="scrolling-text hidden">
-                <h1><span>CONCORDIA</span> FORMULA RACING <span>CONCORDIA</span> FORMULA RACING </h1>
-            </div> -->
             <div class="PageTitle">
                 <h1 class="TheTitle Concordia hidden">CONCORDIA <span class="Racing hidden"><br>Formula Racing</span></h1>
             </div>  
@@ -64,8 +78,8 @@
                         <ul>
                             <li><a class="burger-items" id="aboutUs" href="#scrollToIntro">ABOUT US</a></li>
                             <li><a class="burger-items" id="subsystems" href="#scrollToSubs">SUBSYSTEMS</a></li>
-                            <li><a class="burger-items" href="team.html">MEET THE TEAM</a></li>
-                            <li><a class="burger-items" href="sponsors.html">SPONSOR US</a></li>
+                            <li><a class="burger-items" href="team.php">MEET THE TEAM</a></li>
+                            <li><a class="burger-items" href="sponsors.php">SPONSOR US</a></li>
                             <li><a class="burger-items" id="contact" href="#scrollBottom">CONTACT</a></li>
                         </ul>
                     </nav>
@@ -246,236 +260,18 @@
                     <div class="theSponsors">
                         <div class="sponsorSlide">
                             <div class="sponsoRepeat one">
-                                <a href="sponsors.html#goToCCSL">
-                                    <img src="assets/sponsors/SSEV-CCSL-CMYK-VERT-ENG-HR[64].png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToProEV">
-                                    <img src="assets/sponsors/ProEV_LOGO_BRAND_FINAL-01.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToLandry">
-                                    <img src="assets/sponsors/landry.svg" alt="">
-                                </a>
-                                <a class="QSTC" href="sponsors.html#goToQSTC">
-                                    <img src="assets/sponsors/logoQSTC.png" alt="">
-                                </a>
-                                <a class="DanaTM4" href="sponsors.html#goToDanaTM4">
-                                    <img src="assets/sponsors/DanaTM4.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToQuaketek">
-                                    <img src="assets/sponsors/Quaketek_360.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToVR3">
-                                    <img src="assets/sponsors/VR3.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToArtypac">
-                                    <img src="assets/sponsors/artypac.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToHaas">
-                                    <img src="assets/sponsors/haas.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToBrembo">
-                                    <img src="assets/sponsors/brembo.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToAltium">
-                                    <img src="assets/sponsors/altium.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToLotus">
-                                    <img src="assets/sponsors/Lotus.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToViGrade">
-                                    <img src="assets/sponsors/vi-grade.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToFanelli">
-                                    <img src="assets/sponsors/fanelli.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToBMW">
-                                    <img src="assets/sponsors/bmwLaval.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToECA">
-                                    <img src="assets/sponsors/eca.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToBender">
-                                    <img src="assets/sponsors/Bender.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToACME">
-                                    <img src="assets/sponsors/ACME.webp" alt="">
-                                </a>
-                                <a href="sponsors.html#goToSolidWorks">
-                                    <img src="assets/sponsors/SolidWorks.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToCSU">
-                                    <img src="assets/sponsors/CSU.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToM1">
-                                    <img src="assets/sponsors/M1-Composites.png" alt="">
-                                </a>
-                                <!-- added sponsors -->
-                                <a href="sponsors.html#goToMisumi">
-                                    <img src="assets/sponsors/MiSUMi.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToCalspan">
-                                    <img src="assets/sponsors/calspan-logo.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToVvivid">
-                                    <img src="assets/sponsors/VVIVID.avif" alt="">
-                                </a>
-                                <a href="sponsors.html#goToMontrealPrinting">
-                                    <img src="assets/sponsors/MontrealPrinting.svg" alt="">
-                                </a>
-                                <!-- added sponsors -->
-                                <a href="sponsors.html#goToSchroth">
-                                    <img src="assets/sponsors/schroth.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToMetcor">
-                                    <img src="assets/sponsors/Metcor.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToRolltech">
-                                    <img src="assets/sponsors/rolltech.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToHakko">
-                                    <img src="assets/sponsors/Hakko.png" alt="">
-                                </a>
-                                <!-- 2 missing sponsors -->
-                                <a href="sponsors.html#goToSKF">
-                                    <img src="assets/sponsors/skf.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToAnsys">
-                                    <img src="assets/sponsors/ansys.png" alt="">
-                                </a>
-                                <!-- last batch before michigan-->
-                                <a href="sponsors.html#goToSH">
-                                    <img src="assets/sponsors/SH.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToDaBologna">
-                                    <img src="assets/sponsors/DaBologna.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToRemorqueLaval">
-                                    <img src="assets/sponsors/remorqueLaval.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToMathWorks">
-                                    <img src="assets/sponsors/mathWorks.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToFinitionMPC">
-                                    <img src="assets/sponsors/FinitionMPC.png" alt="">
-                                </a>
+                                <?php
+                                output_images_for_index($uploaded_sponsors);
+                                ?>  
                             </div>
                             <div class="sponsoRepeat two">
-                                <a href="sponsors.html#goToCCSL">
-                                    <img src="assets/sponsors/SSEV-CCSL-CMYK-VERT-ENG-HR[64].png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToProEV">
-                                    <img src="assets/sponsors/ProEV_LOGO_BRAND_FINAL-01.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToLandry">
-                                    <img src="assets/sponsors/landry.svg" alt="">
-                                </a>
-                                <a class="QSTC" href="sponsors.html#goToQSTC">
-                                    <img src="assets/sponsors/logoQSTC.png" alt="">
-                                </a>
-                                <a class="DanaTM4" href="sponsors.html#goToDanaTM4">
-                                    <img src="assets/sponsors/DanaTM4.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToQuaketek">
-                                    <img src="assets/sponsors/Quaketek_360.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToVR3">
-                                    <img src="assets/sponsors/VR3.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToArtypac">
-                                    <img src="assets/sponsors/artypac.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToHaas">
-                                    <img src="assets/sponsors/haas.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToBrembo">
-                                    <img src="assets/sponsors/brembo.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToAltium">
-                                    <img src="assets/sponsors/altium.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToLotus">
-                                    <img src="assets/sponsors/Lotus.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToViGrade">
-                                    <img src="assets/sponsors/vi-grade.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToFanelli">
-                                    <img src="assets/sponsors/fanelli.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToBMW">
-                                    <img src="assets/sponsors/bmwLaval.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToECA">
-                                    <img src="assets/sponsors/eca.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToBender">
-                                    <img src="assets/sponsors/Bender.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToACME">
-                                    <img src="assets/sponsors/ACME.webp" alt="">
-                                </a>
-                                <a href="sponsors.html#goToSolidWorks">
-                                    <img src="assets/sponsors/SolidWorks.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToCSU">
-                                    <img src="assets/sponsors/CSU.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToM1">
-                                    <img src="assets/sponsors/M1-Composites.png" alt="">
-                                </a>
-                                <!-- added sponsors -->
-                                <a href="sponsors.html#goToMisumi">
-                                    <img src="assets/sponsors/MiSUMi.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToCalspan">
-                                    <img src="assets/sponsors/calspan-logo.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToVvivid">
-                                    <img src="assets/sponsors/VVIVID.avif" alt="">
-                                </a>
-                                <a href="sponsors.html#goToMontrealPrinting">
-                                    <img src="assets/sponsors/MontrealPrinting.svg" alt="">
-                                </a>
-                                <!-- added sponsors -->
-                                <a href="sponsors.html#goToSchroth">
-                                    <img src="assets/sponsors/schroth.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToMetcor">
-                                    <img src="assets/sponsors/Metcor.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToRolltech">
-                                    <img src="assets/sponsors/rolltech.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToHakko">
-                                    <img src="assets/sponsors/Hakko.png" alt="">
-                                </a>
-                                <!-- 2 missing sponsors -->
-                                <a href="sponsors.html#goToSKF">
-                                    <img src="assets/sponsors/skf.svg" alt="">
-                                </a>
-                                <a href="sponsors.html#goToAnsys">
-                                    <img src="assets/sponsors/ansys.png" alt="">
-                                </a>
-                                <!-- last batch before michigan-->
-                                <a href="sponsors.html#goToSH">
-                                    <img src="assets/sponsors/SH.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToDaBologna">
-                                    <img src="assets/sponsors/DaBologna.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToRemorqueLaval">
-                                    <img src="assets/sponsors/remorqueLaval.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToMathWorks">
-                                    <img src="assets/sponsors/mathWorks.png" alt="">
-                                </a>
-                                <a href="sponsors.html#goToFinitionMPC">
-                                    <img src="assets/sponsors/FinitionMPC.png" alt="">
-                                </a>
+                                <?php
+                                output_images_for_index($uploaded_sponsors);
+                                ?>  
                             </div>
                         </div>
                     </div>
-                    <a href="sponsors.html" class="viewMore">View More</a>
+                    <a href="sponsors.php" class="viewMore">View More</a>
 
                 </section>
 
@@ -487,7 +283,7 @@
                             <div class="profile austin">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Austin.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToAustin">
+                                    <a class="link linkedin" href="team.php#goToAustin">
                                         <!-- for no link to linkedin -->
                                         <!-- <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
                                             <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
@@ -499,7 +295,7 @@
                             <div class="profile joshua">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Joshua.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToJoshua">
+                                    <a class="link linkedin" href="team.php#goToJoshua">
                                         <!-- for no link to linkedin -->
                                         <!-- <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
                                             <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
@@ -513,14 +309,14 @@
                             <div class="profile james">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/James.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToJames"></a>
+                                    <a class="link linkedin" href="team.php#goToJames"></a>
                                 </div>
                                 <p class="first">James <span class="last"><br>SAVELSON</span></p>
                             </div>
                             <div class="profile peter">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Peter.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToPeter"></a>
+                                    <a class="link linkedin" href="team.php#goToPeter"></a>
                                 </div>
                                 <p class="first">Peter <span class="last"><br>HOPKINS</span></p>
                             </div>
@@ -529,14 +325,14 @@
                             <div class="profile jason">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Jason.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToJason"></a>
+                                    <a class="link linkedin" href="team.php#goToJason"></a>
                                 </div>
                                 <p class="first">Jason <span class="last"><br>ZALASS</span></p>
                             </div>
                             <div class="profile lucas">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Lucas.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToLucas"></a>
+                                    <a class="link linkedin" href="team.php#goToLucas"></a>
                                 </div>
                                 <p class="first">Lucas <span class="last"><br>GRAHAM</span></p>
                             </div>
@@ -545,14 +341,14 @@
                             <div class="profile philippe">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Philippe.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToPhilippe"></a>
+                                    <a class="link linkedin" href="team.php#goToPhilippe"></a>
                                 </div>
                                 <p class="first">Philippe Andrew<span class="last"><br>GRIMARD</span></p>
                             </div>
                             <div class="profile leandre">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Leandre.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToLeandre"></a>
+                                    <a class="link linkedin" href="team.php#goToLeandre"></a>
                                 </div>
                                 <p class="first">Leandre <span class="last toolong"><br>GUERTIN-JODOIN</span></p>
                             </div>
@@ -561,7 +357,7 @@
                             <div class="profile sabrina">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Sabrina.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToSabrina"></a>
+                                    <a class="link linkedin" href="team.php#goToSabrina"></a>
                                 </div>
                                 <p class="first">Sabrina <span class="last toolong"><br>PARE-LEONARD</span></p>
                             </div>
@@ -569,7 +365,7 @@
                             <div class="profile matthieu">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Matthieu.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToMatthieu"></a>
+                                    <a class="link linkedin" href="team.php#goToMatthieu"></a>
                                 </div>
                                 <p class="first">Matthieu <span class="last toolong"><br>VANDEWYNCKELE</span></p>
                             </div>
@@ -577,7 +373,7 @@
                             <div class="profile jacob">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/jacob.png" alt="">
-                                    <a class="link linkedin" href="team.html#goToJacob"></a>
+                                    <a class="link linkedin" href="team.php#goToJacob"></a>
                                 </div>
                                 <p class="first">Jacob <span class="last"><br>GARELLEK</span></p>
                             </div>
@@ -588,7 +384,7 @@
                             <div class="profile austin">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Austin.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToAustin">
+                                    <a class="link linkedin" href="team.php#goToAustin">
                                         <!-- for no link to linkedin -->
                                         <!-- <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
                                             <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
@@ -600,7 +396,7 @@
                             <div class="profile joshua">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Joshua.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToJoshua">
+                                    <a class="link linkedin" href="team.php#goToJoshua">
                                         <!-- for no link to linkedin -->
                                         <!-- <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
                                             <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
@@ -614,14 +410,14 @@
                             <div class="profile james">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/James.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToJames"></a>
+                                    <a class="link linkedin" href="team.php#goToJames"></a>
                                 </div>
                                 <p class="first">James <span class="last"><br>SAVELSON</span></p>
                             </div>
                             <div class="profile peter">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Peter.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToPeter"></a>
+                                    <a class="link linkedin" href="team.php#goToPeter"></a>
                                 </div>
                                 <p class="first">Peter <span class="last"><br>HOPKINS</span></p>
                             </div>
@@ -630,14 +426,14 @@
                             <div class="profile jason">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Jason.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToJason"></a>
+                                    <a class="link linkedin" href="team.php#goToJason"></a>
                                 </div>
                                 <p class="first">Jason <span class="last"><br>ZALASS</span></p>
                             </div>
                             <div class="profile lucas">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Lucas.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToLucas"></a>
+                                    <a class="link linkedin" href="team.php#goToLucas"></a>
                                 </div>
                                 <p class="first">Lucas <span class="last"><br>GRAHAM</span></p>
                             </div>
@@ -646,14 +442,14 @@
                             <div class="profile philippe">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Philippe.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToPhilippe"></a>
+                                    <a class="link linkedin" href="team.php#goToPhilippe"></a>
                                 </div>
                                 <p class="first">Philippe Andrew<span class="last"><br>GRIMARD</span></p>
                             </div>
                             <div class="profile leandre">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Leandre.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToLeandre"></a>
+                                    <a class="link linkedin" href="team.php#goToLeandre"></a>
                                 </div>
                                 <p class="first">Leandre <span class="last toolong"><br>GUERTIN JODOIN</span></p>
                             </div>
@@ -662,7 +458,7 @@
                             <div class="profile sabrina">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Sabrina.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToSabrina"></a>
+                                    <a class="link linkedin" href="team.php#goToSabrina"></a>
                                 </div>
                                 <p class="first">Sabrina <span class="last toolong"><br>PARE LEONARD</span></p>
                             </div>
@@ -670,7 +466,7 @@
                             <div class="profile matthieu">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/Matthieu.JPG" alt="">
-                                    <a class="link linkedin" href="team.html#goToMatthieu"></a>
+                                    <a class="link linkedin" href="team.php#goToMatthieu"></a>
                                 </div>
                                 <p class="first">Matthieu <span class="last toolong"><br>VANDEWYNCKELE</span></p>
                             </div>
@@ -678,13 +474,13 @@
                             <div class="profile jacob">
                                 <div class="imageWrapper">
                                     <img class="portrait" src="assets/portraits/jacob.png" alt="">
-                                    <a class="link linkedin" href="team.html#goToJacob"></a>
+                                    <a class="link linkedin" href="team.php#goToJacob"></a>
                                 </div>
                                 <p class="first">Jacob <span class="last"><br>Garellek</span></p>
                             </div>
                         </div>
                     </div>
-                    <a class="viewMore" href="team.html">View More</a>
+                    <a class="viewMore" href="team.php">View More</a>
                     
                 </section>
 
@@ -727,12 +523,19 @@
                 </section>
 
                 <section class="creator">
-                    <p><span>Designed By:</span> Leo Thomasson</p>
-                    <a class="linkedin" href="https://www.linkedin.com/in/leo-thomasson-110243247/">
-                        <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="white">
-                            <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
-                        </svg>
-                    </a>
+                    <div class="flex">
+                        <p><span>Designed By:</span> Leo Thomasson</p>
+                        <a class="linkedin" href="https://www.linkedin.com/in/leo-thomasson-110243247/">
+                            <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="white">
+                                <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <h3>-</h3>
+                    <?php
+                    output_login_logout();
+                    ?>
+                    
                 </section>
             </div>
         </div>  
