@@ -664,7 +664,7 @@ section.theTitle {
     transition-delay: 100ms;
 }
 /* THE DIRECTORS */
-.profile.joshua {
+/* .profile.joshua {
     transition-delay: 100ms;
 }
 .profile.james {
@@ -672,12 +672,12 @@ section.theTitle {
 }
 .profile.peter {
     transition-delay: 300ms;
-}
+} */
 
 
 /* SUBSYSTEMS DESKTOP VERSION (.profiles.one layout) */
 /* first row */
-.profile.peter.subs {
+/* .profile.peter.subs {
     transition-delay: 0ms;
 }
 .profile.matthieu {
@@ -686,24 +686,22 @@ section.theTitle {
 .profile.subs.james {
     transition-delay: 200ms;
 }
-/* second row */
 .profile.leandre {
     transition-delay: 100ms;
 }
 .profile.philippe {
     transition-delay: 200ms;
 }
-/* third row */
 .profile.jason {
     transition-delay: 100ms;
 }
 .profile.lucas {
     transition-delay: 200ms;
-}
+} */
 
 @media only screen and (max-width: 1010px) {
     /* DIRECTORS */
-    .profile.joshua {
+    /* .profile.joshua {
         transition-delay: 100ms;
     }
     .profile.james {
@@ -711,36 +709,36 @@ section.theTitle {
     }
     .profile.peter {
         transition-delay: 100ms;
-    }
+    } */
 
     /* SUBSYSTEMS MOBILE VERSION (.profiles.two layout) */
     /* first row */
-    .profile.peter.subs {
+    /* .profile.peter.subs {
         transition-delay: 0ms;
     }
     .profile.matthieu {
         transition-delay: 100ms;
-    }
+    } */
     /* second row */
-    .profile.subs.james {
+    /* .profile.subs.james {
         transition-delay: 0ms;
     }
     .profile.sabrina {
         transition-delay: 100ms;
-    }
+    } */
     /* third row */
-    .profile.leandre {
+    /* .profile.leandre {
         transition-delay: 0ms;
     }
     .profile.philippe {
         transition-delay: 100ms;
-    }
+    } */
     /* fourth row */
-    .profile.jacob {
+    /* .profile.jacob {
         transition-delay: 0ms;
     }
     .profile.jason {
         transition-delay: 100ms;
-    }
+    } */
 
 }
