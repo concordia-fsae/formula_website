@@ -553,7 +553,7 @@ section.subsystems {
     width: 100%;
     display: flex;
     align-self: flex-start;
-   overflow-x: hidden;
+    overflow-x: hidden;
     white-space: nowrap;
     mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
 }
