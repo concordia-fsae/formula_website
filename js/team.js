@@ -52,7 +52,7 @@ contact.addEventListener('click', () => {
 let map;
 
 async function initMap() {
-  // The location of CONCORDIA FORMULA RACING
+  // GPS coordinates of CONCORDIA FORMULA RACING (set in Hall building)
   const position = { lat: 45.497296578930325, lng: -73.57879827627701 };
   // Request needed libraries.
   //@ts-ignore

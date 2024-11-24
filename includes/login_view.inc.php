@@ -15,8 +15,8 @@ function output_username() {
 }
 function output_sponsor_uploads() {
     if (isset($_SESSION["user_id"])) {
-        echo '<h4>Add Sponsor:</h4>';
-        echo '<form action="includes/upload.php" method="POST" enctype="multipart/form-data">
+        echo '<h3>Add Sponsor:</h3>';
+        echo '<form action="includes/sponsors/upload.php" method="POST" enctype="multipart/form-data">
                     <input type="file" name="image">
                     <select name="sponsor_tier">
                         <option value="">--Please choose an option--</option>
@@ -35,8 +35,8 @@ function output_sponsor_uploads() {
 
 function output_sponsor_delete(array $sponsors) {
     if (isset($_SESSION["user_id"])) {
-        echo '<h4>Delete Sponsor:</h4>';
-        echo '<form action="includes/delete_sponsor.inc.php" method="POST" enctype="multipart/form-data">
+        echo '<h3>Delete Sponsor:</h3>';
+        echo '<form action="includes/sponsors/delete_sponsor.inc.php" method="POST" enctype="multipart/form-data">
                         <select name="sponsor_path">
                             <option value="">--Please choose an option--</option>';
                             echo '<option value="">--Title--</option>';
@@ -167,10 +167,10 @@ function check_login_errors(){
 function add_user() {
     // only for admin    
     if (isset($_SESSION["user_id"]) && $_SESSION["user_id"] == 1) {
-        echo '<h3>Create Account</h3>
+        echo '<h3 id=goToCreateAccount>Create Account</h3>
             <form action="includes/signup.inc.php" method="post">';
                 signup_inputs();
-                echo '<button>Sign up</button>
+                echo '<button>Create</button>
             </form>';
 
         check_signup_errors();
@@ -180,17 +180,13 @@ function add_user() {
 }
 
 function delete_account(array $users) {
-    if (isset($_SESSION["user_id"]))
-        echo $_SESSION["user_id"];
     if (isset($_SESSION["user_id"]) && $_SESSION["user_id"] == 1) {
-        echo '<h4>Delete Account:<h4>';
+        echo '<h3 id="goToDeleteAccount">Delete Account:<h3>';
         echo '<form action="includes/team/delete_account.inc.php" method="POST" enctype="multipart/form-data">
                         <select name="account_id">
                             <option value="">--Please choose an option--</option>';
                             foreach ($users as $user) {
-                                echo "1";
                                 echo '<option value="'. $user['id'] .'">'. $user['username'] .'</option>';
-                                
                             }
         echo'           </select>
                         <input type="submit" value="Delete">

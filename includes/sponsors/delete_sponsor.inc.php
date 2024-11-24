@@ -13,12 +13,12 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         $error = "Sponsor not chosen!";
     }
 
-    require_once 'config_session.inc.php';
+    require_once '../config/config_session.inc.php';
 
     if ($error != "") {
         $_SESSION["error_delete"] = $error;
 
-        header("Location: ../sponsors.php?delete=failed");
+        header("Location: ../../sponsors.php?delete=failed#goToSponsorAddDrop");
         die();
     }
 
@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // delete in database
     try {
-        require_once 'dbh.inc.php';
+        require_once '../config/dbh.inc.php';
         $query = "DELETE FROM sponsors WHERE file_path = :file_path";
 
         $stmt = $pdo->prepare($query);
@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->execute();
         
 
-        require_once 'upload_model.php';
+        require_once '../upload_model.php';
 
         $_SESSION['uploaded_sponsors'] = get_sponsors($pdo);
         
@@ -44,11 +44,11 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // delete in directory
-    $file_path = '../' . $file_path;
+    $file_path = '../../' . $file_path;
     if (file_exists($file_path)) {
         if (unlink($file_path)) {
             // File successfully deleted
-            header("Location: ../sponsors.php?delete=success");
+            header("Location: ../../sponsors.php?delete=success#goToSponsorAddDrop");
         } else {
             // File could not be deleted
             $_SESSION["error_delete"] = "File could not be deleted from the directory.";
@@ -57,7 +57,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         // File does not exist
         $_SESSION["error_delete"] = "File does not exist.";
-        header("Location: ../sponsors.php?delete=failed");
+        header("Location: ../../sponsors.php?delete=failed#goToSponsorAddDrop");
     }
     $pdo = null;
     $stmt = null;

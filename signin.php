@@ -1,9 +1,9 @@
 <?php 
-require_once 'includes/config_session.inc.php';
-require_once 'includes/signup_view.inc.php';
+require_once 'includes/config/config_session.inc.php';
 require_once 'includes/login_view.inc.php';
 require_once 'includes/upload_view.php';
 require_once 'includes/upload_model.php';
+require_once 'includes/config/dbh.inc.php';
 
 
 ini_set('display_errors', 1);

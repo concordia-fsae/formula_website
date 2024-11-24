@@ -1,5 +1,5 @@
 <?php
-require_once 'dbh.inc.php';
+require_once '../config/dbh.inc.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -16,12 +16,12 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     // Get the file name and extension
     $file_name = basename($_FILES["image"]["name"]);
     $file_path = $target_dir . $file_name;
-    $imageFileType = strtolower(pathinfo($file_path, PATHINFO_EXTENSION));
+    $imageFileType = pathinfo($file_path, PATHINFO_EXTENSION);
     $uploadOk = 1;
 
     try {
-        require_once 'upload_model.php';
-        require_once 'upload_contr.php';
+        require_once '../upload_model.php';
+        require_once '../upload_contr.php';
 
         $errors_upload = [];
 
@@ -36,9 +36,9 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         } 
 
         // Allow certain file formats
-        if ($imageFileType != "jpg" && $imageFileType != "JPG" && $imageFileType != "png" && $imageFileType != "PNG" && $imageFileType != "svg" && $imageFileType != "jpeg" && $imageFileType != "avif") {
-            $errors_upload["wrong_file_type"] = "Sorry, only JPG, PNG, JPEG, and svg files are allowed.";
-        } 
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "svg" && $imageFileType != "jpeg" && $imageFileType != "avif") {
+            $errors_upload["wrong_file_type"] = "Sorry, only jpg, png, svg, and jpeg and avif files are allowed. (NO CAPS IN EXTENSION!)";
+        }
 
         // Empty input from text box or select
         if (is_input_empty($sponsor_tier, $sponsor_name)) {
@@ -50,18 +50,18 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
             $errors_upload["empty_input"] = "No file was uploaded!";
         }
 
-        require_once 'config_session.inc.php';
+        require_once '../config/config_session.inc.php';
 
         // Check if $errors go back to index page
         if ($errors_upload) {
             $_SESSION["errors_upload"] = $errors_upload;
 
 
-            header("Location: ../sponsors.php?upload=failed");
+            header("Location: ../../sponsors.php?upload=failed#goToSponsorAddDrop");
             die();
         }
 
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], '../'.$file_path)) {
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], '../../'.$file_path)) {
             // file uploaded to directory 
 
             // next step: upload file names to database: 
@@ -76,7 +76,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
             // update session variable
             $_SESSION["uploaded_sponsors"] = get_sponsors($pdo);
-            header("Location: ../sponsors.php?upload=success");
+            header("Location: ../../sponsors.php?upload=success#goToSponsorAddDrop");
 
             
             $pdo = null;
@@ -85,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
             $errors_upload["failed_move"] = "Sorry, there was an error uploading your file to ../../".$file_path;
             $_SESSION["errors_upload"] = $errors_upload;
-            header("Location: ../sponsors.php?upload=failed");
+            header("Location: ../../sponsors.php?upload=failed#goToSponsorAddDrop");
             die();
         }
 
@@ -94,6 +94,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         die("Query failed" . $e->getMessage());
     }
 } else {
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
     die();
 }

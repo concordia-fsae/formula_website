@@ -13,12 +13,12 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         $error = "Account_id is empty";
     }
 
-    require_once '../config_session.inc.php';
+    require_once '../config/config_session.inc.php';
 
     if ($error != "") {
         $_SESSION["error_account_delete"] = $error;
 
-        header("Location: ../../team.php?delete_account=failed");
+        header("Location: ../../team.php?delete_account=failed#goToDeleteAccount");
         die();
     }
 
@@ -26,14 +26,14 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // delete in database
     try {
-        require_once '../dbh.inc.php';
+        require_once '../config/dbh.inc.php';
         $query = "DELETE FROM users WHERE id = :user_id";
 
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":user_id", $user_id);
         $stmt->execute();
 
-        header("Location: ../../team.php?delete_account=success");
+        header("Location: ../../team.php?delete_account=success#goToDeleteAccount");
 
     } catch (PDOException $e) {
         die("Query failed" . $e->getMessage());

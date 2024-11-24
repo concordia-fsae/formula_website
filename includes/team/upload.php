@@ -1,5 +1,5 @@
 <?php
-require_once '../dbh.inc.php';
+require_once '../config/dbh.inc.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -18,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     // Get the file name and extension
     $file_name = basename($_FILES["image"]["name"]);
     $file_path = $target_dir . $file_name;
-    $imageFileType = strtolower(pathinfo($file_path, PATHINFO_EXTENSION));
+    $imageFileType = pathinfo($file_path, PATHINFO_EXTENSION);
     $uploadOk = 1;
 
     try {
@@ -38,8 +38,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         } 
 
         // Allow certain file formats
-        if ($imageFileType != "jpg" && $imageFileType != "JPG" && $imageFileType != "png" && $imageFileType != "PNG" && $imageFileType != "svg" && $imageFileType != "jpeg" && $imageFileType != "avif") {
-            $errors_upload["wrong_file_type"] = "Sorry, only JPG, PNG, JPEG, and svg files are allowed.";
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "svg" && $imageFileType != "jpeg" && $imageFileType != "avif") {
+            $errors_upload["wrong_file_type"] = "Sorry, only jpg, png, svg, and jpeg and avif files are allowed. (NO CAPS IN EXTENSION!)";
         }
 
         // Empty input from text box or select
@@ -52,18 +52,18 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
             $errors_upload["empty_input"] = "No file was uploaded!";
         }
 
-        require_once '../config_session.inc.php';
+        require_once '../config/config_session.inc.php';
 
         // Check if $errors go back to index page
         if ($errors_upload) {
             $_SESSION["errors_upload"] = $errors_upload;
 
-            header("Location: ../../team.php?upload=failed");
+            header("Location: ../../team.php?upload=failed#goToTeamAddDrop");
             die();
         }
 
         if (move_uploaded_file($_FILES["image"]["tmp_name"], '../../'.$file_path)) {
-            // file uploaded to directory 
+            // file uploaded to directory
 
             // next step: upload file names to database: 
             $query = "INSERT into team (file_name, file_path, category, position, first_name, last_name, linkedin) VALUES (:file_name, :file_path, :category, :position, :first_name, :last_name, :linkedin);";
@@ -79,7 +79,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
             // update session variable
             $_SESSION["uploaded_team"] = get_team($pdo);
-            header("Location: ../../team.php?upload=success");
+            header("Location: ../../team.php?upload=success#goToTeamAddDrop");
 
             $pdo = null;
             $stmt = null;
@@ -87,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
             $errors_upload["failed_move"] = "Sorry, there was an error uploading your file to ../../".$file_path;
             $_SESSION["errors_upload"] = $errors_upload;
-            header("Location: ../../team.php?upload=failed");
+            header("Location: ../../team.php?upload=failed#goToTeamAddDrop");
             die();
         }
 

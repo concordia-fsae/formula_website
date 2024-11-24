@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $pwd = $_POST["pwd"];
 
     try {
-        require_once 'dbh.inc.php';
+        require_once 'config/dbh.inc.php';
         require_once 'login_model.inc.php';
         require_once 'login_contr.inc.php';
 
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $errors["username_wrong"] = "Password is wrong!";
         }
 
-        require_once 'config_session.inc.php'; //starts session in a safer way
+        require_once 'config/config_session.inc.php'; //starts session in a safer way
 
         if ($errors) {
             $_SESSION["errors_login"] = $errors;

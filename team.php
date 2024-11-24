@@ -1,12 +1,12 @@
 <?php 
-require_once 'includes/config_session.inc.php';
+require_once 'includes/config/config_session.inc.php';
 require_once 'includes/signup_view.inc.php';
 require_once 'includes/login_view.inc.php';
 require_once 'includes/upload_view.php';
 require_once 'includes/upload_model.php';
-require_once 'includes/delete_sponsor_view.inc.php';
+require_once 'includes/sponsors/delete_sponsor_view.inc.php';
 require_once 'includes/login_model.inc.php';
-require_once 'includes/dbh.inc.php';
+require_once 'includes/config/dbh.inc.php';
 
 if (!isset($_SESSION['uploaded_team'])) {
     $_SESSION['uploaded_team'] = get_team($pdo);
@@ -21,10 +21,10 @@ $uploaded_team = $_SESSION['uploaded_team'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Meet the directors, leads and senior members of Concordia Formula Racing.">
     <title>Our Team</title>
-    <link rel="stylesheet" href="team.css">
+    <link rel="stylesheet" href="css/team.css">
     <link rel="icon" type="image/x-icon" href="assets/favicons/favicon.png">
     <!-- <link href='assets/HelveticaNeueMedium.ttf' rel='stylesheet' type='text/css'> -->
-    <script type="module" src="team.js"></script>
+    <script type="module" src="js/team.js"></script>
 </head>
 <body>
     <?php 
@@ -76,7 +76,7 @@ $uploaded_team = $_SESSION['uploaded_team'];
         
         <section class="directors">
             <div class="titleFrame hidden noMove left">
-                <h1 class="title">Directors</h1>
+                <h1 id="goToTeamAddDrop" class="title">Directors</h1>
             </div>
 
             <?php
@@ -171,7 +171,6 @@ $uploaded_team = $_SESSION['uploaded_team'];
         <?php
         echo '<div class=create_account>';
         add_user();
-        
         delete_account(get_users($pdo));
         echo '</div>'
         ?>

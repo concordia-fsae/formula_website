@@ -1,21 +1,21 @@
 @font-face {
     font-family: Formula1;
     font-weight: 600;
-    src: url("assets/fonts/formula1-bold-webfont.woff") format("woff");
+    src: url("../assets/fonts/formula1-bold-webfont.woff") format("woff");
 }
 @font-face {
     font-family: Formula1;
     font-weight: 900;
-    src: url("assets/fonts/formula1-black-webfont.woff") format("woff");
+    src: url("../assets/fonts/formula1-black-webfont.woff") format("woff");
 }
 @font-face { 
     font-family: Futura-Bold;
     font-weight: 600;
-    src: url("assets/fonts/futura_bold-webfont.woff") format("woff");
+    src: url("../assets/fonts/futura_bold-webfont.woff") format("woff");
 }
 @font-face { 
     font-family: HelveticaNeue;
-    src: url("assets/fonts/helveticaneuemedium-webfont.woff") format("woff");
+    src: url("../assets/fonts/helveticaneuemedium-webfont.woff") format("woff");
 }
 
 @keyframes RightToLeft { /*animation function for the sliding text*/
@@ -109,7 +109,7 @@ a {
     justify-content: center;
 }
 .home-image {
-    background: url('assets/backgrounds/HomeImage.JPG');
+    background: url('../assets/backgrounds/HomeImage.JPG');
 
     left: 0;
     width: 100%;

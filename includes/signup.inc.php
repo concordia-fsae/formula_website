@@ -10,7 +10,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST["email"];
 
     try {
-        require_once 'dbh.inc.php';
+        require_once 'config/dbh.inc.php';
         require_once 'signup_model.inc.php';
         require_once 'signup_contr.inc.php';
 
@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
             $errors["email_used"] = "Email already registered";
         }
 
-        require_once 'config_session.inc.php'; //starts session in a safer way
+        require_once 'config/config_session.inc.php'; //starts session in a safer way
 
         if ($errors) {
             $_SESSION["errors_signup"] = $errors;
@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
             ];
             $_SESSION["signup_data"] = $signup_data;
 
-            header("Location: ../index.php?signup=failed");
+            header("Location: ../team.php?signup=failed#goToCreateAccount");
             die();
         }
 
@@ -50,7 +50,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         create_user($pdo, $username, $pwd, $email);
 
         //Sign up success
-        header("Location: ../index.php?signup=success");
+        header("Location: ../team.php?signup=success#goToCreateAccount");
         $pdo = null;
         $stmt = null;
         die();

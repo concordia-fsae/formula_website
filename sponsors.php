@@ -1,11 +1,11 @@
 <?php 
-require_once 'includes/config_session.inc.php';
+require_once 'includes/config/config_session.inc.php';
 require_once 'includes/signup_view.inc.php';
 require_once 'includes/login_view.inc.php';
 require_once 'includes/upload_view.php';
 require_once 'includes/upload_model.php';
-require_once 'includes/delete_sponsor_view.inc.php';
-require_once 'includes/dbh.inc.php';
+require_once 'includes/sponsors/delete_sponsor_view.inc.php';
+require_once 'includes/config/dbh.inc.php';
 
 if (!isset($_SESSION['uploaded_sponsors'])) {
     $_SESSION['uploaded_sponsors'] = get_sponsors($pdo);
@@ -21,10 +21,10 @@ $uploaded_sponsors = $_SESSION['uploaded_sponsors'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sponsor Us</title>
-    <link rel="stylesheet" href="sponsors.css">
+    <link rel="stylesheet" href="css/sponsors.css">
     <meta name="description" content="Our sponsors support Concordia Formula Racing in our goal of performing the best in competitions.">
     <link rel="icon" type="image/x-icon" href="assets/favicons/favicon.png">
-    <script type="module" src="sponsors.js"></script>
+    <script type="module" src="js/sponsors.js"></script>
 </head>
 <body>
     <?php 
@@ -68,7 +68,7 @@ $uploaded_sponsors = $_SESSION['uploaded_sponsors'];
         <!-- THE REST -->
 
         <section class="sponsorIntro hidden">
-            <img src="assets/backgrounds/SponsorImage-LowQuality.JPG" alt="">
+            <img src="assets/backgrounds/SponsorImage-LowQuality.jpg" alt="">
             <h1>BE PART OF OUR JOURNEY</h1>
         </section>
 
@@ -98,7 +98,7 @@ $uploaded_sponsors = $_SESSION['uploaded_sponsors'];
 
         <section class="categories">
             <div class="ourTextFrame hidden">  
-                <h1>OUR SPONSORS</h1>
+                <h1 id=goToSponsorAddDrop>OUR SPONSORS</h1>
             </div>
             <?php 
             output_sponsor_uploads();

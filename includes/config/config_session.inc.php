@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 ini_set('session.use_only_cookies', 1);
 ini_set('session.use_strict_mode', 1);
 
+// Host locally (using XAMPP)
 session_set_cookie_params([
     'lifetime' => 1800,
     'domain' => 'localhost',
@@ -13,6 +14,15 @@ session_set_cookie_params([
     'secure' => true,
     'httponly' => true
 ]);
+
+// Set parameters for hosting to server
+// session_set_cookie_params([
+//     'lifetime' => 1800,
+//     'domain' => 'concordiaformularacing.infinityfreeapp.com',
+//     'path' => '/',
+//     'secure' => false,
+//     'httponly' => true
+// ]);
 
 session_start();
 
