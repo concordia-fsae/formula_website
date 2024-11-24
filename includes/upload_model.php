@@ -12,3 +12,12 @@ function get_sponsors(object $pdo) {
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
+
+function get_team(object $pdo) {
+    $query = "SELECT * FROM team;";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}

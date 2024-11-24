@@ -121,9 +121,11 @@ section.directors {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
 }
 .profiles.director {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    width: 100%;
     /* justify-content: unset; */
 }
 .profile {
@@ -202,6 +204,9 @@ section.directors {
     margin-top: 60%;
 }
 /* when profile pic is hovered it unhides svg element */
+.imageWrapper a.nolink:hover svg{
+    display: none;
+}
 .imageWrapper a:hover svg{
     display: unset;
 }
@@ -597,6 +602,26 @@ div.flex {
     z-index: 10;
 }
 
+.create_account {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login_logout {
+    color: white;
+}
+.login_logout p {
+    transition: all 0.2s;
+    font-size: 1.2em;
+    &:hover {
+        color: black;
+        text-decoration: underline;
+    }
+}
+
+
 /* adapted for contact section for different screen sizes */
 @media only screen and (max-width: 450px) {
     /* for the socials in the contact section */
@@ -678,85 +703,4 @@ div.flex {
 
 section.theTitle {
     transition-delay: 100ms;
-}
-/* THE DIRECTORS */
-.profile.joshua {
-    transition-delay: 100ms;
-}
-.profile.james {
-    transition-delay: 200ms;
-}
-.profile.peter {
-    transition-delay: 300ms;
-}
-
-
-/* SUBSYSTEMS DESKTOP VERSION (.profiles.one layout) */
-/* first row */
-.profile.peter.subs {
-    transition-delay: 0ms;
-}
-.profile.matthieu {
-    transition-delay: 100ms;
-}
-.profile.subs.james {
-    transition-delay: 200ms;
-}
-/* second row */
-.profile.leandre {
-    transition-delay: 100ms;
-}
-.profile.philippe {
-    transition-delay: 200ms;
-}
-/* third row */
-.profile.jason {
-    transition-delay: 100ms;
-}
-.profile.lucas {
-    transition-delay: 200ms;
-}
-
-@media only screen and (max-width: 1010px) {
-    /* DIRECTORS */
-    .profile.joshua {
-        transition-delay: 100ms;
-    }
-    .profile.james {
-        transition-delay: 0ms;
-    }
-    .profile.peter {
-        transition-delay: 100ms;
-    }
-
-    /* SUBSYSTEMS MOBILE VERSION (.profiles.two layout) */
-    /* first row */
-    .profile.peter.subs {
-        transition-delay: 0ms;
-    }
-    .profile.matthieu {
-        transition-delay: 100ms;
-    }
-    /* second row */
-    .profile.subs.james {
-        transition-delay: 0ms;
-    }
-    .profile.sabrina {
-        transition-delay: 100ms;
-    }
-    /* third row */
-    .profile.leandre {
-        transition-delay: 0ms;
-    }
-    .profile.philippe {
-        transition-delay: 100ms;
-    }
-    /* fourth row */
-    .profile.jacob {
-        transition-delay: 0ms;
-    }
-    .profile.jason {
-        transition-delay: 100ms;
-    }
-
 }

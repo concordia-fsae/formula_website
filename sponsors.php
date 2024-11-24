@@ -4,13 +4,14 @@ require_once 'includes/signup_view.inc.php';
 require_once 'includes/login_view.inc.php';
 require_once 'includes/upload_view.php';
 require_once 'includes/upload_model.php';
-require_once 'includes/bg_model.inc.php';
 require_once 'includes/delete_sponsor_view.inc.php';
+require_once 'includes/dbh.inc.php';
 
-//if (!isset($_SESSION['uploaded_sponsors'])) {
+if (!isset($_SESSION['uploaded_sponsors'])) {
     $_SESSION['uploaded_sponsors'] = get_sponsors($pdo);
-//}
-//uploaded_sponsors = $_SESSION['uploaded_sponsors'];
+}
+$uploaded_sponsors = $_SESSION['uploaded_sponsors'];
+
 
 
 ?>
@@ -100,11 +101,6 @@ require_once 'includes/delete_sponsor_view.inc.php';
                 <h1>OUR SPONSORS</h1>
             </div>
             <?php 
-            if(isset($_SESSION['uploaded_sponsors'])) {
-                $uploaded_sponsors = $_SESSION['uploaded_sponsors'];
-            } else {
-                $uploaded_sponsors = get_sponsors($pdo);
-            }
             output_sponsor_uploads();
             check_upload_errors();
             output_sponsor_delete($uploaded_sponsors);

@@ -13,3 +13,12 @@ function get_user(object $pdo, string $username) {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result;
 }
+
+function get_users(object $pdo) {
+    $query = "SELECT * FROM users WHERE id != 1;";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}

@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION["errors_login"] = $errors;
 
 
-            header("Location: ../index.php?login=failed");
+            header("Location: ../signin.php?login=failed");
             die();
         }
 

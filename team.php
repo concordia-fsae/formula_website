@@ -4,8 +4,14 @@ require_once 'includes/signup_view.inc.php';
 require_once 'includes/login_view.inc.php';
 require_once 'includes/upload_view.php';
 require_once 'includes/upload_model.php';
-require_once 'includes/bg_model.inc.php';
+require_once 'includes/delete_sponsor_view.inc.php';
+require_once 'includes/login_model.inc.php';
+require_once 'includes/dbh.inc.php';
 
+if (!isset($_SESSION['uploaded_team'])) {
+    $_SESSION['uploaded_team'] = get_team($pdo);
+}
+$uploaded_team = $_SESSION['uploaded_team'];
 
 ?>
 <!DOCTYPE html>
@@ -21,7 +27,6 @@ require_once 'includes/bg_model.inc.php';
     <script type="module" src="team.js"></script>
 </head>
 <body>
-
     <?php 
         output_username();
     ?>
@@ -74,64 +79,23 @@ require_once 'includes/bg_model.inc.php';
                 <h1 class="title">Directors</h1>
             </div>
 
+            <?php
+            if (!isset($_SESSION['uploaded_team'])) {
+                $_SESSION['uploaded_team'] = get_team($pdo);
+            }
+            $uploaded_team = $_SESSION['uploaded_team'];
+            
+            output_team_upload();
+            check_upload_errors();
+            output_team_delete($uploaded_team);
+            check_delete_error();
+            ?>
+
             <div class="profiles director">
 
-                <div class="profile austin hidden noMove left">
-                    <div class="goToProfile" id="goToAustin"></div>
-                    <div class="imageWrapper">
-                        <img class="portrait" src="assets/portraits/Austin.JPG" alt="">
-                        <!-- class nolink to make profile unclickable and no href for the account, to be changed when linkedin wanted -->
-                        <a class="link nolink linkedin">
-                            <!-- for no link to linkedin -->
-                            <!-- <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
-                                <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
-                            </svg> -->
-                        </a>
-                    </div>
-                    <p class="first">Austin <span class="last"><br>UNRUH</span></p>
-                    <p class="position">Coordinator</p>
-                </div>
-                <div class="profile joshua hidden noMove left">
-                    <div class="goToProfile" id="goToJoshua"></div>
-                    <div class="imageWrapper">
-                        <img class="portrait" src="assets/portraits/Joshua.JPG" alt="">
-                        <!-- class nolink to make profile unclickable and no href for the account, to be changed when linkedin wanted -->
-                        <a class="link nolink linkedin">
-                            <!-- for no link to linkedin -->
-                            <!-- <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
-                                <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
-                            </svg> -->
-                        </a>
-                    </div>
-                    <p class="first">Joshua <span class="last"><br>LAFLEUR</span></p>
-                    <p class="position">Electrical Director</p>
-                </div>
-                <div class="profile james hidden noMove left">
-                    <div class="goToProfile" id="goToJames"></div>
-                    <div class="imageWrapper">
-                        <img class="portrait" src="assets/portraits/James.JPG" alt="">
-                        <a class="link linkedin" href="https://www.linkedin.com/in/jamie-savelson-a10666162?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
-                            <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
-                                <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                    <p class="first">James <span class="last"><br>SAVELSON</span></p>
-                    <p class="position">Operations Director</p>
-                </div>
-                <div class="profile peter hidden noMove left">
-                    <div class="goToProfile" id="goToPeter"></div>
-                    <div class="imageWrapper">
-                        <img class="portrait" src="assets/portraits/Peter.JPG" alt="">
-                        <a class="link linkedin" href="https://www.linkedin.com/in/petervhopkins/">
-                            <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
-                                <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                    <p class="first">Peter <span class="last"><br>HOPKINS</span></p>
-                    <p class="position">Mechanical Director</p>
-                </div>
+            <?php
+            output_team_images($uploaded_team, "director");
+            ?>
             </div>
         </section>
 
@@ -143,127 +107,9 @@ require_once 'includes/bg_model.inc.php';
             <!-- FIRST DESIGN FOR DESKTOP ONLY (OVER 750PX), DISACTIVATED WHEN IN MOBILE MODE -->
             <!-- (no group, 3 per groupSec, displayed through css) -->
             <div class="profiles">
-                <div class="profile subs peter hidden noMove left">
-                    <!-- indicator not needed (peter is in the director section) -->
-                    <div class="imageWrapper">
-                        <img class="portrait" src="assets/portraits/Peter.JPG" alt="">
-                        <a class="link linkedin" href="https://www.linkedin.com/in/petervhopkins/">
-                            <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
-                                <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                    <p class="first">Peter <span class="last"><br>HOPKINS</span></p>
-                    <p class="position">Chassis Lead</p>
-                </div>
-                <div class="profile subs matthieu hidden noMove left">
-                    <div class="goToProfile" id="goToMatthieu"></div>
-                    <div class="imageWrapper">
-                        <img class="portrait" src="assets/portraits/Matthieu.JPG" alt="">
-                        <a class="link linkedin" href="https://www.linkedin.com/in/matthieuvdw/">
-                            <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
-                                <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                    <p class="first">Matthieu <span class="last"><br>VANDEWYNCKELE</span></p>
-                    <p class="position">Drivetrain Lead</p>
-                </div>
-                <div class="profile subs james hidden noMove left">
-                    <div class="goToProfile" id="goToJames"></div>
-                    <div class="imageWrapper">
-                        <img class="portrait" src="assets/portraits/James.JPG" alt="">
-                        <a class="link linkedin" href="https://www.linkedin.com/in/jamie-savelson-a10666162?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
-                            <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
-                                <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                    <p class="first">James <span class="last"><br>SAVELSON</span></p>
-                    <p class="position">Steering Lead</p>
-                </div>
-                <div class="profile subs sabrina hidden noMove left">
-                    <div class="goToProfile" id="goToSabrina"></div>
-                    <div class="imageWrapper">
-                        <img class="portrait" src="assets/portraits/Sabrina.JPG" alt="">
-                        <a class="link linkedin" href="https://www.linkedin.com/in/sabrina-par%C3%A9-l%C3%A9onard-447138106/">
-                            <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
-                                <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                    <p class="first">Sabrina <span class="last"><br>PARE-LEONARD</span></p>
-                    <p class="position">Brakes Lead</p>
-                </div>
-                <div class="profile subs leandre hidden noMove left">
-                    <div class="goToProfile" id="goToLeandre"></div>
-                    <div class="imageWrapper">
-                        
-                        <img class="portrait" src="assets/portraits/Leandre.JPG" alt="">
-                        <a class="link linkedin" href="https://www.linkedin.com/in/leandre-guertin-jodoin?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
-                            <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
-                                <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                    <p class="first">Leandre <span class="last leandre"><br>GUERTIN-JODOIN</span></p>
-                    <p class="position">Suspension Lead</p>
-                </div>
-
-                <div class="profile subs philippe hidden noMove left">
-                    <div class="goToProfile" id="goToPhilippe"></div>
-                    <div class="imageWrapper">
-                        <img class="portrait" src="assets/portraits/Philippe.JPG" alt="">
-                        <a class="link linkedin" href="https://www.linkedin.com/in/philippe-andrew-grimard-aerospace-engineering-and-concordiaformularacing?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
-                            <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
-                                <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                    <p class="first">Philippe Andrew<span class="last"><br>GRIMARD</span></p>
-                    <p class="position">Aerodynamics Co-Lead</p>
-                </div>
-                <div class="profile subs jacob hidden noMove left">
-                    <div class="goToProfile" id="goToJacob"></div>
-                    <div class="imageWrapper">
-                        <img class="portrait" src="assets/portraits/jacob.png" alt="">
-                        <a class="link linkedin" href="https://www.linkedin.com/in/jacobgarellek/">
-                            <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
-                                <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                    <p class="first">Jacob <span class="last"><br>GARELLEK</span></p>
-                    <p class="position">Aerodynamics Co-Lead</p>
-                </div>
-
-                <div class="profile subs jason hidden noMove left">
-                    <div class="goToProfile" id="goToJason"></div>
-                    <div class="imageWrapper">
-                        <img class="portrait" src="assets/portraits/Jason.JPG" alt="">
-                        <a class="link linkedin" href="https://www.linkedin.com/in/jasonzalass/">
-                            <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
-                                <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                    <p class="first">Jason <span class="last"><br>ZALASS</span></p>
-                    <p class="position">Electrical Hardware Lead</p>
-                </div>
-              
-                <div class="profile subs lucas hidden noMove left">
-                    <div class="goToProfile" id="goToLucas"></div>
-                    <div class="imageWrapper">
-                        <img class="portrait" src="assets/portraits/Lucas.JPG" alt="">
-                        <a class="link linkedin" href="https://www.linkedin.com/in/lucas-graham-68978817a/">
-                            <svg class="social linkedin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" fill="black">
-                                <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                    <p class="first">Lucas <span class="last"><br>GRAHAM</span></p>
-                    <p class="position">Senior Member of the Electrical Subteam</p>
-                </div>
+            <?php
+            output_team_images($uploaded_team, "subsystem_lead");
+            ?>
             </div>
         </section>
         
@@ -318,9 +164,17 @@ require_once 'includes/bg_model.inc.php';
             </div>
             <h3>-</h3>
             <?php
-                output_login_logout();
+            output_login_logout();
             ?>
         </section>
+
+        <?php
+        echo '<div class=create_account>';
+        add_user();
+        
+        delete_account(get_users($pdo));
+        echo '</div>'
+        ?>
     </div>
     
     <!-- this is a java, part of the program copy pasted for the google maps -->
