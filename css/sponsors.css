@@ -597,7 +597,7 @@ section.creator {
 .creator p {
     text-align: center; 
     color: white;
-    font-size: 1.3em;
+    font-size: 1em;
 }
 .creator p span {
     text-decoration: underline;
@@ -622,6 +622,16 @@ div.flex {
     border-radius: 5px;
     z-index: 10;
 }
+.login_logout {
+    color: white;
+}
+.login_logout p {
+    transition: all 0.2s;
+    &:hover {
+        color: black;
+        text-decoration: underline;
+    }
+}
 
 
 /* adapted for contact section for different screen sizes */
@@ -634,6 +644,19 @@ div.flex {
     /* contact section modifications for mobile */
     .title.contact {
         font-size: 3rem;
+    }
+
+    /* My section */
+    section.creator {
+        flex-direction: column;
+        gap: 0em;
+    }
+    section.creator h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .login_logout {
+        font-size: 1em;
     }
 }
 

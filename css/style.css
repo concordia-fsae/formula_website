@@ -109,7 +109,7 @@ a {
     justify-content: center;
 }
 .home-image {
-    background: url('../assets/backgrounds/HomeImage.JPG');
+    background: url('../assets/backgrounds/HomeImage.jpg');
 
     left: 0;
     width: 100%;
@@ -330,6 +330,7 @@ section.intro {
     margin-top: 2em;
     align-items: center;
     max-width: 60%;
+    min-width: 50%;
 }
 svg.introLogo {
     width: 100%;
@@ -704,6 +705,8 @@ svg.social {
         fill: black;
     }
 }
+
+
 /* my small section :) */
 section.creator {
     display: flex;
@@ -715,7 +718,7 @@ section.creator {
 .creator p {
     text-align: center; 
     color: white;
-    font-size: 1.3em;
+    font-size: 1em;
 }
 .creator p span {
     text-decoration: underline;
@@ -738,6 +741,17 @@ div.flex {
     background: white;
     border-radius: 5px;
     z-index: 10;
+}
+
+.login_logout {
+    color: white;
+}
+.login_logout p {
+    transition: all 0.2s;
+    &:hover {
+        color: black;
+        text-decoration: underline;
+    }
 }
 
 /*MAKES IT MORE SUITABLE FOR mobile*/
@@ -778,6 +792,19 @@ div.flex {
     }
     .user-name {
         width: 11em
+    }
+
+    /* My section */
+    section.creator {
+        flex-direction: column;
+        gap: 0em;
+    }
+    section.creator h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .login_logout {
+        font-size: 1em;
     }
 }
 
