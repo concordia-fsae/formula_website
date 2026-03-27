@@ -373,6 +373,13 @@ section.categories {
     animation: pulse 3s infinite; /* Add attention-grabbing animation */
 }
 
+.titleSponsor a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 .titleSponsor img {
     width: 80%; /* Large logo */
     max-width: 400px;
