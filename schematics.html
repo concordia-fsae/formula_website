@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CFR26 - Electrical Diagnostics Portal</title>
+  <link rel="stylesheet" href="schematics.css" />
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="hero-top">
+        <div class="hero-copy">
+          <div class="eyebrow">CFR26 Electrical Reference</div>
+          <h1>CFR26 - Electrical Diagnostics Portal</h1>
+          <p>
+            Mobile-friendly wiring and pinout reference for trackside diagnostics. Search signals across the whole car,
+            switch connectors instantly, inspect a visual pin layout, and trace shared signals between modules.
+          </p>
+          <div class="credit-subtle">
+            Built by <span>Stefano Bianco</span> - GLV &amp; Harness Lead<br />
+            Maintained by <span>Lucas Zahlan</span> - Firmware and Electrical Member
+          </div>
+        </div>
+        <div class="hero-brand">
+          <div class="status-chip" id="buildStatus">Prototype loaded - PDU populated - rear VC placeholders ready</div>
+          <div class="hero-logo-card">
+            <div class="hero-logo-frame">
+              <img class="hero-logo" alt="Concordia Formula Racing logo" src="assets/logo/WebsiteLogo.svg" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-nav" id="quickNav"></div>
+    </section>
+
+    <section class="controls">
+      <div class="card">
+        <label for="connectorSelect">Connector</label>
+        <select id="connectorSelect"></select>
+      </div>
+      <div class="card">
+        <label for="signalSearch">Global signal search</label>
+        <input id="signalSearch" type="text" placeholder="Search all connectors: CAN1, PUMP, BR, SFTY, pin 21..." />
+      </div>
+      <div class="card">
+        <label for="connectorSearch">Selected connector search</label>
+        <input id="connectorSearch" type="text" placeholder="Search inside current connector" />
+      </div>
+      <div class="card">
+        <label for="typeFilter">Quick filter</label>
+        <select id="typeFilter">
+          <option value="all">All pins</option>
+          <option value="power">Power</option>
+          <option value="ground">Ground</option>
+          <option value="can">CAN</option>
+          <option value="io">I/O</option>
+          <option value="nc">NC / Spare</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="layout">
+      <article class="panel connector-panel">
+        <div class="panel-head">
+          <h2 id="connectorTitle">Connector</h2>
+          <p id="connectorDesc"></p>
+        </div>
+        <div class="meta-row" id="connectorMeta"></div>
+        <div class="connector-visual-wrap">
+          <div class="connector-layout">
+            <div class="connector-photo-card">
+              <div class="connector-photo-frame" id="connectorPhotoFrame"></div>
+              <div class="connector-photo-note" id="connectorPhotoNote">
+                Add a connector photo file later to show orientation, keying, and wire-entry side for faster pit diagnostics.
+              </div>
+            </div>
+            <div class="visual-shell">
+              <div class="visual-grid" id="connectorVisual"></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel details-panel">
+        <div class="panel-head">
+          <h3>Pin details</h3>
+          <p>Tap any pin to inspect the exact signal, category, source module, and trace matches across the rest of the vehicle.</p>
+        </div>
+        <div class="detail-body" id="pinDetails"></div>
+        <div class="panel-head">
+          <h3>Signal trace</h3>
+          <p>Shows every matching occurrence of the selected signal across all connectors currently loaded in the page.</p>
+        </div>
+        <div class="trace-body" id="traceResults"></div>
+      </article>
+
+      <article class="panel search-panel">
+        <div class="panel-head">
+          <h3>Global search results</h3>
+          <p>Use this like a pit-lane wiring index. Search once and immediately see every matching connector and pin.</p>
+        </div>
+        <div class="global-body" id="globalResults"></div>
+      </article>
+    </section>
+
+    <p class="footer-note">
+      Current prototype uses your real <strong>PDU 34-pin</strong> data and placeholder entries for VC front and rear connectors.
+      Later, you can add more connectors by inserting another object into <code>connectorData</code>. This keeps the page scalable as the car evolves.
+    </p>
+  </div>
+
+  <script>
+    const connectorData = {
+      "PDU-34": {
+        title: "PDU - 34 Pin Connector",
+        description: "Power Distribution Unit main connector populated from your schematic.",
+        module: "PDU",
+        status: "Live",
+        pins: 34,
+        photo: "",
+        photoNote: "Use a front-facing photo of the PDU connector with pin 1 orientation marked.",
+        location: "Power Distribution Unit",
+        rows: [
+          { pin: 1, signal: "12V.BMS.2", type: "power", wire: "", destination: "Accumulator", notes: "High Level [4B], Accumulator [5C]" },
+          { pin: 2, signal: "12V.BMS.4", type: "power", wire: "", destination: "Accumulator", notes: "High Level [4B], Accumulator [5D]" },
+          { pin: 3, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 4, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 5, signal: "12V.CPUTER", type: "power", wire: "", destination: "", notes: "High Level [4B]" },
+          { pin: 6, signal: "12V.VC1", type: "power", wire: "", destination: "Cockpit", notes: "High Level [4B], Cockpit [2C]" },
+          { pin: 7, signal: "12V.BMS.1", type: "power", wire: "", destination: "Accumulator", notes: "High Level [4B], Accumulator [5C]" },
+          { pin: 8, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 9, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 10, signal: "12V.BMS.3", type: "power", wire: "", destination: "Accumulator", notes: "High Level [4B], Accumulator [5C]" },
+          { pin: 11, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 12, signal: "12V.REAR", type: "power", wire: "", destination: "Rear", notes: "High Level [4B], Rear [1B]" },
+          { pin: 13, signal: "12V.VC2", type: "power", wire: "", destination: "Rear", notes: "High Level [4C], Rear [1D]" },
+          { pin: 14, signal: "12V.NSWITCH", type: "power", wire: "", destination: "", notes: "High Level [4B]" },
+          { pin: 15, signal: "SFTY.RST", type: "io", wire: "", destination: "Accumulator / HV Enclosure", notes: "High Level [4C], Accumulator [5C], HV Enclosure [5C]" },
+          { pin: 16, signal: "CAN1_N", type: "can", wire: "", destination: "CAN bus", notes: "CAN channel 1" },
+          { pin: 17, signal: "CAN1_P", type: "can", wire: "", destination: "CAN bus", notes: "CAN channel 1" },
+          { pin: 18, signal: "12V.ACCU", type: "power", wire: "", destination: "Accumulator", notes: "High Level [4C], Accumulator [5C]" },
+          { pin: 19, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 20, signal: "5V.CURR", type: "io", wire: "", destination: "Rear", notes: "High Level [4C], Rear [4C]" },
+          { pin: 21, signal: "R.BR.PR", type: "io", wire: "", destination: "Rear", notes: "High Level [4C], Rear [2D]" },
+          { pin: 22, signal: "BSPD.CURR", type: "io", wire: "", destination: "Rear", notes: "High Level [4C], Rear [4C]" },
+          { pin: 23, signal: "0V.PDU", type: "ground", wire: "", destination: "", notes: "PDU return" },
+          { pin: 24, signal: "CAN1_N", type: "can", wire: "", destination: "CAN bus", notes: "Second CAN1 negative" },
+          { pin: 25, signal: "CAN1_P", type: "can", wire: "", destination: "CAN bus", notes: "Second CAN1 positive" },
+          { pin: 26, signal: "12V.MC", type: "power", wire: "", destination: "Motor Controller / Rear", notes: "High Level [4B], Motor Controller [1B], Rear [4D]" },
+          { pin: 27, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 28, signal: "12V.FRONT", type: "power", wire: "", destination: "Cockpit", notes: "High Level [4B], Cockpit [1A]" },
+          { pin: 29, signal: "SC.OUT", type: "io", wire: "", destination: "", notes: "High Level [4B]" },
+          { pin: 30, signal: "IMD.SFTY", type: "io", wire: "", destination: "Accumulator", notes: "High Level [4C], Accumulator [5C]" },
+          { pin: 31, signal: "BMS.SFTY", type: "io", wire: "", destination: "Accumulator", notes: "High Level [4C], Accumulator [5C]" },
+          { pin: 32, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 33, signal: "PUMP", type: "io", wire: "", destination: "", notes: "High Level [4B]" },
+          { pin: 34, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" }
+        ]
+      },
+      "VC-FRONT-34": {
+        title: "VC Front - 34 Pin Connector",
+        description: "Front VC 34-pin connector populated from your schematic.",
+        module: "VC Front",
+        status: "Live",
+        pins: 34,
+        photo: "",
+        photoNote: "Add the VC Front 34 connector photo later.",
+        location: "Vehicle Control Front",
+        rows: [
+          { pin: 1, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 2, signal: "AMP.FR.2", type: "io", wire: "", destination: "Front right amplifier", notes: "Front VC 34 pin 2" },
+          { pin: 3, signal: "STR.ANGLE", type: "io", wire: "", destination: "Steering angle", notes: "Front VC 34 pin 3" },
+          { pin: 4, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 5, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 6, signal: "CAN2_N", type: "can", wire: "", destination: "CAN bus", notes: "Front VC 34 pin 6" },
+          { pin: 7, signal: "CAN2_P", type: "can", wire: "", destination: "CAN bus", notes: "Front VC 34 pin 7" },
+          { pin: 8, signal: "CAN1_N", type: "can", wire: "", destination: "CAN bus", notes: "Front VC 34 pin 8" },
+          { pin: 9, signal: "CAN1_P", type: "can", wire: "", destination: "CAN bus", notes: "Front VC 34 pin 9" },
+          { pin: 10, signal: "AMP.FR.4", type: "io", wire: "", destination: "Front right amplifier", notes: "Front VC 34 pin 10" },
+          { pin: 11, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 12, signal: "F.BR.PR", type: "io", wire: "", destination: "Front brake pressure", notes: "Front VC 34 pin 12" },
+          { pin: 13, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 14, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 15, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 16, signal: "CAN1_N", type: "can", wire: "", destination: "CAN bus", notes: "Front VC 34 pin 16" },
+          { pin: 17, signal: "CAN1_P", type: "can", wire: "", destination: "CAN bus", notes: "Front VC 34 pin 17" },
+          { pin: 18, signal: "AMP.FR.3", type: "io", wire: "", destination: "Front right amplifier", notes: "Front VC 34 pin 18" },
+          { pin: 19, signal: "AMP.FR.1", type: "io", wire: "", destination: "Front right amplifier", notes: "Front VC 34 pin 19" },
+          { pin: 20, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 21, signal: "0V.VC1", type: "ground", wire: "", destination: "VC ground", notes: "Front VC 34 pin 21" },
+          { pin: 22, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 23, signal: "0V.SHLD", type: "ground", wire: "", destination: "Shield ground", notes: "Front VC 34 pin 23" },
+          { pin: 24, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 25, signal: "GPS.TX", type: "io", wire: "", destination: "GPS", notes: "Front VC 34 pin 25" },
+          { pin: 26, signal: "12V.VC1", type: "power", wire: "", destination: "VC supply", notes: "Front VC 34 pin 26" },
+          { pin: 27, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 28, signal: "BR.T.FR", type: "io", wire: "", destination: "Front right brake temp", notes: "Front VC 34 pin 28" },
+          { pin: 29, signal: "FR.SHK", type: "io", wire: "", destination: "Front right shock", notes: "Front VC 34 pin 29" },
+          { pin: 30, signal: "5V.FRONT", type: "power", wire: "", destination: "Front sensor 5V", notes: "Front VC 34 pin 30" },
+          { pin: 31, signal: "3V.FRONT", type: "power", wire: "", destination: "Front sensor supply", notes: "Front VC 34 pin 31" },
+          { pin: 32, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 33, signal: "FR.WS", type: "io", wire: "", destination: "Front wheel speed", notes: "Front VC 34 pin 33" },
+          { pin: 34, signal: "GPS.RX", type: "io", wire: "", destination: "GPS", notes: "Front VC 34 pin 34" }
+        ]
+      },
+      "VC-FRONT-26": {
+        title: "VC Front - 26 Pin Connector",
+        description: "Front VC 26-pin connector populated from your schematic.",
+        module: "VC Front",
+        status: "Live",
+        pins: 26,
+        photo: "",
+        photoNote: "Add the VC Front 26 connector photo later.",
+        location: "Vehicle Control Front",
+        rows: [
+          { pin: 1, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 2, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 3, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 4, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 5, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 6, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 7, signal: "APPS.P1", type: "io", wire: "", destination: "APPS", notes: "Front VC 26 pin 8" },
+          { pin: 8, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 9, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 10, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 11, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 12, signal: "APPS.P2", type: "io", wire: "", destination: "APPS", notes: "Front VC 26 pin 12" },
+          { pin: 13, signal: "BR.POT", type: "io", wire: "", destination: "Brake potentiometer", notes: "Front VC 26 pin 13" },
+          { pin: 14, signal: "FL.WS", type: "io", wire: "", destination: "Front left wheel speed", notes: "Front VC 26 pin 14" },
+          { pin: 15, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 16, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 17, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 18, signal: "AMP.FL.1", type: "io", wire: "", destination: "Front left amplifier", notes: "Front VC 26 pin 18" },
+          { pin: 19, signal: "AMP.FL.3", type: "io", wire: "", destination: "Front left amplifier", notes: "Front VC 26 pin 19" },
+          { pin: 20, signal: "5V_2", type: "io", wire: "", destination: "", notes: "5V.BR.T.F R&L" },
+          { pin: 21, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 22, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 23, signal: "FL.BR.T", type: "io", wire: "", destination: "Front left brake temp", notes: "Front VC 26 pin 23" },
+          { pin: 24, signal: "FL.SHK", type: "io", wire: "", destination: "Front left shock", notes: "Front VC 26 pin 24" },
+          { pin: 25, signal: "AMP.FL.2", type: "io", wire: "", destination: "Front left amplifier", notes: "Front VC 26 pin 25" },
+          { pin: 26, signal: "AMP.FL.4", type: "io", wire: "", destination: "Front left amplifier", notes: "Front VC 26 pin 26" }
+        ]
+      },
+      "VC-REAR-34": {
+        title: "VC Rear - 34 Pin Connector",
+        description: "Rear VC lower 34-pin connector populated from your schematic.",
+        module: "VC Rear",
+        status: "Live",
+        pins: 34,
+        photo: "",
+        photoNote: "Add the VC Rear 34 connector photo later.",
+        location: "Vehicle Control Rear",
+        rows: [
+          { pin: 1, signal: "HORN", type: "io", wire: "", destination: "Horn", notes: "Rear VC 34 pin 1" },
+          { pin: 2, signal: "AMP.RR.2", type: "io", wire: "", destination: "RR amplifier", notes: "Rear VC 34 pin 2" },
+          { pin: 3, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 4, signal: "TSSI.G", type: "io", wire: "", destination: "TSSI", notes: "Rear VC 34 pin 4" },
+          { pin: 5, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 6, signal: "CAN3_N", type: "can", wire: "", destination: "CAN bus", notes: "Rear VC 34 pin 6" },
+          { pin: 7, signal: "CAN3_P", type: "can", wire: "", destination: "CAN bus", notes: "Rear VC 34 pin 7" },
+          { pin: 8, signal: "CAN1_N", type: "can", wire: "", destination: "CAN bus", notes: "Rear VC 34 pin 8" },
+          { pin: 9, signal: "CAN1_P", type: "can", wire: "", destination: "CAN bus", notes: "Rear VC 34 pin 9" },
+          { pin: 10, signal: "AMP.RR.4", type: "io", wire: "", destination: "RR amplifier", notes: "Rear VC 34 pin 10" },
+          { pin: 11, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 12, signal: "R.BR.PR", type: "io", wire: "", destination: "Rear brake pressure", notes: "Rear VC 34 pin 12" },
+          { pin: 13, signal: "0V.VC1", type: "ground", wire: "", destination: "VC ground", notes: "Rear VC 34 pin 13" },
+          { pin: 14, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 15, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 16, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 17, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 18, signal: "AMP.RR.3", type: "io", wire: "", destination: "RR amplifier", notes: "Rear VC 34 pin 18" },
+          { pin: 19, signal: "AMP.RR.1", type: "io", wire: "", destination: "RR amplifier", notes: "Rear VC 34 pin 19" },
+          { pin: 20, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 21, signal: "0V.VC2", type: "ground", wire: "", destination: "VC ground", notes: "Rear VC 34 pin 21" },
+          { pin: 22, signal: "BR.LGHT", type: "io", wire: "", destination: "Brake light", notes: "Rear VC 34 pin 22" },
+          { pin: 23, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 24, signal: "TSSI.R", type: "io", wire: "", destination: "TSSI", notes: "Rear VC 34 pin 24" },
+          { pin: 25, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 26, signal: "12V.VC2", type: "power", wire: "", destination: "VC supply", notes: "Rear VC 34 pin 26" },
+          { pin: 27, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 28, signal: "RR.BR.T", type: "io", wire: "", destination: "Rear right brake temp", notes: "Rear VC 34 pin 28" },
+          { pin: 29, signal: "RR.SHK", type: "io", wire: "", destination: "Rear right shock", notes: "Rear VC 34 pin 29" },
+          { pin: 30, signal: "5V.SEN.RR", type: "power", wire: "", destination: "Sensor 5V", notes: "Rear VC 34 pin 30" },
+          { pin: 31, signal: "3V.SHK", type: "power", wire: "", destination: "Shock sensor supply", notes: "Rear VC 34 pin 31" },
+          { pin: 32, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 33, signal: "RR.WS", type: "io", wire: "", destination: "Rear right wheel speed", notes: "Rear VC 34 pin 33" },
+          { pin: 34, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" }
+        ]
+      },
+      "VC-REAR-26": {
+        title: "VC Rear - 26 Pin Connector",
+        description: "Rear VC upper 26-pin connector populated from your schematic.",
+        module: "VC Rear",
+        status: "Live",
+        pins: 26,
+        photo: "",
+        photoNote: "Add the VC Rear 26 connector photo later.",
+        location: "Vehicle Control Rear",
+        rows: [
+          { pin: 1, signal: "AMP.RL.4", type: "io", wire: "", destination: "RL amplifier", notes: "Rear VC 26 pin 1" },
+          { pin: 2, signal: "AMP.RL.2", type: "io", wire: "", destination: "RL amplifier", notes: "Rear VC 26 pin 2" },
+          { pin: 3, signal: "RL.SHK", type: "io", wire: "", destination: "Rear left shock", notes: "Rear VC 26 pin 3" },
+          { pin: 4, signal: "RL.BR.T", type: "io", wire: "", destination: "Rear left brake temp", notes: "Rear VC 26 pin 4" },
+          { pin: 5, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 6, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 7, signal: "5V.SEN.RL", type: "power", wire: "", destination: "Sensor 5V", notes: "Rear VC 26 pin 7" },
+          { pin: 8, signal: "AMP.RL.3", type: "io", wire: "", destination: "RL amplifier", notes: "Rear VC 26 pin 8" },
+          { pin: 9, signal: "AMP.RL.1", type: "io", wire: "", destination: "RL amplifier", notes: "Rear VC 26 pin 9" },
+          { pin: 10, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 11, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 12, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 13, signal: "RL.WS", type: "io", wire: "", destination: "Rear left wheel speed", notes: "Rear VC 26 pin 13" },
+          { pin: 14, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 15, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 16, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 17, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 18, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 19, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 20, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 21, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 22, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 23, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 24, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 25, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" },
+          { pin: 26, signal: "NC", type: "nc", wire: "", destination: "", notes: "Not connected" }
+        ]
+      }
+    };
+
+    const connectorSelect = document.getElementById("connectorSelect");
+    const signalSearch = document.getElementById("signalSearch");
+    const connectorSearch = document.getElementById("connectorSearch");
+    const typeFilter = document.getElementById("typeFilter");
+    const quickNav = document.getElementById("quickNav");
+    const connectorTitle = document.getElementById("connectorTitle");
+    const connectorDesc = document.getElementById("connectorDesc");
+    const connectorMeta = document.getElementById("connectorMeta");
+    const connectorPhotoFrame = document.getElementById("connectorPhotoFrame");
+    const connectorPhotoNote = document.getElementById("connectorPhotoNote");
+    const connectorVisual = document.getElementById("connectorVisual");
+    const pinDetails = document.getElementById("pinDetails");
+    const traceResults = document.getElementById("traceResults");
+    const globalResults = document.getElementById("globalResults");
+
+    let activeConnector = "PDU-34";
+    let activePin = 1;
+
+    function normalize(text) {
+      return String(text || "").toLowerCase();
+    }
+
+    function inferType(signal) {
+      const s = normalize(signal);
+      if (!s || s === "nc" || s.includes("tbd") || s.includes("empty")) return "nc";
+      if (s.includes("0v") || s.includes("gnd") || s.includes("ground")) return "ground";
+      if (s.includes("can")) return "can";
+      if (s.includes("12v") || s.includes("5v") || s.includes("3v")) return "power";
+      return "io";
+    }
+
+    function typeClass(type) {
+      return `pin-type-${type || "io"}`;
+    }
+
+    function typeLabel(type) {
+      return ({ power: "Power", ground: "Ground", can: "CAN", io: "I/O", nc: "NC" })[type] || "I/O";
+    }
+
+    function searchableText(connectorKey, row, connector) {
+      return [
+        connector.title,
+        connector.module,
+        connector.location,
+        row.pin,
+        row.signal,
+        row.type,
+        row.wire,
+        row.destination,
+        row.notes,
+        connectorKey
+      ].join(" ").toLowerCase();
+    }
+
+    function highlight(text, query) {
+      if (!query) return text || "&mdash;";
+      const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const regex = new RegExp(`(${escaped})`, "ig");
+      return String(text || "&mdash;").replace(regex, '<span class="highlight">$1</span>');
+    }
+
+    function loadNavAndSelect() {
+      connectorSelect.innerHTML = "";
+      quickNav.innerHTML = "";
+
+      Object.entries(connectorData).forEach(([key, connector]) => {
+        const opt = document.createElement("option");
+        opt.value = key;
+        opt.textContent = connector.title;
+        connectorSelect.appendChild(opt);
+
+        const btn = document.createElement("button");
+        btn.className = "quick-btn";
+        btn.innerHTML = `${connector.title}<span class="sub">${connector.status} - ${connector.pins} pins</span>`;
+        btn.addEventListener("click", () => {
+          activeConnector = key;
+          connectorSelect.value = key;
+          activePin = 1;
+          render();
+        });
+        btn.dataset.key = key;
+        quickNav.appendChild(btn);
+      });
+
+      connectorSelect.value = activeConnector;
+    }
+
+    function getFilteredRows(connectorKey) {
+      const connector = connectorData[connectorKey];
+      const query = normalize(connectorSearch.value.trim());
+      const filter = typeFilter.value;
+      return connector.rows.filter((row) => {
+        const rowType = row.type || inferType(row.signal);
+        const passType = filter === "all" ? true : rowType === filter;
+        const passSearch = !query || searchableText(connectorKey, row, connector).includes(query);
+        return passType && passSearch;
+      });
+    }
+
+    function renderConnector() {
+      const connector = connectorData[activeConnector];
+      const rows = getFilteredRows(activeConnector);
+      const allRows = connector.rows;
+      const currentRow = allRows.find((r) => r.pin === activePin) || allRows[0];
+      if (!currentRow) return;
+
+      connectorTitle.textContent = connector.title;
+      connectorDesc.textContent = connector.description;
+      connectorMeta.innerHTML = `
+        <span class="tag">Module: ${connector.module}</span>
+        <span class="tag">Status: ${connector.status}</span>
+        <span class="tag">Pins: ${connector.pins}</span>
+        <span class="tag">Location: ${connector.location}</span>
+      `;
+
+      connectorPhotoFrame.innerHTML = connector.photo
+        ? `<img src="${connector.photo}" alt="${connector.title} photo" />`
+        : `<div class="connector-photo-placeholder">
+            <strong>Connector photo placeholder</strong>
+            Drop a photo beside the HTML file and set its path in <code>connectorData</code>.
+          </div>`;
+
+      connectorPhotoNote.textContent = connector.photoNote || "Add a connector photo later.";
+
+      connectorVisual.innerHTML = rows.length ? rows.map((row) => {
+        const rowType = row.type || inferType(row.signal);
+        return `
+          <button class="pin-node ${row.pin === activePin ? "active" : ""}" data-pin="${row.pin}">
+            <div class="pin-badge ${typeClass(rowType)}">${row.pin}</div>
+            <div class="pin-label">
+              <div class="pin-signal">${highlight(row.signal, connectorSearch.value.trim())}</div>
+              <div class="pin-sub">${typeLabel(rowType)}</div>
+            </div>
+          </button>
+        `;
+      }).join("") : `<div class="empty">No pins match the current connector filter.</div>`;
+
+      document.querySelectorAll(".pin-node").forEach((node) => {
+        node.addEventListener("click", () => {
+          activePin = Number(node.dataset.pin);
+          render();
+        });
+      });
+
+      const activeType = currentRow.type || inferType(currentRow.signal);
+      pinDetails.innerHTML = `
+        <div class="detail-card">
+          <div class="detail-top">
+            <div>
+              <div class="detail-kicker">Selected pin</div>
+              <div class="detail-title">Pin ${currentRow.pin} - ${currentRow.signal || "&mdash;"}</div>
+            </div>
+            <div class="tag">${typeLabel(activeType)}</div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-item"><strong>Connector</strong><span>${connector.title}</span></div>
+            <div class="detail-item"><strong>Module</strong><span>${connector.module}</span></div>
+            <div class="detail-item"><strong>Wire</strong><span>${currentRow.wire || "&mdash;"}</span></div>
+            <div class="detail-item"><strong>Destination</strong><span>${currentRow.destination || "&mdash;"}</span></div>
+            <div class="detail-item"><strong>Notes</strong><span>${currentRow.notes || "&mdash;"}</span></div>
+            <div class="detail-item"><strong>Status</strong><span>${connector.status}</span></div>
+          </div>
+          <div class="mini-actions">
+            <button class="mini-btn" id="copySignalBtn">Copy signal</button>
+            <button class="mini-btn" id="copyPinBtn">Copy connector + pin</button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById("copySignalBtn").addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(currentRow.signal || "");
+        } catch (e) {}
+      });
+
+      document.getElementById("copyPinBtn").addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(`${connector.title} - Pin ${currentRow.pin} - ${currentRow.signal}`);
+        } catch (e) {}
+      });
+
+      const traceMatches = [];
+      Object.entries(connectorData).forEach(([key, entry]) => {
+        entry.rows.forEach((row) => {
+          if (normalize(row.signal) === normalize(currentRow.signal) && normalize(row.signal) !== "nc" && !normalize(row.signal).startsWith("tbd") && !normalize(row.signal).startsWith("empty")) {
+            traceMatches.push({ connectorKey: key, connector: entry.title, module: entry.module, pin: row.pin, notes: row.notes || "&mdash;" });
+          }
+        });
+      });
+
+      traceResults.innerHTML = traceMatches.length ? `<div class="trace-list">${traceMatches.map((match) => `
+        <div class="trace-row">
+          <div>
+            <strong>${currentRow.signal}</strong>
+            <div>${match.connector}</div>
+            <div style="color:var(--muted);font-size:0.9rem;margin-top:4px;">${match.notes}</div>
+          </div>
+          <div class="side">${match.module} - Pin ${match.pin}</div>
+        </div>
+      `).join("")}</div>` : `<div class="empty">No other matching signal instances loaded yet.</div>`;
+    }
+
+    function renderGlobalSearch() {
+      const query = normalize(signalSearch.value.trim());
+      const results = [];
+
+      Object.entries(connectorData).forEach(([key, connector]) => {
+        connector.rows.forEach((row) => {
+          row.type = row.type || inferType(row.signal);
+          if (!query || searchableText(key, row, connector).includes(query)) {
+            if (query || (key === "PDU-34" && row.signal !== "NC")) {
+              results.push({ connectorKey: key, connector: connector.title, module: connector.module, row, status: connector.status });
+            }
+          }
+        });
+      });
+
+      globalResults.innerHTML = results.length ? `<div class="global-list">${results.map((item) => `
+        <div class="global-row">
+          <div>
+            <strong>${highlight(item.row.signal, signalSearch.value.trim())}</strong>
+            <div>${item.connector}</div>
+            <div style="color:var(--muted);font-size:0.9rem;margin-top:4px;">${highlight(item.row.notes || "&mdash;", signalSearch.value.trim())}</div>
+          </div>
+          <div class="side">Pin ${item.row.pin} - ${typeLabel(item.row.type)} - ${item.status}</div>
+        </div>
+      `).join("")}</div>` : `<div class="empty">No global search matches yet. Try CAN1, 12V, PUMP, SFTY, BR, or pin numbers.</div>`;
+
+      document.querySelectorAll(".global-row").forEach((rowEl, index) => {
+        rowEl.addEventListener("click", () => {
+          const item = results[index];
+          activeConnector = item.connectorKey;
+          activePin = item.row.pin;
+          connectorSelect.value = activeConnector;
+          render();
+        });
+      });
+    }
+
+    function updateQuickNavState() {
+      document.querySelectorAll(".quick-btn").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.key === activeConnector);
+      });
+    }
+
+    function render() {
+      updateQuickNavState();
+      renderConnector();
+      renderGlobalSearch();
+    }
+
+    loadNavAndSelect();
+    render();
+
+    connectorSelect.addEventListener("change", (e) => {
+      activeConnector = e.target.value;
+      activePin = 1;
+      render();
+    });
+
+    connectorSearch.addEventListener("input", () => {
+      const rows = getFilteredRows(activeConnector);
+      if (rows.length) activePin = rows[0].pin;
+      render();
+    });
+
+    signalSearch.addEventListener("input", render);
+
+    typeFilter.addEventListener("change", () => {
+      const rows = getFilteredRows(activeConnector);
+      if (rows.length) activePin = rows[0].pin;
+      render();
+    });
+  </script>
+</body>
+</html>
