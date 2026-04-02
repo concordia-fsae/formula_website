@@ -23,7 +23,6 @@
           </div>
         </div>
         <div class="hero-brand">
-          <div class="status-chip" id="buildStatus">Prototype loaded - PDU populated - rear VC placeholders ready</div>
           <div class="hero-logo-card">
             <div class="hero-logo-frame">
               <img class="hero-logo" alt="Concordia Formula Racing logo" src="assets/logo/WebsiteLogo.svg" />
@@ -105,10 +104,6 @@
       </article>
     </section>
 
-    <p class="footer-note">
-      Current prototype uses your real <strong>PDU 34-pin</strong> data and placeholder entries for VC front and rear connectors.
-      Later, you can add more connectors by inserting another object into <code>connectorData</code>. This keeps the page scalable as the car evolves.
-    </p>
   </div>
 
   <script>
@@ -402,7 +397,7 @@
 
         const btn = document.createElement("button");
         btn.className = "quick-btn";
-        btn.innerHTML = `${connector.title}<span class="sub">${connector.status} - ${connector.pins} pins</span>`;
+        btn.innerHTML = `${connector.title}<span class="sub">${connector.pins} pins</span>`;
         btn.addEventListener("click", () => {
           activeConnector = key;
           connectorSelect.value = key;
